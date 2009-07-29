@@ -1,0 +1,4 @@
+- persistent cache!
+- logging/debug output
+- extended tweet format
+- interrupt handling in loop mode

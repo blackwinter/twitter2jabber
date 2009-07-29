@@ -1,0 +1,142 @@
+#! /usr/bin/ruby
+
+#--
+###############################################################################
+#                                                                             #
+# twitter2jabber - Twitter-to-Jabber gateway.                                 #
+#                                                                             #
+# Copyright (C) 2009 Jens Wille                                               #
+#                                                                             #
+# Authors:                                                                    #
+#     Jens Wille <ww@blackwinter.de>                                          #
+#                                                                             #
+# twitter2jabber is free software; you can redistribute it and/or modify it   #
+# under the terms of the GNU General Public License as published by the Free  #
+# Software Foundation; either version 3 of the License, or (at your option)   #
+# any later version.                                                          #
+#                                                                             #
+# twitter2jabber is distributed in the hope that it will be useful, but       #
+# WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY  #
+# or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for #
+# more details.                                                               #
+#                                                                             #
+# You should have received a copy of the GNU General Public License along     #
+# with twitter2jabber. If not, see <http://www.gnu.org/licenses/>.            #
+#                                                                             #
+###############################################################################
+#++
+
+require 'optparse'
+require 'yaml'
+
+require 'rubygems'
+require 'highline/import'
+
+$: << File.join(File.dirname(__FILE__), '..', 'lib')
+
+require 'twitter2jabber'
+
+USAGE = "Usage: #{$0} [-h|--help] [options]"
+
+def ask(prompt)
+  super
+rescue Interrupt
+  puts
+  exit
+end
+
+options = {
+  :config     => 'config.yaml',
+  :user       => nil,
+  :jid        => nil,
+  :recipients => [],
+  :loop       => false,
+  :pause      => nil
+}
+
+OptionParser.new { |opts|
+  opts.banner = USAGE
+
+  opts.separator ' '
+  opts.separator 'Options:'
+
+  opts.on('-c', '--config YAML', "Path to config file [Default: #{options[:config]}]") { |c|
+    options[:config] = c
+  }
+
+  opts.separator ' '
+
+  opts.on('-u', '--user NAME', 'Twitter user') { |u|
+    options[:user] = u
+  }
+
+  opts.on('-j', '--jid ID', 'Jabber ID') { |j|
+    options[:jid] = j
+  }
+
+  opts.separator ' '
+
+  opts.on('-r', '--recipients LIST', 'Comma-separated list of Jabber IDs') { |r|
+    options[:recipients] += r.split(',')
+  }
+
+  opts.on('-R', '--recipients-from-file FILE', 'File with one Jabber ID per line') { |r|
+    options[:recipients] += File.readlines(r).map { |l| l.chomp }
+  }
+
+  opts.separator ' '
+
+  opts.on('-l', '--loop', 'Run in a loop') {
+    options[:loop] = true
+  }
+
+  opts.on('-p', '--pause SECONDS', Integer, 'Number of seconds to pause between loops') { |p|
+    options[:pause] = p
+  }
+
+  opts.separator ' '
+  opts.separator 'Generic options:'
+
+  opts.on('-h', '--help', 'Print this help message and exit') {
+    puts opts
+    exit
+  }
+
+  opts.on('--version', 'Print program version and exit') {
+    puts "#{File.basename($0)} v#{Twitter2Jabber::VERSION}"
+    exit
+  }
+}.parse!
+
+config = begin
+  YAML.load_file(options[:config])
+rescue Errno::ENOENT
+  {}
+end
+
+# twitter config
+config[:twitter] ||= {}
+config[:twitter][:user] = options[:user] if options[:user]
+config[:twitter][:user] ||= ask('Twitter user: ')
+config[:twitter][:pass] ||= ask("Password for Twitter user #{config[:twitter][:user]}: ") { |q| q.echo = false }
+
+# jabber config
+config[:jabber] ||= {}
+config[:jabber][:user] = options[:jid] if options[:jid]
+config[:jabber][:user] ||= ask('Jabber ID: ')
+config[:jabber][:pass] ||= ask("Password for Jabber ID #{config[:jabber][:user]}: ") { |q| q.echo = false }
+
+recipients = options[:recipients] + (config.delete(:recipients) || [])
+recipients.uniq!
+
+begin
+  twitter2jabber = Twitter2Jabber.new(config)
+
+  if options[:loop]
+    twitter2jabber.loop(recipients, options[:pause] || config[:pause])
+  else
+    twitter2jabber.run(recipients)
+  end
+rescue RuntimeError => err
+  abort err
+end
