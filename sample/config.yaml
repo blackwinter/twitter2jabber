@@ -1,0 +1,15 @@
+---
+:twitter:
+  :user: foo
+  :pass: bar
+
+:jabber:
+  :user: quix
+  :pass: quux
+
+:recipients:
+  - one
+  - two
+  - three
+
+:pause: 123
