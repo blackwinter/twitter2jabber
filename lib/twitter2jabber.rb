@@ -94,16 +94,16 @@ class Twitter2Jabber
     # sleep at least one second
     pause = 1 if pause < 1
 
-    i, seen = 0, Hash.new { |h, k| h[k] = true; false }
+    i, seen = 1, Hash.new { |h, k| h[k] = true; false }
 
-    trap(:INT) { i = nil }
+    trap(:INT) { i = -1 }
 
-    while i
-      i += 1
-
+    while i > 0
       run(recipients, seen, i % ratio == 1, &block)
 
       sleep pause
+
+      i += 1
     end
   end
 
@@ -207,17 +207,17 @@ class Twitter2Jabber
     case body
       when /\Ahe?(?:lp)?\z/i
         deliver(from, <<-HELP) if execute
-h[e[lp]]            -- Print this help
+h[e[lp]]                     -- Print this help
 
-de[bug]             -- Print debug mode
-de[bug] on|off      -- Turn debug mode on/off
+de[bug]                      -- Print debug mode
+de[bug] on|off               -- Turn debug mode on/off
 
-bl[ock] #ID         -- Block ID
-fa[v[orite]] #ID    -- Create favorite #ID
+bl[ock] #ID                  -- Block ID
+fa[v[orite]] #ID             -- Create favorite #ID
 
-re[ply] #ID: ...    -- Reply to ID
-le[n[gth]] ...      -- Determine length
-...                 -- Update status
+re[ply] #ID[:] [!] STATUS    -- Reply to ID (Force if too long)
+le[n[gth]] STATUS            -- Determine length
+[!] STATUS                   -- Update status (Force if too long)
 
 (Note: Message body must be shorter than #{MAX_LENGTH} characters)
         HELP
@@ -256,9 +256,13 @@ le[n[gth]] ...      -- Determine length
           options[:in_reply_to_status_id] = $1
         end
 
+        if body.sub!(/\A!\s+/, '')
+          force = true
+        end
+
         return body unless execute
 
-        if body.length <= MAX_LENGTH
+        if force || body.length <= MAX_LENGTH
           update(body, options)
         else
           deliver(from, "MSG TOO LONG (> #{MAX_LENGTH}): #{body}")
