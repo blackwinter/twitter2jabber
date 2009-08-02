@@ -46,12 +46,16 @@ rescue Interrupt
 end
 
 options = {
-  :config     => 'config.yaml',
-  :user       => nil,
-  :jid        => nil,
-  :recipients => [],
-  :loop       => false,
-  :pause      => nil
+  :config       => 'config.yaml',
+  :user         => nil,
+  :jid          => nil,
+  :recipients   => [],
+  :formats      => nil,
+  :template_dir => nil,
+  :loop         => false,
+  :pause        => nil,
+  :verbose      => false,
+  :debug        => false
 }
 
 OptionParser.new { |opts|
@@ -86,6 +90,17 @@ OptionParser.new { |opts|
 
   opts.separator ' '
 
+  opts.on('-f', '--formats LIST', "Comma-separated list of formats [Default: #{Twitter2Jabber::DEFAULT_FORMATS.join(',')}]") { |f|
+    options[:formats] = f.split(',')
+  }
+
+  opts.on('-t', '--template-dir PATH', 'Path to custom template directory', "[Default: #{Twitter2Jabber::DEFAULT_TEMPLATES}]") { |t|
+    abort "Template directory not found: #{t}" unless File.directory?(t)
+    options[:template_dir] = t
+  }
+
+  opts.separator ' '
+
   opts.on('-l', '--loop', 'Run in a loop') {
     options[:loop] = true
   }
@@ -96,6 +111,14 @@ OptionParser.new { |opts|
 
   opts.separator ' '
   opts.separator 'Generic options:'
+
+  opts.on('-v', '--verbose', 'Be verbose') {
+    options[:verbose] = true
+  }
+
+  opts.on('-D', '--debug', "Print debug output and don't send or update anything") {
+    options[:debug] = true
+  }
 
   opts.on('-h', '--help', 'Print this help message and exit') {
     puts opts
@@ -128,6 +151,10 @@ config[:jabber][:pass] ||= ask("Password for Jabber ID #{config[:jabber][:user]}
 
 recipients = options[:recipients] + (config.delete(:recipients) || [])
 recipients.uniq!
+
+[:formats, :template_dir, :verbose, :debug].each { |key|
+  config[key] = options[key] if options[key]
+}
 
 begin
   twitter2jabber = Twitter2Jabber.new(config)

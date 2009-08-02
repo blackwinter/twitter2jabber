@@ -15,7 +15,7 @@ begin
       :summary      => %q{Twitter-to-Jabber gateway.},
       :homepage     => %q{http://twitter2jabber.rubyforge.org/},
       :files        => FileList['lib/**/*.rb', 'bin/*'].to_a,
-      :extra_files  => FileList['[A-Z]*', 'sample/*'].to_a,
+      :extra_files  => FileList['[A-Z]*', 'sample/**/*'].to_a,
       :dependencies => %w[twitter xmpp4r-simple highline]
     }
   }}

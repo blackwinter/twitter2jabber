@@ -1,0 +1,7 @@
+<%= user.name %>
+(<a href="http://twitter.com/<%= user.screen_name %>"><%= user.screen_name %></a>)
+[<%= tweet.created_at %>]:
+<br /><br />
+<img src="<%= user.profile_image_url %>" alt="[<%= user.screen_name %>]" />
+<%= tweet.text %>
+| #<%= tweet.id %>

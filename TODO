@@ -1,4 +1,4 @@
-- persistent cache!
-- logging/debug output
-- extended tweet format
-- interrupt handling in loop mode
+- persistent cache! (friends_timeline: since/since_id?)
+- better interrupt handling (in loop mode)
+- daemonize after asking for credentials (in loop mode)
+- additional commands?

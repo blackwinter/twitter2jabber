@@ -1,0 +1,3 @@
+<%= user.name %> (<%= user.screen_name %>) [<%= tweet.created_at %>]:
+
+<%= tweet.text %> | #<%= tweet.id %>
