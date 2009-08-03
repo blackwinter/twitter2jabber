@@ -30,6 +30,7 @@ require 'erb'
 require 'rubygems'
 require 'twitter'
 require 'xmpp4r-simple'
+require 'shorturl'
 
 require 'twitter2jabber/version'
 
@@ -271,6 +272,10 @@ le[n[gth]] STATUS            -- Determine length
         if body.sub!(/\A!\s+/, '')
           force = true
         end
+
+        body.gsub!(/https?:\/\/\S+/) { |match|
+          match.length < 30 ? match : ShortURL.shorten(match)
+        }
 
         return body unless execute
 
