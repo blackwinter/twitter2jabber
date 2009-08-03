@@ -133,9 +133,11 @@ class Twitter2Jabber
   end
 
   def post_messages(recipients = [])
+    allowed = %r{\A(?:#{recipients.map { |r| Regexp.escape(r) }.join('|')})\z}i
+
     jabber.received_messages { |msg|
       next unless msg.type == :chat
-      next unless recipients.include?(msg.from.bare.to_s)
+      next unless msg.from.bare.to_s =~ allowed
 
       logj msg.id
 
