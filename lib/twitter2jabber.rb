@@ -81,7 +81,7 @@ class Twitter2Jabber
 
   def run(recipients = [], seen = {}, flag = true, &block)
     deliver_tweets(recipients, seen, &block) if flag
-    post_messages
+    post_messages(recipients)
   end
 
   def loop(recipients = [], pause = nil, &block)
@@ -127,9 +127,10 @@ class Twitter2Jabber
     }
   end
 
-  def post_messages
+  def post_messages(recipients = [])
     jabber.received_messages { |msg|
       next unless msg.type == :chat
+      next unless recipients.include?(msg.from.bare.to_s)
 
       logj msg.id
 
