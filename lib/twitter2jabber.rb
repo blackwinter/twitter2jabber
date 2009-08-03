@@ -54,7 +54,7 @@ class Twitter2Jabber
     new(options).run(recipients, &block)
   end
 
-  attr_reader :id, :verbose, :debug, :twitter, :jabber, :filter, :formats, :templates
+  attr_reader :id, :verbose, :debug, :twitter, :jabber, :filter, :formats, :templates, :_erb
 
   def initialize(options, &block)
     [:twitter, :jabber].each { |client|
@@ -76,6 +76,11 @@ class Twitter2Jabber
       File.join(options[:template_dir] || DEFAULT_TEMPLATES, 'tweet.*')
     ].inject({}) { |hash, template|
       hash.update(File.extname(template).sub(/\A\./, '') => File.read(template))
+    }
+
+    @_erb = Hash.new { |hash, format|
+      template = templates[format]
+      hash[format] = template && ERB.new(template)
     }
   end
 
@@ -179,10 +184,8 @@ class Twitter2Jabber
     msg = Jabber::Message.new.set_type(:chat)
 
     formats.each { |format|
-      if template = templates[format]
-        msg.add_element format_element(format) {
-          ERB.new(template).result(binding)
-        }
+      if erb = _erb[format]
+        msg.add_element(format_element(format, erb.result(binding)))
       end
     }
 
@@ -190,18 +193,24 @@ class Twitter2Jabber
   end
 
   # cf. <http://devblog.famundo.com/articles/2006/10/18/ruby-and-xmpp-jabber-part-3-adding-html-to-the-messages>
-  def format_element(format)
+  def format_element(format, text)
     body = REXML::Element.new('body')
-    REXML::Text.new(yield, format != 'html', body, true, nil, /.^/)
 
     case format
       when 'html'
+        REXML::Text.new(process_html(text), false, body, true, nil, /.^/)
+
         html = REXML::Element.new('html').add_namespace(JABBER_NS)
         html.add(body.add_namespace(XHTML_NS))
         html
       else
+        REXML::Text.new(text, true, body, true, nil, /.^/)
         body
     end
+  end
+
+  def process_html(text)
+    text.gsub(/((?:\A|\s)@)(\w+)/, '\1<a href="http://twitter.com/\2">\2</a>')
   end
 
   def handle_command(body, from, execute = true)
