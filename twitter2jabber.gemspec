@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{twitter2jabber}
-  s.version = "0.0.5"
+  s.version = "0.0.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jens Wille"]
-  s.date = %q{2009-08-03}
+  s.date = %q{2009-08-21}
   s.default_executable = %q{twitter2jabber}
   s.description = %q{Twitter-to-Jabber gateway.}
   s.email = %q{jens.wille@uni-koeln.de}
