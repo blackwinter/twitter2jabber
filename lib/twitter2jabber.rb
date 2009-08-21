@@ -102,7 +102,10 @@ class Twitter2Jabber
 
     i, seen = 1, Hash.new { |h, k| h[k] = true; false }
 
-    trap(:INT) { i = -1 }
+    trap(:INT) {
+      log "SIGINT received #{Time.now}, shutting down..."
+      i = -1
+    }
 
     while i > 0
       run(recipients, seen, i % ratio == 1, &block)
@@ -111,6 +114,8 @@ class Twitter2Jabber
 
       i += 1
     end
+
+    log "KTHXBYE (#{Time.now})"
   end
 
   def deliver_tweets(recipients, seen = {}, &block)
