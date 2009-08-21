@@ -177,11 +177,11 @@ class Twitter2Jabber
       tweet.created_at = Time.parse(tweet.created_at)
     }
   rescue Twitter::TwitterError
-    sleep pause
+    sleep DEFAULT_PAUSE
     retry
   rescue StandardError => err
     warn "#{err} (#{err.class})"
-    sleep pause
+    sleep DEFAULT_PAUSE
     retry
   end
 
