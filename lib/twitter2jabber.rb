@@ -176,7 +176,7 @@ class Twitter2Jabber
     twitter.friends_timeline.sort_by { |tweet|
       tweet.created_at = Time.parse(tweet.created_at)
     }
-  rescue Twitter::TwitterError
+  rescue Twitter::TwitterError, Timeout::Error
     sleep DEFAULT_PAUSE
     retry
   rescue StandardError => err

@@ -1,3 +1,4 @@
+- in reply to
 - persistent cache! (friends_timeline: since/since_id?)
 - OAuth (register: http://twitter.com/oauth_clients/new)
 - better interrupt handling (in loop mode)
