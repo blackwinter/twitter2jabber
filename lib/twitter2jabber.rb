@@ -229,17 +229,18 @@ class Twitter2Jabber
     case body
       when /\Ahe?(?:lp)?\z/i
         deliver(from, <<-HELP) if execute
-h[e[lp]]                     -- Print this help
+h[e[lp]]                          -- Print this help
 
-de[bug]                      -- Print debug mode
-de[bug] on|off               -- Turn debug mode on/off
+de[bug]                           -- Print debug mode
+de[bug] on|off                    -- Turn debug mode on/off
 
-bl[ock] #ID                  -- Block ID
-fa[v[orite]] #ID             -- Create favorite #ID
+bl[ock] #ID                       -- Block ID
+fa[v[orite]] #ID                  -- Add #ID to favorites
 
-re[ply] #ID[:] [!] STATUS    -- Reply to ID (Force if too long)
-le[n[gth]] STATUS            -- Determine length
-[!] STATUS                   -- Update status (Force if too long)
+rt|retweet #ID[:] [!] [STATUS]    -- Retweet ID (Force if too long)
+re[ply] #ID[:] [!] STATUS         -- Reply to ID (Force if too long)
+le[n[gth]] STATUS                 -- Determine length
+[!] STATUS                        -- Update status (Force if too long)
 
 (Note: Message body must be shorter than #{MAX_LENGTH} characters)
         HELP
@@ -274,11 +275,16 @@ le[n[gth]] STATUS            -- Determine length
           return
         end
 
-        if body.sub!(/\Are(?:ply)?\s+#?(\d+):?\s+/i, '')
+        if body.sub!(/\A(?:rt|retweet)?\s+#?(\d+)(?::?\s+|\z)/i, '')
+          tweet = twitter.status($1)
+
+          body << ' ' unless body.empty?
+          body << '@' << tweet.user.screen_name << ': ' << tweet.body
+        elsif body.sub!(/\Are(?:ply)?\s+#?(\d+):?\s+/i, '')
           options[:in_reply_to_status_id] = $1
         end
 
-        if body.sub!(/\A!\s+/, '')
+        if body.sub!(/\A!(?:\s+|\z)/, '')
           force = true
         end
 
