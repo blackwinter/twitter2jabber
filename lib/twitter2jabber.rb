@@ -234,11 +234,12 @@ h[e[lp]]                          -- Print this help
 de[bug]                           -- Print debug mode
 de[bug] on|off                    -- Turn debug mode on/off
 
-bl[ock] #ID                       -- Block ID
+bl[ock] #USER                     -- Block USER
 fa[v[orite]] #ID                  -- Add #ID to favorites
 
 rt|retweet #ID[:] [!] [STATUS]    -- Retweet ID (Force if too long)
 re[ply] #ID[:] [!] STATUS         -- Reply to ID (Force if too long)
+
 le[n[gth]] STATUS                 -- Determine length
 [!] STATUS                        -- Update status (Force if too long)
 
@@ -257,7 +258,7 @@ le[n[gth]] STATUS                 -- Determine length
 
           deliver(from, "DEBUG = #{debug ? 'on' : 'off'}")
         end
-      when /\Abl(?:ock)?\s+#?(\d+)\z/i
+      when /\Abl(?:ock)?\s+#?(\w+)\z/i
         twitter.block($1) if execute && !debug
       when /\Afav?(?:orite)?\s+#?(\d+)\z/i
         twitter.favorite_create($1) if execute && !debug
