@@ -93,13 +93,6 @@ class Twitter2Jabber
   def loop(recipients = [], pause = nil, &block)
     pause ||= DEFAULT_PAUSE
 
-    # jabber/twitter ratio
-    ratio = 10
-    pause /= ratio
-
-    # sleep at least one second
-    pause = 1 if pause < 1
-
     i, seen = 1, Hash.new { |h, k| h[k] = true; false }
 
     trap(:INT) {
@@ -108,9 +101,9 @@ class Twitter2Jabber
     }
 
     while i > 0
-      run(recipients, seen, i % ratio == 1, &block)
+      run(recipients, seen, i % pause == 1, &block)
 
-      sleep pause
+      sleep 1
 
       i += 1
     end
