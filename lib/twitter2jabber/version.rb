@@ -4,7 +4,7 @@ class Twitter2Jabber
 
     MAJOR = 0
     MINOR = 0
-    TINY  = 7
+    TINY  = 8
 
     class << self
 
