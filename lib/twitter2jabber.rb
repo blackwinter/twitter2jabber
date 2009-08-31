@@ -199,6 +199,7 @@ class Twitter2Jabber
 
   # cf. <http://devblog.famundo.com/articles/2006/10/18/ruby-and-xmpp-jabber-part-3-adding-html-to-the-messages>
   def format_element(format, text)
+    text = process_message(text)
     body = REXML::Element.new('body')
 
     case format
@@ -209,13 +210,21 @@ class Twitter2Jabber
         html.add(body.add_namespace(XHTML_NS))
         html
       else
-        REXML::Text.new(text, true, body, true, nil, /.^/)
+        REXML::Text.new(process_text(text), true, body, true, nil, /.^/)
         body
     end
   end
 
+  def process_message(text)
+    text.gsub(/https?:\/\/\S+/) { |match| LongURL.expand(match) rescue match }
+  end
+
   def process_html(text)
     text.gsub(/((?:\A|\s)@)(\w+)/, '\1<a href="http://twitter.com/\2">\2</a>')
+  end
+
+  def process_text(text)
+    text
   end
 
   def handle_command(body, from, execute = true)
