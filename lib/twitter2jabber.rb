@@ -31,6 +31,7 @@ require 'rubygems'
 require 'twitter'
 require 'xmpp4r-simple'
 require 'shorturl'
+require 'longurl'
 
 require 'twitter2jabber/version'
 
