@@ -283,7 +283,7 @@ le[n[gth]] STATUS                 -- Determine length
           tweet = twitter.status($1)
 
           body << ' ' unless body.empty?
-          body << '@' << tweet.user.screen_name << ': ' << tweet.text
+          body << "RT @#{tweet.user.screen_name}: #{tweet.text}"
         elsif body.sub!(/\Are(?:ply)?\s+#?(\d+):?\s+/i, '')
           options[:in_reply_to_status_id] = $1
         end
