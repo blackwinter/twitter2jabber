@@ -282,13 +282,27 @@ le[n[gth]] STATUS                 -- Determine length
           return
         end
 
-        if body.sub!(/\A(?:rt|retweet)?\s+#?(\d+)(?::?\s+|\z)/i, '')
-          tweet = twitter.status($1)
+        begin
+          if body.sub!(/\A(?:rt|retweet)?\s+#?(\d+)(:?)(?:\s+|\z)/i, '')
+            id, colon = $1, $2
 
-          body << ' ' unless body.empty?
-          body << "RT @#{tweet.user.screen_name}: #{tweet.text}"
-        elsif body.sub!(/\Are(?:ply)?\s+#?(\d+):?\s+/i, '')
-          options[:in_reply_to_status_id] = $1
+            tweet = twitter.status(id)
+
+            body << ' ' unless body.empty?
+            body << "RT @#{tweet.user.screen_name}#{colon} #{tweet.text}"
+          elsif body.sub!(/\Are(?:ply)?\s+#?(\d+)(:?)\s+/i, '')
+            id, colon = $1, $2
+
+            tweet = twitter.status(id)
+
+            body.insert(0, ' ') unless body.empty?
+            body.insert(0, "@#{tweet.user.screen_name}#{colon}")
+
+            options[:in_reply_to_status_id] = id
+          end
+        rescue Twitter::NotFound
+          deliver(from, "TWEET NOT FOUND: #{id}")
+          return
         end
 
         if body.sub!(/\A!(?:\s+|\z)/, '')
