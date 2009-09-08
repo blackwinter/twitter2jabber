@@ -173,18 +173,16 @@ class Twitter2Jabber
 
   def get_tweets
     tweets = twitter.friends_timeline
-    raise Twitter::TwitterError unless tweets.is_a?(Array)
+    return [] unless tweets.is_a?(Array)
 
     tweets.sort_by { |tweet|
       tweet.created_at = Time.parse(tweet.created_at)
     }
   rescue Twitter::TwitterError, Timeout::Error
-    sleep DEFAULT_PAUSE
-    retry
-  rescue StandardError => err
+    []
+  rescue => err
     warn "#{err} (#{err.class})"
-    sleep DEFAULT_PAUSE
-    retry
+    []
   end
 
   def format_tweet(tweet)
