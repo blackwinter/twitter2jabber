@@ -97,7 +97,7 @@ class Twitter2Jabber
     i, seen = 1, Hash.new { |h, k| h[k] = true; false }
 
     trap(:INT) {
-      log "#{Time.now} SIGINT received, shutting down..."
+      log 'SIGINT received, shutting down...'
       i = -1
     }
 
@@ -109,7 +109,7 @@ class Twitter2Jabber
       i += 1
     end
 
-    log "#{Time.now} KTHXBYE!"
+    log 'KTHXBYE!'
   end
 
   def deliver_tweets(recipients, seen = {}, &block)
@@ -154,7 +154,7 @@ class Twitter2Jabber
     # verify credentials
     client.verify_credentials
 
-    logt "#{Time.now} connected"
+    logt 'connected'
 
     client
   rescue Twitter::TwitterError => err
@@ -164,7 +164,7 @@ class Twitter2Jabber
   def jabber_connect(options)
     client = Jabber::Simple.new(options[:user], options[:pass])
 
-    logj "#{Time.now} connected"
+    logj 'connected'
 
     client
   rescue Jabber::JabberError => err
@@ -328,7 +328,7 @@ le[n[gth]] STATUS                 -- Determine length
   end
 
   def log(msg, verbose = verbose)
-    warn "[#{id}] #{msg}" if verbose
+    warn "#{Time.now} [#{id}] #{msg}" if verbose
   end
 
   def logt(msg, verbose = verbose)
