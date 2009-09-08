@@ -317,8 +317,9 @@ le[n[gth]] STATUS                 -- Determine length
 
         if force || body.length <= MAX_LENGTH
           update(body, options)
+          deliver(from, "MSG SENT: #{body.inspect}, #{options.inspect}")
         else
-          deliver(from, "MSG TOO LONG (> #{MAX_LENGTH}): #{body}")
+          deliver(from, "MSG TOO LONG (> #{MAX_LENGTH}): #{body.inspect}")
         end
     end
   end
