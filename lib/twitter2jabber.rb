@@ -178,7 +178,7 @@ class Twitter2Jabber
     tweets.sort_by { |tweet|
       tweet.created_at = Time.parse(tweet.created_at)
     }
-  rescue Twitter::TwitterError, Timeout::Error
+  rescue Twitter::TwitterError, Twitter::Unavailable, Timeout::Error
     []
   rescue => err
     warn "#{err} (#{err.class})"
