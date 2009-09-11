@@ -68,6 +68,8 @@ class Twitter2Jabber
     @verbose = options[:verbose]
     @debug   = options[:debug]
 
+    log 'HAI!'
+
     @twitter = twitter_connect(options[:twitter])
     @jabber  = jabber_connect(options[:jabber])
 
