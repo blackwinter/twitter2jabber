@@ -162,6 +162,7 @@ begin
   twitter2jabber = Twitter2Jabber.new(config)
 
   if options[:loop]
+    warn Process.pid if options[:verbose]
     twitter2jabber.loop(recipients, options[:pause] || config[:pause])
   else
     twitter2jabber.run(recipients)
