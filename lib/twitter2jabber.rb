@@ -224,8 +224,8 @@ class Twitter2Jabber
   end
 
   def process_html(text)
-    text.gsub(/(?=\A|\W)@(\w+)/, '@<a href="http://twitter.com/\1">\1</a>').
-         gsub(/(?=\A|\W)#(\w+)/, '<a href="http://search.twitter.com/search?q=%23\1">#\1</a>')
+    text.gsub(/(\A|\W)@(\w+)/, '\1@<a href="http://twitter.com/\2">\2</a>').
+         gsub(/(\A|\W)#(\w+)/, '\1<a href="http://search.twitter.com/search?q=%23\2">#\2</a>')
   end
 
   def process_text(text)
