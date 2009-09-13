@@ -69,6 +69,7 @@ class Twitter2Jabber
     @debug   = options[:debug]
     @log     = options[:log]
 
+    log.sync = true
     logm 'HAI!'
 
     @twitter = twitter_connect(options[:twitter])

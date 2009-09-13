@@ -176,8 +176,8 @@ recipients.uniq!
 
 begin
   if options[:wrap]
-    options[:loop]    = true
-    options[:verbose] = true
+    options[:loop]   = true
+    config[:verbose] = true
 
     case log = config[:log]
       when String
