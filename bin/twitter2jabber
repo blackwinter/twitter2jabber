@@ -57,6 +57,8 @@ options = {
   :loop         => false,
   :pause        => nil,
   :last         => nil,
+  :wrap         => nil,
+  :log          => STDERR,
   :verbose      => false,
   :debug        => false
 }
@@ -119,6 +121,13 @@ OptionParser.new { |opts|
   }
 
   opts.separator ' '
+
+  opts.on('-L', '--loop-wrap [LOG]', "Convenience switch: implies '--loop', '--verbose', and", "'--since-id'; kills existing process and logs output to LOG") { |l|
+    options[:wrap] = true
+    options[:log]  = File.open(l, 'a') if l
+  }
+
+  opts.separator ' '
   opts.separator 'Generic options:'
 
   opts.on('-v', '--verbose', 'Be verbose') {
@@ -161,15 +170,54 @@ config[:jabber][:pass] ||= ask("Password for Jabber ID #{config[:jabber][:user]}
 recipients = options[:recipients] + (config.delete(:recipients) || [])
 recipients.uniq!
 
-[:formats, :template_dir, :verbose, :debug].each { |key|
+[:formats, :template_dir, :log, :verbose, :debug].each { |key|
   config[key] = options[key] if options[key]
 }
 
 begin
+  if options[:wrap]
+    options[:loop]    = true
+    options[:verbose] = true
+
+    case log = config[:log]
+      when String
+        config[:log] = File.open(log, 'a')
+      when File
+        log = log.path
+      when IO
+        abort "Invalid log file: #{log.tty? ? "FILENO=#{log.fileno}" : log}"
+      else
+        abort 'Log file missing!'
+    end
+
+    if File.readable?(log)
+      require 'elif'
+
+      pid = nil
+
+      Elif.foreach(log) { |line|
+        case line
+          when /\A(\d+)\z/
+            pid ||= $1.to_i
+            break if options[:last]
+          when / TWITTER (\d+)\z/
+            options[:last] ||= $1.to_i
+            break if pid
+        end
+      }
+
+      begin
+        Process.kill(:INT, pid)
+        sleep 1
+      rescue Errno::ESRCH
+      end if pid
+    end
+  end
+
   twitter2jabber = Twitter2Jabber.new(config)
 
   if options[:loop]
-    warn Process.pid if options[:verbose]
+    twitter2jabber.send(:log_, Process.pid)
     twitter2jabber.loop(recipients, options[:pause] || config[:pause], options[:last])
   else
     twitter2jabber.run(recipients, options[:last])

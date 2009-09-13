@@ -1,3 +1,4 @@
+- threading? (decouple Twitter and Jabber event loops)
 - 'direct message' command
 - persistent cache? (friends_timeline: since/since_id?)
 - OAuth (register: http://twitter.com/oauth_clients/new)

@@ -56,7 +56,7 @@ class Twitter2Jabber
     new(options).run(recipients, last, &block)
   end
 
-  attr_reader :id, :verbose, :debug, :twitter, :jabber, :filter, :formats, :templates, :_erb
+  attr_reader :id, :verbose, :debug, :log, :twitter, :jabber, :filter, :formats, :templates, :_erb
 
   def initialize(options, &block)
     [:twitter, :jabber].each { |client|
@@ -67,8 +67,9 @@ class Twitter2Jabber
 
     @verbose = options[:verbose]
     @debug   = options[:debug]
+    @log     = options[:log]
 
-    log 'HAI!'
+    logm 'HAI!'
 
     @twitter = twitter_connect(options[:twitter])
     @jabber  = jabber_connect(options[:jabber])
@@ -101,7 +102,7 @@ class Twitter2Jabber
     i = 1
 
     trap(:INT) {
-      log 'SIGINT received, shutting down...'
+      logm 'SIGINT received, shutting down...'
       i = -1
     }
 
@@ -113,7 +114,7 @@ class Twitter2Jabber
       i += 1
     end
 
-    log 'KTHXBYE!'
+    logm 'KTHXBYE!'
 
     last
   end
@@ -350,16 +351,20 @@ le[n[gth]] STATUS                 -- Determine length
     twitter.update(msg, options)
   end
 
-  def log(msg, verbose = verbose)
-    warn "#{Time.now} [#{id}] #{msg}" if verbose
+  def log_(msg, verbose = verbose)
+    log.puts msg if verbose
+  end
+
+  def logm(msg, verbose = verbose)
+    log_("#{Time.now} [#{id}] #{msg}", verbose)
   end
 
   def logt(msg, verbose = verbose)
-    log("TWITTER #{msg}", verbose)
+    logm("TWITTER #{msg}", verbose)
   end
 
   def logj(msg, verbose = verbose)
-    log("JABBER #{msg}", verbose)
+    logm("JABBER #{msg}", verbose)
   end
 
 end
