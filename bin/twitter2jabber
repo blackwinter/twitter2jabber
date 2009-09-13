@@ -196,7 +196,7 @@ begin
       pid = nil
 
       Elif.foreach(log) { |line|
-        case line
+        case line.chomp
           when /\A(\d+)\z/
             pid ||= $1.to_i
             break if options[:last]
