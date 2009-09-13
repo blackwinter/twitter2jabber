@@ -124,7 +124,7 @@ OptionParser.new { |opts|
 
   opts.on('-L', '--loop-wrap [LOG]', "Convenience switch: implies '--loop', '--verbose', and", "'--since-id'; kills existing process and logs output to LOG") { |l|
     options[:wrap] = true
-    options[:log]  = File.open(l, 'a') if l
+    options[:log]  = l && File.open(l, 'a')
   }
 
   opts.separator ' '
