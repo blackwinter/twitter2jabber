@@ -48,12 +48,12 @@ class Twitter2Jabber
   JABBER_NS = 'http://jabber.org/protocol/xhtml-im'
   XHTML_NS  = 'http://www.w3.org/1999/xhtml'
 
-  def self.loop(options, recipients = [], pause = nil, &block)
-    new(options).loop(recipients, pause, &block)
+  def self.loop(options, recipients = [], pause = nil, last = nil, &block)
+    new(options).loop(recipients, pause, last, &block)
   end
 
-  def self.run(options, recipients = [], &block)
-    new(options).run(recipients, &block)
+  def self.run(options, recipients = [], last = nil, &block)
+    new(options).run(recipients, last, &block)
   end
 
   attr_reader :id, :verbose, :debug, :twitter, :jabber, :filter, :formats, :templates, :_erb
@@ -88,15 +88,17 @@ class Twitter2Jabber
     }
   end
 
-  def run(recipients = [], seen = {}, flag = true, &block)
-    deliver_tweets(recipients, seen, &block) if flag
+  def run(recipients = [], last = nil, flag = true, &block)
+    last = deliver_tweets(recipients, last, &block) if flag
     post_messages(recipients)
+
+    last
   end
 
-  def loop(recipients = [], pause = nil, &block)
+  def loop(recipients = [], pause = nil, last = nil, &block)
     pause ||= DEFAULT_PAUSE
 
-    i, seen = 1, Hash.new { |h, k| h[k] = true; false }
+    i = 1
 
     trap(:INT) {
       log 'SIGINT received, shutting down...'
@@ -104,7 +106,7 @@ class Twitter2Jabber
     }
 
     while i > 0
-      run(recipients, seen, i % pause == 1, &block)
+      last = run(recipients, last, i % pause == 1, &block)
 
       sleep 1
 
@@ -112,13 +114,13 @@ class Twitter2Jabber
     end
 
     log 'KTHXBYE!'
+
+    last
   end
 
-  def deliver_tweets(recipients, seen = {}, &block)
-    get_tweets.each { |tweet|
-      next if seen[tweet.id]
-
-      logt tweet.id
+  def deliver_tweets(recipients, last = nil, &block)
+    get_tweets(last).each { |tweet|
+      logt last = tweet.id
 
       # apply filters
       next if filter && !filter[tweet]
@@ -132,6 +134,8 @@ class Twitter2Jabber
 
       sleep 1
     }
+
+    last
   end
 
   def post_messages(recipients = [])
@@ -173,8 +177,11 @@ class Twitter2Jabber
     raise "Can't connect to Jabber with JID '#{options[:user]}': #{err}"
   end
 
-  def get_tweets
-    tweets = twitter.friends_timeline
+  def get_tweets(last = nil)
+    options = {}
+    options[:since_id] = last if last
+
+    tweets = twitter.friends_timeline(options)
     return [] unless tweets.is_a?(Array)
 
     tweets.sort_by { |tweet|

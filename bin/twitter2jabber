@@ -56,6 +56,7 @@ options = {
   :template_dir => nil,
   :loop         => false,
   :pause        => nil,
+  :last         => nil,
   :verbose      => false,
   :debug        => false
 }
@@ -112,6 +113,12 @@ OptionParser.new { |opts|
   }
 
   opts.separator ' '
+
+  opts.on('-S', '--since-id ID', 'Return tweets with status IDs greater than ID') { |i|
+    options[:last] = i
+  }
+
+  opts.separator ' '
   opts.separator 'Generic options:'
 
   opts.on('-v', '--verbose', 'Be verbose') {
@@ -163,9 +170,9 @@ begin
 
   if options[:loop]
     warn Process.pid if options[:verbose]
-    twitter2jabber.loop(recipients, options[:pause] || config[:pause])
+    twitter2jabber.loop(recipients, options[:pause] || config[:pause], options[:last])
   else
-    twitter2jabber.run(recipients)
+    twitter2jabber.run(recipients, options[:last])
   end
 rescue RuntimeError => err
   abort err
