@@ -1,8 +1,12 @@
+- some kind of bookmark/remember/read later command
 - threading? (decouple Twitter and Jabber event loops)
-- 'direct message' command
+- use streaming API? (http://apiwiki.twitter.com/Streaming-API-Documentation)
+- explicit retweet (http://apiwiki.twitter.com/Twitter-REST-API-Method:-statuses-retweet)
 - persistent cache? (friends_timeline: since/since_id?)
 - OAuth (register: http://twitter.com/oauth_clients/new)
 - better interrupt handling (in loop mode)
 - daemonize after asking for credentials (in loop mode)
-- additional commands?
+- additional commands? (full twitter API?)
+- refactor command handling!
 - SPECS!!!
+- DOCS!!

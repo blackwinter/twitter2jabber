@@ -243,23 +243,24 @@ class Twitter2Jabber
 
   def handle_command(body, from, execute = true)
     case body
-      when /\Ahe?(?:lp)?\z/i
+      when /\A(?:he?(?:lp)?|\?)\z/i
         deliver(from, <<-HELP) if execute
-h[e[lp]]                          -- Print this help
+h[e[lp]]|?                                -- Print this help
 
-de[bug]                           -- Print debug mode
-de[bug] on|off                    -- Turn debug mode on/off
+de[bug]                                   -- Print debug mode
+de[bug] on|off                            -- Turn debug mode on/off
 
-bl[ock] #USER                     -- Block USER
-fa[v[orite]] #ID                  -- Add #ID to favorites
+bl[ock] @USER                             -- Block USER
+fa[v[orite]] #ID                          -- Add ID to favorites
 
-rt|retweet #ID[:] [!] [STATUS]    -- Retweet ID (Force if too long)
-re[ply] #ID[:] [!] STATUS         -- Reply to ID (Force if too long)
+rt|retweet #ID [!] [STATUS]               -- Retweet ID
+re[ply] #ID [!] STATUS                    -- Reply to ID
+d[m]|direct[_message] @USER [!] STATUS    -- Send direct message to USER
 
-le[n[gth]] STATUS                 -- Determine length
-[!] STATUS                        -- Update status (Force if too long)
+le[n[gth]] STATUS                         -- Determine length
+[!] STATUS                                -- Update status
 
-(Note: Message body must be shorter than #{MAX_LENGTH} characters)
+(Note: STATUS must be under #{MAX_LENGTH} characters; force send with '!'.)
         HELP
       when /\Ade(?:bug)?(?:\s+(on|off))?\z/i
         if execute
@@ -274,7 +275,7 @@ le[n[gth]] STATUS                 -- Determine length
 
           deliver(from, "DEBUG = #{debug ? 'on' : 'off'}")
         end
-      when /\Abl(?:ock)?\s+#?(\w+)\z/i
+      when /\Abl(?:ock)?\s+[@#]?(\w+)\z/i
         twitter.block($1) if execute && !debug
       when /\Afav?(?:orite)?\s+#?(\d+)\z/i
         twitter.favorite_create($1) if execute && !debug
@@ -293,10 +294,11 @@ le[n[gth]] STATUS                 -- Determine length
         end
 
         begin
-          if body.sub!(/\A(?:rt|retweet)?\s+#?(\d+)(:?)(?:\s+|\z)/i, '')
+          if body.sub!(/\A(?:rt|retweet)\s+#?(\d+)(:?)(?:\s+|\z)/i, '')
             id, colon = $1, $2
 
             tweet = twitter.status(id)
+            raise Twitter::NotFound unless tweet.is_a?(Mash)
 
             body << ' ' unless body.empty?
             body << "RT @#{tweet.user.screen_name}#{colon} #{tweet.text}"
@@ -304,6 +306,7 @@ le[n[gth]] STATUS                 -- Determine length
             id, colon = $1, $2
 
             tweet = twitter.status(id)
+            raise Twitter::NotFound unless tweet.is_a?(Mash)
 
             body.insert(0, ' ') unless body.empty?
             body.insert(0, "@#{tweet.user.screen_name}#{colon}")
@@ -313,6 +316,11 @@ le[n[gth]] STATUS                 -- Determine length
         rescue Twitter::NotFound
           deliver(from, "TWEET NOT FOUND: #{id}")
           return
+        end
+
+        if body.sub!(/\A(?:dm?|direct(?:_message)?)\s+[@#]?(\w+):?\s+/i, '')
+          options[:user] = $1
+          dm = true
         end
 
         if body.sub!(/\A!(?:\s+|\z)/, '')
@@ -326,7 +334,18 @@ le[n[gth]] STATUS                 -- Determine length
         return body unless execute
 
         if force || body.length <= MAX_LENGTH
-          update(body, options)
+          if dm
+            user = options[:user]
+
+            if debug
+              logt "DM: #{body} (#{options.inspect})", true
+            else
+              twitter.direct_message_create(user, body)
+            end
+          else
+            update(body, options)
+          end
+
           deliver(from, "MSG SENT: #{body.inspect}, #{options.inspect}")
         else
           deliver(from, "MSG TOO LONG (> #{MAX_LENGTH}): #{body.inspect}")
