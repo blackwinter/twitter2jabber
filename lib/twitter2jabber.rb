@@ -298,7 +298,7 @@ le[n[gth]] STATUS                         -- Determine length
             id, colon = $1, $2
 
             tweet = twitter.status(id)
-            raise Twitter::NotFound unless tweet.is_a?(Mash)
+            raise Twitter::NotFound unless tweet.is_a?(Hashie::Mash)
 
             body << ' ' unless body.empty?
             body << "RT @#{tweet.user.screen_name}#{colon} #{tweet.text}"
@@ -306,7 +306,7 @@ le[n[gth]] STATUS                         -- Determine length
             id, colon = $1, $2
 
             tweet = twitter.status(id)
-            raise Twitter::NotFound unless tweet.is_a?(Mash)
+            raise Twitter::NotFound unless tweet.is_a?(Hashie::Mash)
 
             body.insert(0, ' ') unless body.empty?
             body.insert(0, "@#{tweet.user.screen_name}#{colon}")
