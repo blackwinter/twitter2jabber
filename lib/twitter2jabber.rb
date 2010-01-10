@@ -280,7 +280,7 @@ le[n[gth]] STATUS                         -- Determine length
       when /\Afav?(?:orite)?\s+#?(\d+)\z/i
         twitter.favorite_create($1) if execute && !debug
       else
-        options = {}
+        command, options = nil, {}
 
         if execute && body.sub!(/\Alen?(?:gth)?\s+/i, '')
           if body = handle_command(body, from, false)
@@ -300,8 +300,12 @@ le[n[gth]] STATUS                         -- Determine length
             tweet = twitter.status(id)
             raise Twitter::NotFound unless tweet.is_a?(Hashie::Mash)
 
-            body << ' ' unless body.empty?
-            body << "RT @#{tweet.user.screen_name}#{colon} #{tweet.text}"
+            if body.empty?
+              options[:id] = id
+              command = :rt
+            else
+              body << " RT @#{tweet.user.screen_name}#{colon} #{tweet.text}"
+            end
           elsif body.sub!(/\Are(?:ply)?\s+#?(\d+)(:?)\s+/i, '')
             id, colon = $1, $2
 
@@ -320,7 +324,7 @@ le[n[gth]] STATUS                         -- Determine length
 
         if body.sub!(/\A(?:dm?|direct(?:_message)?)\s+[@#]?(\w+):?\s+/i, '')
           options[:user] = $1
-          dm = true
+          command = :dm
         end
 
         if body.sub!(/\A!(?:\s+|\z)/, '')
@@ -334,16 +338,21 @@ le[n[gth]] STATUS                         -- Determine length
         return body unless execute
 
         if force || body.length <= MAX_LENGTH
-          if dm
-            user = options[:user]
-
-            if debug
-              logt "DM: #{body} (#{options.inspect})", true
+          case command
+            when :rt
+              if debug
+                logt "RT: #{options.inspect}", true
+              else
+                twitter.retweet(options[:id])
+              end
+            when :dm
+              if debug
+                logt "DM: #{body} (#{options.inspect})", true
+              else
+                twitter.direct_message_create(options[:user], body)
+              end
             else
-              twitter.direct_message_create(user, body)
-            end
-          else
-            update(body, options)
+              update(body, options)
           end
 
           deliver(from, "MSG SENT: #{body.inspect}, #{options.inspect}")
