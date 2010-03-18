@@ -3,7 +3,7 @@
 #                                                                             #
 # twitter2jabber - Twitter-to-Jabber gateway.                                 #
 #                                                                             #
-# Copyright (C) 2009 Jens Wille                                               #
+# Copyright (C) 2009-2010 Jens Wille                                          #
 #                                                                             #
 # Authors:                                                                    #
 #     Jens Wille <ww@blackwinter.de>                                          #
@@ -32,6 +32,7 @@ require 'twitter'
 require 'xmpp4r-simple'
 require 'shorturl'
 require 'longurl'
+require 'nuggets/array/runiq'
 
 require 'twitter2jabber/version'
 
@@ -253,6 +254,10 @@ de[bug] on|off                            -- Turn debug mode on/off
 bl[ock] @USER                             -- Block USER
 fa[v[orite]] #ID                          -- Add ID to favorites
 
+bm|bookmark[s]                            -- List bookmarks
+bm|bookmark #ID                           -- Bookmark ID
+bm|bookmark -#ID                          -- Remove ID from bookmarks
+
 rt|retweet #ID [!] [STATUS]               -- Retweet ID
 re[ply] #ID [!] STATUS                    -- Reply to ID
 d[m]|direct[_message] @USER [!] STATUS    -- Send direct message to USER
@@ -279,6 +284,19 @@ le[n[gth]] STATUS                         -- Determine length
         twitter.block($1) if execute && !debug
       when /\Afav?(?:orite)?\s+#?(\d+)\z/i
         twitter.favorite_create($1) if execute && !debug
+      when /\A(?:bm|bookmarks?)\z/i
+        deliver(from, bookmarks.map { |bm|
+          st = twitter.status(bm)
+          st = "@#{st.user.screen_name}: #{st.text[0, 10]}..." if st.is_a?(Hashie::Mash)
+          "#{bm} - #{st || '???'}"
+        }.join("\n")) if execute && !debug
+      when /\A(?:bm|bookmark)\s+(\d+)\z/i
+        if execute && !debug
+          bookmarks << $1
+          bookmarks.runiq!
+        end
+      when /\A(?:bm|bookmark)\s+-(\d+)\z/i
+        bookmarks.delete($1) if execute && !debug
       else
         command, options = nil, {}
 
@@ -394,6 +412,10 @@ le[n[gth]] STATUS                         -- Determine length
 
   def logj(msg, verbose = verbose)
     logm("JABBER #{msg}", verbose)
+  end
+
+  def bookmarks
+    @bookmarks ||= []
   end
 
 end

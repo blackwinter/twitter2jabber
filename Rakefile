@@ -16,7 +16,10 @@ begin
       :homepage     => %q{http://twitter2jabber.rubyforge.org/},
       :files        => FileList['lib/**/*.rb', 'bin/*'].to_a,
       :extra_files  => FileList['[A-Z]*', 'sample/**/*'].to_a,
-      :dependencies => %w[twitter xmpp4r-simple highline shorturl longurl elif]
+      :dependencies => %w[
+        twitter xmpp4r-simple shorturl longurl
+        highline elif ruby-nuggets
+      ]
     }
   }}
 rescue LoadError
