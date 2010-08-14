@@ -3,8 +3,8 @@ class Twitter2Jabber
   module Version
 
     MAJOR = 0
-    MINOR = 2
-    TINY  = 6
+    MINOR = 3
+    TINY  = 0
 
     class << self
 
