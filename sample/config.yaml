@@ -1,11 +1,13 @@
 ---
 :twitter:
-  :user: foo
-  :pass: bar
+  :consumer_token:  c5ff16bd638c9acc6fb00197301008c5eb561f46
+  :consumer_secret: ae2ad9454f3af7fcb18c83969f99b20a788eddd1
+  :access_token:    f1b640bee7b738e8f18758990a61c07a17eab637
+  :access_secret:   06c76739e3f4875a27a9e3ce36999e1af916a0e0
 
 :jabber:
-  :user: quix
-  :pass: quux
+  :user: foo
+  :pass: foo
 
 :recipients:
   - one

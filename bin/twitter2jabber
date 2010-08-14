@@ -48,19 +48,20 @@ rescue Interrupt
 end
 
 options = {
-  :config       => 'config.yaml',
-  :user         => nil,
-  :jid          => nil,
-  :recipients   => [],
-  :formats      => nil,
-  :template_dir => nil,
-  :loop         => false,
-  :pause        => nil,
-  :last         => nil,
-  :wrap         => nil,
-  :log          => STDERR,
-  :verbose      => false,
-  :debug        => false
+  :config         => 'config.yaml',
+  :consumer_token => nil,
+  :access_token   => nil,
+  :jid            => nil,
+  :recipients     => [],
+  :formats        => nil,
+  :template_dir   => nil,
+  :loop           => false,
+  :pause          => nil,
+  :last           => nil,
+  :wrap           => nil,
+  :log            => STDERR,
+  :verbose        => false,
+  :debug          => false
 }
 
 OptionParser.new { |opts|
@@ -75,8 +76,12 @@ OptionParser.new { |opts|
 
   opts.separator ' '
 
-  opts.on('-u', '--user NAME', 'Twitter user') { |u|
-    options[:user] = u
+  opts.on('-C', '--consumer-token TOKEN', 'Twitter consumer token') { |t|
+    options[:consumer_token] = t
+  }
+
+  opts.on('-A', '--access-token TOKEN', 'Twitter access token') { |t|
+    options[:access_token] = t
   }
 
   opts.on('-j', '--jid ID', 'Jabber ID') { |j|
@@ -157,9 +162,12 @@ end
 
 # twitter config
 config[:twitter] ||= {}
-config[:twitter][:user] = options[:user] if options[:user]
-config[:twitter][:user] ||= ask('Twitter user: ')
-config[:twitter][:pass] ||= ask("Password for Twitter user #{config[:twitter][:user]}: ") { |q| q.echo = false }
+config[:twitter][:consumer_token]    = options[:consumer_token] if options[:consumer_token]
+config[:twitter][:consumer_token]  ||= ask('Twitter consumer token: ')
+config[:twitter][:consumer_secret] ||= ask("Consumer secret for Twitter application #{config[:twitter][:consumer_token]}: ") { |q| q.echo = false }
+config[:twitter][:access_token]      = options[:access_token] if options[:access_token]
+config[:twitter][:access_token]    ||= ask('Twitter access token: ')
+config[:twitter][:access_secret]   ||= ask("Access secret for Twitter user #{config[:twitter][:access_token]}: ") { |q| q.echo = false }
 
 # jabber config
 config[:jabber] ||= {}

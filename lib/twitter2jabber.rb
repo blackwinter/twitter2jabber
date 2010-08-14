@@ -64,7 +64,7 @@ class Twitter2Jabber
       raise ArgumentError, "#{client} config missing" unless options[client].is_a?(Hash)
     }
 
-    @id = "#{options[:twitter][:user]} -> #{options[:jabber][:user]}"
+    @id = "#{options[:twitter][:consumer_token]} -> #{options[:jabber][:user]}"
 
     @verbose = options[:verbose]
     @debug   = options[:debug]
@@ -157,7 +157,9 @@ class Twitter2Jabber
   private
 
   def twitter_connect(options)
-    auth   = Twitter::HTTPAuth.new(options[:user], options[:pass])
+    auth   = Twitter::OAuth.new(options[:consumer_token], options[:consumer_secret])
+    auth.authorize_from_access(options[:access_token], options[:access_secret])
+
     client = Twitter::Base.new(auth)
 
     # verify credentials
@@ -167,7 +169,7 @@ class Twitter2Jabber
 
     client
   rescue Twitter::TwitterError => err
-    raise "Can't connect to Twitter with ID '#{options[:user]}': #{err}"
+    raise "Can't connect to Twitter with ID '#{options[:consumer_token]}': #{err}"
   end
 
   def jabber_connect(options)

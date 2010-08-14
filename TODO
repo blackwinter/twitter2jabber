@@ -4,7 +4,6 @@
 - threading? (decouple Twitter and Jabber event loops)
 - use streaming API? (http://apiwiki.twitter.com/Streaming-API-Documentation)
 - persistent cache? (friends_timeline: since/since_id?)
-- OAuth (register: http://twitter.com/oauth_clients/new)
 - better interrupt handling (in loop mode)
 - daemonize after asking for credentials (in loop mode)
 - additional commands? (full twitter API?)
