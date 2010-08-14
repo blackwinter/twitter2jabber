@@ -389,6 +389,8 @@ le[n[gth]] STATUS                         -- Determine length
     end
 
     jabber.deliver(recipient, msg)
+  rescue => err
+    warn "#{err} (#{err.class})"
   end
 
   def update(msg, options = {})
