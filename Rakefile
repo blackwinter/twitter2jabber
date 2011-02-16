@@ -1,29 +1,24 @@
-require %q{lib/twitter2jabber/version}
+require File.expand_path(%q{../lib/twitter2jabber/version}, __FILE__)
 
 begin
   require 'hen'
 
   Hen.lay! {{
     :rubyforge => {
-      :project  => %q{twitter2jabber},
-      :package  => %q{twitter2jabber},
-      :rdoc_dir => nil
+      :project => %q{twitter2jabber}
     },
 
     :gem => {
       :version      => Twitter2Jabber::VERSION,
       :summary      => %q{Twitter-to-Jabber gateway.},
-      :homepage     => %q{http://twitter2jabber.rubyforge.org/},
-      :files        => FileList['lib/**/*.rb', 'bin/*'].to_a,
-      :extra_files  => FileList['[A-Z]*', 'sample/**/*'].to_a,
+      :author       => %q{Jens Wille},
+      :email        => %q{ww@blackwinter.de},
       :dependencies => %w[
         twitter xmpp4r-simple shorturl longurl
         highline elif ruby-nuggets
       ]
     }
   }}
-rescue LoadError
-  abort "Please install the 'hen' gem first."
+rescue LoadError => err
+  warn "Please install the `hen' gem. (#{err})"
 end
-
-### Place your custom Rake tasks here.

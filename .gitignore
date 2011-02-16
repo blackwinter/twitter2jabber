@@ -1,4 +1,6 @@
 doc
+doc.local
 pkg
+.gh-pages
 config.yaml
-!sample/config.yaml
+!example/config.yaml

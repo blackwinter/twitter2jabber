@@ -44,7 +44,7 @@ class Twitter2Jabber
 
   DEFAULT_FORMATS = %w[txt]
 
-  DEFAULT_TEMPLATES = File.expand_path(File.join(File.dirname(__FILE__), %w[.. sample templates]))
+  DEFAULT_TEMPLATES = File.expand_path(File.join(File.dirname(__FILE__), %w[.. example templates]))
 
   JABBER_NS = 'http://jabber.org/protocol/xhtml-im'
   XHTML_NS  = 'http://www.w3.org/1999/xhtml'
