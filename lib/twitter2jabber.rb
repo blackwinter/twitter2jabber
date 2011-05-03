@@ -159,18 +159,19 @@ class Twitter2Jabber
   def twitter_connect(options = @twitter_options)
     @twitter_options = options
 
-    auth = Twitter::OAuth.new(options[:consumer_token], options[:consumer_secret])
-    auth.authorize_from_access(options[:access_token], options[:access_secret])
+    @twitter = Twitter.client(
+      :consumer_key       => options[:consumer_token],
+      :consumer_secret    => options[:consumer_secret],
+      :oauth_token        => options[:access_token],
+      :oauth_token_secret => options[:access_secret]
+    )
 
-    @twitter = Twitter::Base.new(auth)
-
-    # verify credentials
     @twitter.verify_credentials
 
     logt 'connected'
 
     @twitter
-  rescue Twitter::TwitterError => err
+  rescue Twitter::Error => err
     raise "Can't connect to Twitter with ID '#{options[:consumer_token]}': #{err}"
   end
 
@@ -196,7 +197,7 @@ class Twitter2Jabber
     tweets.sort_by { |tweet|
       tweet.created_at = Time.parse(tweet.created_at)
     }
-  rescue Twitter::TwitterError, Twitter::Unavailable, Timeout::Error
+  rescue Twitter::Error, Twitter::ServiceUnavailable, Timeout::Error
     []
   rescue => err
     warn "#{err} (#{err.class})"
@@ -322,7 +323,7 @@ le[n[gth]] STATUS                         -- Determine length
             id, colon = $1, $2
 
             tweet = twitter.status(id)
-            raise Twitter::NotFound unless tweet.is_a?(Hashie::Mash)
+            raise Twitter::NotFound unless tweet.is_a?(Hashie::Rash)
 
             if body.empty?
               options[:id] = id
@@ -334,7 +335,7 @@ le[n[gth]] STATUS                         -- Determine length
             id, colon = $1, $2
 
             tweet = twitter.status(id)
-            raise Twitter::NotFound unless tweet.is_a?(Hashie::Mash)
+            raise Twitter::NotFound unless tweet.is_a?(Hashie::Rash)
 
             body.insert(0, ' ') unless body.empty?
             body.insert(0, "@#{tweet.user.screen_name}#{colon}")
