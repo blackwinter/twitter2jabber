@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{twitter2jabber}
-  s.version = "0.3.2"
+  s.version = "0.4.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jens Wille"]
@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = ["README", "COPYING", "ChangeLog"]
   s.files = ["lib/twitter2jabber.rb", "lib/twitter2jabber/version.rb", "bin/twitter2jabber", "README", "ChangeLog", "Rakefile", "TODO", "COPYING", "example/templates/tweet.txt", "example/templates/tweet.html", "example/config.yaml"]
   s.homepage = %q{http://twitter2jabber.rubyforge.org/}
-  s.rdoc_options = ["--line-numbers", "--main", "README", "--charset", "UTF-8", "--all", "--title", "twitter2jabber Application documentation (v0.3.2)"]
+  s.rdoc_options = ["--line-numbers", "--main", "README", "--charset", "UTF-8", "--all", "--title", "twitter2jabber Application documentation (v0.4.0)"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{twitter2jabber}
   s.rubygems_version = %q{1.7.2}
