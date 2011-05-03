@@ -73,8 +73,8 @@ class Twitter2Jabber
     log.sync = true
     logm 'HAI!'
 
-    @twitter = twitter_connect(options[:twitter])
-    @jabber  = jabber_connect(options[:jabber])
+    twitter_connect(options[:twitter])
+    jabber_connect(options[:jabber])
 
     @filter  = options[:filter]  || block
     @formats = options[:formats] || DEFAULT_FORMATS
@@ -156,28 +156,32 @@ class Twitter2Jabber
 
   private
 
-  def twitter_connect(options)
-    auth   = Twitter::OAuth.new(options[:consumer_token], options[:consumer_secret])
+  def twitter_connect(options = @twitter_options)
+    @twitter_options = options
+
+    auth = Twitter::OAuth.new(options[:consumer_token], options[:consumer_secret])
     auth.authorize_from_access(options[:access_token], options[:access_secret])
 
-    client = Twitter::Base.new(auth)
+    @twitter = Twitter::Base.new(auth)
 
     # verify credentials
-    client.verify_credentials
+    @twitter.verify_credentials
 
     logt 'connected'
 
-    client
+    @twitter
   rescue Twitter::TwitterError => err
     raise "Can't connect to Twitter with ID '#{options[:consumer_token]}': #{err}"
   end
 
-  def jabber_connect(options)
-    client = Jabber::Simple.new(options[:user], options[:pass])
+  def jabber_connect(options = @jabber_options)
+    @jabber_options = options
+
+    @jabber = Jabber::Simple.new(options[:user], options[:pass])
 
     logj 'connected'
 
-    client
+    @jabber
   rescue Jabber::JabberError => err
     raise "Can't connect to Jabber with JID '#{options[:user]}': #{err}"
   end
@@ -391,6 +395,7 @@ le[n[gth]] STATUS                         -- Determine length
     jabber.deliver(recipient, msg)
   rescue => err
     warn "#{err} (#{err.class})"
+    jabber_connect and retry if err.is_a?(Jabber::ServerDisconnected)
   end
 
   def update(msg, options = {})
