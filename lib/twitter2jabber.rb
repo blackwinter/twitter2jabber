@@ -357,7 +357,8 @@ le[n[gth]] STATUS                         -- Determine length
         end
 
         body.gsub!(/https?:\/\/\S+/) { |match|
-          match.length < 30 ? match : ShortURL.shorten(match)
+          short = ShortURL.shorten(match, :tinyurl)
+          short && short.length < match.length ? short : match
         }
 
         return body unless execute
