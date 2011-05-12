@@ -183,7 +183,7 @@ class Twitter2Jabber
     logj 'connected'
 
     @jabber
-  rescue Jabber::JabberError => err
+  rescue Jabber::JabberError, Errno::ETIMEDOUT => err
     raise "Can't connect to Jabber with JID '#{options[:user]}': #{err}"
   end
 
@@ -197,7 +197,7 @@ class Twitter2Jabber
     tweets.sort_by { |tweet|
       tweet.created_at = Time.parse(tweet.created_at)
     }
-  rescue Twitter::Error, Twitter::ServiceUnavailable, Timeout::Error
+  rescue Twitter::Error, Timeout::Error
     []
   rescue => err
     warn "#{err} (#{err.class})"
