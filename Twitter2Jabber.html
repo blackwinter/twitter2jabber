@@ -735,7 +735,7 @@
             
             <div class="method-source-code" id="bookmarks-source">
 <pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 427</span>
+<span class="ruby-comment"># File lib/twitter2jabber.rb, line 428</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">bookmarks</span>
   <span class="ruby-ivar">@bookmarks</span> <span class="ruby-operator">||=</span> []
 <span class="ruby-keyword">end</span></pre>
@@ -768,7 +768,7 @@
             
             <div class="method-source-code" id="deliver-source">
 <pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 390</span>
+<span class="ruby-comment"># File lib/twitter2jabber.rb, line 391</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">deliver</span>(<span class="ruby-identifier">recipient</span>, <span class="ruby-identifier">msg</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">debug</span>
     <span class="ruby-identifier">logj</span> <span class="ruby-node">&quot;#{recipient}: #{msg}&quot;</span>, <span class="ruby-keyword">true</span>
@@ -910,7 +910,7 @@ href="http://devblog.famundo.com/articles/2006/10/18/ruby-and-xmpp-jabber-part-3
   <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">created_at</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">created_at</span>)
   }
-<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Twitter</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>, <span class="ruby-constant">Twitter</span><span class="ruby-operator">::</span><span class="ruby-constant">ServiceUnavailable</span>, <span class="ruby-constant">Timeout</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Twitter</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>, <span class="ruby-constant">Timeout</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>
   []
 <span class="ruby-keyword">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">err</span>
   <span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;#{err} (#{err.class})&quot;</span>
@@ -999,7 +999,7 @@ href="http://devblog.famundo.com/articles/2006/10/18/ruby-and-xmpp-jabber-part-3
           <span class="ruby-identifier">id</span>, <span class="ruby-identifier">colon</span> = <span class="ruby-node">$1</span>, <span class="ruby-node">$2</span>
 
           <span class="ruby-identifier">tweet</span> = <span class="ruby-identifier">twitter</span>.<span class="ruby-identifier">status</span>(<span class="ruby-identifier">id</span>)
-          <span class="ruby-identifier">raise</span> <span class="ruby-constant">Twitter</span><span class="ruby-operator">::</span><span class="ruby-constant">NotFound</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hashie</span><span class="ruby-operator">::</span><span class="ruby-constant">Rash</span>)
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">Twitter</span><span class="ruby-operator">::</span><span class="ruby-constant">NotFound</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hashie</span><span class="ruby-operator">::</span><span class="ruby-constant">Hash</span>)
 
           <span class="ruby-keyword">if</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">empty?</span>
             <span class="ruby-identifier">options</span>[<span class="ruby-value">:id</span>] = <span class="ruby-identifier">id</span>
@@ -1011,7 +1011,7 @@ href="http://devblog.famundo.com/articles/2006/10/18/ruby-and-xmpp-jabber-part-3
           <span class="ruby-identifier">id</span>, <span class="ruby-identifier">colon</span> = <span class="ruby-node">$1</span>, <span class="ruby-node">$2</span>
 
           <span class="ruby-identifier">tweet</span> = <span class="ruby-identifier">twitter</span>.<span class="ruby-identifier">status</span>(<span class="ruby-identifier">id</span>)
-          <span class="ruby-identifier">raise</span> <span class="ruby-constant">Twitter</span><span class="ruby-operator">::</span><span class="ruby-constant">NotFound</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hashie</span><span class="ruby-operator">::</span><span class="ruby-constant">Rash</span>)
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">Twitter</span><span class="ruby-operator">::</span><span class="ruby-constant">NotFound</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hashie</span><span class="ruby-operator">::</span><span class="ruby-constant">Hash</span>)
 
           <span class="ruby-identifier">body</span>.<span class="ruby-identifier">insert</span>(<span class="ruby-value">0</span>, <span class="ruby-string">' '</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">empty?</span>
           <span class="ruby-identifier">body</span>.<span class="ruby-identifier">insert</span>(<span class="ruby-value">0</span>, <span class="ruby-node">&quot;@#{tweet.user.screen_name}#{colon}&quot;</span>)
@@ -1033,7 +1033,8 @@ href="http://devblog.famundo.com/articles/2006/10/18/ruby-and-xmpp-jabber-part-3
       <span class="ruby-keyword">end</span>
 
       <span class="ruby-identifier">body</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">/https?:\/\/\S+/</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">match</span><span class="ruby-operator">|</span>
-        <span class="ruby-identifier">match</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">30</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">match</span> <span class="ruby-operator">:</span> <span class="ruby-constant">ShortURL</span>.<span class="ruby-identifier">shorten</span>(<span class="ruby-identifier">match</span>)
+        <span class="ruby-identifier">short</span> = <span class="ruby-constant">ShortURL</span>.<span class="ruby-identifier">shorten</span>(<span class="ruby-identifier">match</span>, <span class="ruby-value">:tinyurl</span>)
+        <span class="ruby-identifier">short</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">short</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">match</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">short</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">match</span>
       }
 
       <span class="ruby-keyword">return</span> <span class="ruby-identifier">body</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">execute</span>
@@ -1100,7 +1101,7 @@ href="http://devblog.famundo.com/articles/2006/10/18/ruby-and-xmpp-jabber-part-3
   <span class="ruby-identifier">logj</span> <span class="ruby-string">'connected'</span>
 
   <span class="ruby-ivar">@jabber</span>
-<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Jabber</span><span class="ruby-operator">::</span><span class="ruby-constant">JabberError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">err</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Jabber</span><span class="ruby-operator">::</span><span class="ruby-constant">JabberError</span>, <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">ETIMEDOUT</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">err</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Can't connect to Jabber with JID '#{options[:user]}': #{err}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- jabber_connect-source -->
@@ -1132,7 +1133,7 @@ href="http://devblog.famundo.com/articles/2006/10/18/ruby-and-xmpp-jabber-part-3
             
             <div class="method-source-code" id="log_-source">
 <pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 411</span>
+<span class="ruby-comment"># File lib/twitter2jabber.rb, line 412</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">log_</span>(<span class="ruby-identifier">msg</span>, <span class="ruby-identifier">verbose</span> = <span class="ruby-identifier">verbose</span>)
   <span class="ruby-identifier">log</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">msg</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">verbose</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1165,7 +1166,7 @@ href="http://devblog.famundo.com/articles/2006/10/18/ruby-and-xmpp-jabber-part-3
             
             <div class="method-source-code" id="logj-source">
 <pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 423</span>
+<span class="ruby-comment"># File lib/twitter2jabber.rb, line 424</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">logj</span>(<span class="ruby-identifier">msg</span>, <span class="ruby-identifier">verbose</span> = <span class="ruby-identifier">verbose</span>)
   <span class="ruby-identifier">logm</span>(<span class="ruby-node">&quot;JABBER #{msg}&quot;</span>, <span class="ruby-identifier">verbose</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1198,7 +1199,7 @@ href="http://devblog.famundo.com/articles/2006/10/18/ruby-and-xmpp-jabber-part-3
             
             <div class="method-source-code" id="logm-source">
 <pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 415</span>
+<span class="ruby-comment"># File lib/twitter2jabber.rb, line 416</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">logm</span>(<span class="ruby-identifier">msg</span>, <span class="ruby-identifier">verbose</span> = <span class="ruby-identifier">verbose</span>)
   <span class="ruby-identifier">log_</span>(<span class="ruby-node">&quot;#{Time.now} [#{id}] #{msg}&quot;</span>, <span class="ruby-identifier">verbose</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1231,7 +1232,7 @@ href="http://devblog.famundo.com/articles/2006/10/18/ruby-and-xmpp-jabber-part-3
             
             <div class="method-source-code" id="logt-source">
 <pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 419</span>
+<span class="ruby-comment"># File lib/twitter2jabber.rb, line 420</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">logt</span>(<span class="ruby-identifier">msg</span>, <span class="ruby-identifier">verbose</span> = <span class="ruby-identifier">verbose</span>)
   <span class="ruby-identifier">logm</span>(<span class="ruby-node">&quot;TWITTER #{msg}&quot;</span>, <span class="ruby-identifier">verbose</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1368,7 +1369,7 @@ href="http://devblog.famundo.com/articles/2006/10/18/ruby-and-xmpp-jabber-part-3
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">twitter_connect</span>(<span class="ruby-identifier">options</span> = <span class="ruby-ivar">@twitter_options</span>)
   <span class="ruby-ivar">@twitter_options</span> = <span class="ruby-identifier">options</span>
 
-  <span class="ruby-ivar">@twitter</span> = <span class="ruby-constant">Twitter</span>.<span class="ruby-identifier">client</span>(
+  <span class="ruby-ivar">@twitter</span> = <span class="ruby-constant">Twitter</span>.<span class="ruby-identifier">new</span>(
     <span class="ruby-value">:consumer_key</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:consumer_token</span>],
     <span class="ruby-value">:consumer_secret</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:consumer_secret</span>],
     <span class="ruby-value">:oauth_token</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:access_token</span>],
@@ -1412,7 +1413,7 @@ href="http://devblog.famundo.com/articles/2006/10/18/ruby-and-xmpp-jabber-part-3
             
             <div class="method-source-code" id="update-source">
 <pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 402</span>
+<span class="ruby-comment"># File lib/twitter2jabber.rb, line 403</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>(<span class="ruby-identifier">msg</span>, <span class="ruby-identifier">options</span> = {})
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">debug</span>
     <span class="ruby-identifier">logt</span> <span class="ruby-node">&quot;#{msg} (#{options.inspect})&quot;</span>, <span class="ruby-keyword">true</span>
