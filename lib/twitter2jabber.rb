@@ -159,7 +159,7 @@ class Twitter2Jabber
   def twitter_connect(options = @twitter_options)
     @twitter_options = options
 
-    @twitter = Twitter.client(
+    @twitter = Twitter.new(
       :consumer_key       => options[:consumer_token],
       :consumer_secret    => options[:consumer_secret],
       :oauth_token        => options[:access_token],
@@ -323,7 +323,7 @@ le[n[gth]] STATUS                         -- Determine length
             id, colon = $1, $2
 
             tweet = twitter.status(id)
-            raise Twitter::NotFound unless tweet.is_a?(Hashie::Rash)
+            raise Twitter::NotFound unless tweet.is_a?(Hashie::Hash)
 
             if body.empty?
               options[:id] = id
@@ -335,7 +335,7 @@ le[n[gth]] STATUS                         -- Determine length
             id, colon = $1, $2
 
             tweet = twitter.status(id)
-            raise Twitter::NotFound unless tweet.is_a?(Hashie::Rash)
+            raise Twitter::NotFound unless tweet.is_a?(Hashie::Hash)
 
             body.insert(0, ' ') unless body.empty?
             body.insert(0, "@#{tweet.user.screen_name}#{colon}")
