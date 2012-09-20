@@ -3,7 +3,7 @@
 #                                                                             #
 # twitter2jabber - Twitter-to-Jabber gateway.                                 #
 #                                                                             #
-# Copyright (C) 2009-2011 Jens Wille                                          #
+# Copyright (C) 2009-2012 Jens Wille                                          #
 #                                                                             #
 # Authors:                                                                    #
 #     Jens Wille <ww@blackwinter.de>                                          #
@@ -24,7 +24,6 @@
 ###############################################################################
 #++
 
-require 'time'
 require 'erb'
 
 require 'rubygems'
@@ -159,7 +158,7 @@ class Twitter2Jabber
   def twitter_connect(options = @twitter_options)
     @twitter_options = options
 
-    @twitter = Twitter.new(
+    @twitter = Twitter::Client.new(
       :consumer_key       => options[:consumer_token],
       :consumer_secret    => options[:consumer_secret],
       :oauth_token        => options[:access_token],
@@ -191,12 +190,10 @@ class Twitter2Jabber
     options = {}
     options[:since_id] = last if last
 
-    tweets = twitter.friends_timeline(options)
+    tweets = twitter.home_timeline(options)
     return [] unless tweets.is_a?(Array)
 
-    tweets.sort_by { |tweet|
-      tweet.created_at = Time.parse(tweet.created_at)
-    }
+    tweets.sort_by { |tweet| tweet.created_at }
   rescue Twitter::Error, Timeout::Error
     []
   rescue => err
@@ -237,12 +234,12 @@ class Twitter2Jabber
   end
 
   def process_message(text)
-    text.gsub(/https?:\/\/\S+/) { |match| LongURL.expand(match) rescue match }
+    text.gsub(%r{https?://\S+}) { |match| LongURL.expand(match) rescue match }
   end
 
   def process_html(text)
-    text.gsub(/(\A|\W)@(\w+)/, '\1@<a href="http://twitter.com/\2">\2</a>').
-         gsub(/(\A|\W)#(\w+)/, '\1<a href="http://search.twitter.com/search?q=%23\2">#\2</a>')
+    text.gsub(/(?:\A|\W)@(\w+)/, '@<a href="https://twitter.com/\1">\1</a>').
+         gsub(/(?:\A|\W)#(\w+)/, '<a href="https://search.twitter.com/search?q=%23\1">#\1</a>')
   end
 
   def process_text(text)
@@ -323,7 +320,6 @@ le[n[gth]] STATUS                         -- Determine length
             id, colon = $1, $2
 
             tweet = twitter.status(id)
-            raise Twitter::NotFound unless tweet.is_a?(Hashie::Hash)
 
             if body.empty?
               options[:id] = id
@@ -335,14 +331,13 @@ le[n[gth]] STATUS                         -- Determine length
             id, colon = $1, $2
 
             tweet = twitter.status(id)
-            raise Twitter::NotFound unless tweet.is_a?(Hashie::Hash)
 
             body.insert(0, ' ') unless body.empty?
             body.insert(0, "@#{tweet.user.screen_name}#{colon}")
 
             options[:in_reply_to_status_id] = id
           end
-        rescue Twitter::NotFound
+        rescue Twitter::Error::NotFound
           deliver(from, "TWEET NOT FOUND: #{id}")
           return
         end
