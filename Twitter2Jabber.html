@@ -1,456 +1,409 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+
+<html>
 <head>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-  <title>Class: Twitter2Jabber</title>
+<title>class Twitter2Jabber - twitter2jabber Application documentation (v0.6.0)</title>
 
-  <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
-  <script src="./js/jquery.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
 
-</head>
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
 <body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
 
-  <div id="metadata">
-    <div id="home-metadata">
-      <div id="home-section" class="section">
-        <h3 class="section-header">
-          <a href="./index.html">Home</a>
-          <a href="./index.html#classes">Classes</a>
-          <a href="./index.html#methods">Methods</a>
-        </h3>
-      </div>
-    </div>
 
-    <div id="file-metadata">
-      <div id="file-list-section" class="section">
-        <h3 class="section-header">In Files</h3>
-        <div class="section-body">
-          <ul>
-          
-            <li><a href="./lib/twitter2jabber_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="lib/twitter2jabber.rb">lib/twitter2jabber.rb</a></li>
-          
-            <li><a href="./lib/twitter2jabber/version_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="lib/twitter2jabber/version.rb">lib/twitter2jabber/version.rb</a></li>
-          
-          </ul>
-        </div>
-      </div>
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
 
-      
-    </div>
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
 
-    <div id="class-metadata">
-      
-      <!-- Parent Class -->
-      <div id="parent-class-section" class="section">
-        <h3 class="section-header">Parent</h3>
-        
-        <p class="link">Object</p>
-        
-      </div>
-      
 
-      
-
-      
-      <!-- Namespace Contents -->
-      <div id="namespace-list-section" class="section">
-        <h3 class="section-header">Namespace</h3>
-        <ul class="link-list">
-          
-          <li><span class="type">MODULE</span> <a href="Twitter2Jabber/Version.html">Twitter2Jabber::Version</a></li>
-          
-        </ul>
-      </div>
-      
-
-      
-      <!-- Method Quickref -->
-      <div id="method-list-section" class="section">
-        <h3 class="section-header">Methods</h3>
-        <ul class="link-list">
-          
-          <li><a href="#method-c-loop">::loop</a></li>
-          
-          <li><a href="#method-c-new">::new</a></li>
-          
-          <li><a href="#method-c-run">::run</a></li>
-          
-          <li><a href="#method-i-bookmarks">#bookmarks</a></li>
-          
-          <li><a href="#method-i-deliver">#deliver</a></li>
-          
-          <li><a href="#method-i-deliver_tweets">#deliver_tweets</a></li>
-          
-          <li><a href="#method-i-format_element">#format_element</a></li>
-          
-          <li><a href="#method-i-format_tweet">#format_tweet</a></li>
-          
-          <li><a href="#method-i-get_tweets">#get_tweets</a></li>
-          
-          <li><a href="#method-i-handle_command">#handle_command</a></li>
-          
-          <li><a href="#method-i-jabber_connect">#jabber_connect</a></li>
-          
-          <li><a href="#method-i-log_">#log_</a></li>
-          
-          <li><a href="#method-i-logj">#logj</a></li>
-          
-          <li><a href="#method-i-logm">#logm</a></li>
-          
-          <li><a href="#method-i-logt">#logt</a></li>
-          
-          <li><a href="#method-i-loop">#loop</a></li>
-          
-          <li><a href="#method-i-post_messages">#post_messages</a></li>
-          
-          <li><a href="#method-i-process_html">#process_html</a></li>
-          
-          <li><a href="#method-i-process_message">#process_message</a></li>
-          
-          <li><a href="#method-i-process_text">#process_text</a></li>
-          
-          <li><a href="#method-i-run">#run</a></li>
-          
-          <li><a href="#method-i-twitter_connect">#twitter_connect</a></li>
-          
-          <li><a href="#method-i-update">#update</a></li>
-          
-        </ul>
-      </div>
-      
-
-      
-    </div>
-
-    <div id="project-metadata">
-      
-      
-      <div id="fileindex-section" class="section project-section">
-        <h3 class="section-header">Files</h3>
-        <ul>
-        
-          <li class="file"><a href="./COPYING.html">COPYING</a></li>
-        
-          <li class="file"><a href="./ChangeLog.html">ChangeLog</a></li>
-        
-          <li class="file"><a href="./README.html">README</a></li>
-        
-        </ul>
-      </div>
-      
-
-      <div id="classindex-section" class="section project-section">
-        <h3 class="section-header">Class/Module Index
-          <span class="search-toggle"><img src="./images/find.png"
-            height="16" width="16" alt="[+]"
-            title="show/hide quicksearch" /></span></h3>
-        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
-        <fieldset>
-          <legend>Quicksearch</legend>
-          <input type="text" name="quicksearch" value=""
-            class="quicksearch-field" />
-        </fieldset>
-        </form>
-
-        <ul class="link-list">
-        
-          <li><a href="./Twitter2Jabber.html">Twitter2Jabber</a></li>
-        
-          <li><a href="./Twitter2Jabber/Version.html">Twitter2Jabber::Version</a></li>
-        
-        </ul>
-        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
-      </div>
-
-      
-    </div>
-  </div>
-
-  <div id="documentation">
-    <h1 class="class">Twitter2Jabber</h1>
-
-    <div id="description" class="description">
-      
-    </div><!-- description -->
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/twitter2jabber.rb
+    <li>lib/twitter2jabber/version.rb
+  </ul>
+</nav>
 
     
-    <div id="5Buntitled-5D" class="documentation-section">
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">Object
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-loop">::loop</a>
+    
+    <li><a href="#method-c-new">::new</a>
+    
+    <li><a href="#method-c-run">::run</a>
+    
+    <li><a href="#method-i-bookmarks">#bookmarks</a>
+    
+    <li><a href="#method-i-deliver">#deliver</a>
+    
+    <li><a href="#method-i-deliver_tweets">#deliver_tweets</a>
+    
+    <li><a href="#method-i-format_element">#format_element</a>
+    
+    <li><a href="#method-i-format_tweet">#format_tweet</a>
+    
+    <li><a href="#method-i-get_tweets">#get_tweets</a>
+    
+    <li><a href="#method-i-handle_command">#handle_command</a>
+    
+    <li><a href="#method-i-jabber_connect">#jabber_connect</a>
+    
+    <li><a href="#method-i-log_">#log_</a>
+    
+    <li><a href="#method-i-logj">#logj</a>
+    
+    <li><a href="#method-i-logm">#logm</a>
+    
+    <li><a href="#method-i-logt">#logt</a>
+    
+    <li><a href="#method-i-loop">#loop</a>
+    
+    <li><a href="#method-i-post_messages">#post_messages</a>
+    
+    <li><a href="#method-i-process_html">#process_html</a>
+    
+    <li><a href="#method-i-process_message">#process_message</a>
+    
+    <li><a href="#method-i-process_text">#process_text</a>
+    
+    <li><a href="#method-i-run">#run</a>
+    
+    <li><a href="#method-i-twitter_connect">#twitter_connect</a>
+    
+    <li><a href="#method-i-update">#update</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./COPYING.html">COPYING</a>
+  
+    <li class="file"><a href="./ChangeLog.html">ChangeLog</a>
+  
+    <li class="file"><a href="./README.html">README</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Twitter2Jabber.html">Twitter2Jabber</a>
+  
+    <li><a href="./Twitter2Jabber/Version.html">Twitter2Jabber::Version</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Twitter2Jabber</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
       
+        <dt id="DEFAULT_FORMATS">DEFAULT_FORMATS
+        
+        <dd class="description">
+        
+      
+        <dt id="DEFAULT_PAUSE">DEFAULT_PAUSE
+        
+        <dd class="description">
+        
+      
+        <dt id="DEFAULT_TEMPLATES">DEFAULT_TEMPLATES
+        
+        <dd class="description">
+        
+      
+        <dt id="JABBER_NS">JABBER_NS
+        
+        <dd class="description">
+        
+      
+        <dt id="MAX_LENGTH">MAX_LENGTH
+        
+        <dd class="description">
+        
+      
+        <dt id="VERSION">VERSION
+        
+        <dd class="description">
+        
+      
+        <dt id="XHTML_NS">XHTML_NS
+        
+        <dd class="description">
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <!-- Attributes -->
+    <section id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
 
       
+      <div id="attribute-i-_erb" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">_erb</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
 
-      
-      <!-- Constants -->
-      <div id="constants-list" class="section">
-        <h3 class="section-header">Constants</h3>
-        <dl>
+        <div class="method-description">
         
-          <dt><a name="DEFAULT_FORMATS">DEFAULT_FORMATS</a></dt>
-          
-          <dd class="description"></dd>
-          
         
-          <dt><a name="DEFAULT_PAUSE">DEFAULT_PAUSE</a></dt>
-          
-          <dd class="description"></dd>
-          
         
-          <dt><a name="DEFAULT_TEMPLATES">DEFAULT_TEMPLATES</a></dt>
-          
-          <dd class="description"></dd>
-          
-        
-          <dt><a name="JABBER_NS">JABBER_NS</a></dt>
-          
-          <dd class="description"></dd>
-          
-        
-          <dt><a name="MAX_LENGTH">MAX_LENGTH</a></dt>
-          
-          <dd class="description"></dd>
-          
-        
-          <dt><a name="VERSION">VERSION</a></dt>
-          
-          <dd class="description"></dd>
-          
-        
-          <dt><a name="XHTML_NS">XHTML_NS</a></dt>
-          
-          <dd class="description"></dd>
-          
-        
-        </dl>
+        </div>
       </div>
       
+      <div id="attribute-i-debug" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">debug</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
 
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
       
-      <!-- Attributes -->
-      <div id="attribute-method-details" class="method-section section">
-        <h3 class="section-header">Attributes</h3>
-
-        
-        <div id="_erb-attribute-method" class="method-detail">
-          <a name="_erb"></a>
-          
-          <div class="method-heading attribute-method-heading">
-            <span class="method-name">_erb</span><span
-              class="attribute-access-type">[R]</span>
-          </div>
-
-          <div class="method-description">
-          
-          
-          
-          </div>
+      <div id="attribute-i-filter" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">filter</span><span
+            class="attribute-access-type">[R]</span>
         </div>
-        
-        <div id="debug-attribute-method" class="method-detail">
-          <a name="debug"></a>
-          
-          <div class="method-heading attribute-method-heading">
-            <span class="method-name">debug</span><span
-              class="attribute-access-type">[R]</span>
-          </div>
 
-          <div class="method-description">
-          
-          
-          
-          </div>
-        </div>
+        <div class="method-description">
         
-        <div id="filter-attribute-method" class="method-detail">
-          <a name="filter"></a>
-          
-          <div class="method-heading attribute-method-heading">
-            <span class="method-name">filter</span><span
-              class="attribute-access-type">[R]</span>
-          </div>
-
-          <div class="method-description">
-          
-          
-          
-          </div>
-        </div>
         
-        <div id="formats-attribute-method" class="method-detail">
-          <a name="formats"></a>
-          
-          <div class="method-heading attribute-method-heading">
-            <span class="method-name">formats</span><span
-              class="attribute-access-type">[R]</span>
-          </div>
-
-          <div class="method-description">
-          
-          
-          
-          </div>
-        </div>
         
-        <div id="id-attribute-method" class="method-detail">
-          <a name="id"></a>
-          
-          <div class="method-heading attribute-method-heading">
-            <span class="method-name">id</span><span
-              class="attribute-access-type">[R]</span>
-          </div>
-
-          <div class="method-description">
-          
-          
-          
-          </div>
         </div>
-        
-        <div id="jabber-attribute-method" class="method-detail">
-          <a name="jabber"></a>
-          
-          <div class="method-heading attribute-method-heading">
-            <span class="method-name">jabber</span><span
-              class="attribute-access-type">[R]</span>
-          </div>
-
-          <div class="method-description">
-          
-          
-          
-          </div>
-        </div>
-        
-        <div id="log-attribute-method" class="method-detail">
-          <a name="log"></a>
-          
-          <div class="method-heading attribute-method-heading">
-            <span class="method-name">log</span><span
-              class="attribute-access-type">[R]</span>
-          </div>
-
-          <div class="method-description">
-          
-          
-          
-          </div>
-        </div>
-        
-        <div id="templates-attribute-method" class="method-detail">
-          <a name="templates"></a>
-          
-          <div class="method-heading attribute-method-heading">
-            <span class="method-name">templates</span><span
-              class="attribute-access-type">[R]</span>
-          </div>
-
-          <div class="method-description">
-          
-          
-          
-          </div>
-        </div>
-        
-        <div id="twitter-attribute-method" class="method-detail">
-          <a name="twitter"></a>
-          
-          <div class="method-heading attribute-method-heading">
-            <span class="method-name">twitter</span><span
-              class="attribute-access-type">[R]</span>
-          </div>
-
-          <div class="method-description">
-          
-          
-          
-          </div>
-        </div>
-        
-        <div id="verbose-attribute-method" class="method-detail">
-          <a name="verbose"></a>
-          
-          <div class="method-heading attribute-method-heading">
-            <span class="method-name">verbose</span><span
-              class="attribute-access-type">[R]</span>
-          </div>
-
-          <div class="method-description">
-          
-          
-          
-          </div>
-        </div>
-        
-      </div><!-- attribute-method-details -->
+      </div>
       
+      <div id="attribute-i-formats" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">formats</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
 
-      <!-- Methods -->
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
       
-      <div id="public-class-method-details" class="method-section section">
-        <h3 class="section-header">Public Class Methods</h3>
+      <div id="attribute-i-id" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">id</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
 
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
       
-        <div id="loop-method" class="method-detail ">
-          <a name="method-c-loop"></a>
+      <div id="attribute-i-jabber" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">jabber</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-log" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">log</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-templates" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">templates</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-twitter" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">twitter</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-verbose" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">verbose</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section><!-- attribute-method-details -->
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-loop" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">loop</span><span
+            class="method-args">(options, recipients = [], pause = nil, last = nil, &block)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
 
           
-          <div class="method-heading">
-            <span class="method-name">loop</span><span
-              class="method-args">(options, recipients = [], pause = nil, last = nil, &block)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="loop-source">
-<pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 52</span>
+          <div class="method-source-code" id="loop-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">loop</span>(<span class="ruby-identifier">options</span>, <span class="ruby-identifier">recipients</span> = [], <span class="ruby-identifier">pause</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">last</span> = <span class="ruby-keyword">nil</span>, &amp;<span class="ruby-identifier">block</span>)
   <span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>).<span class="ruby-identifier">loop</span>(<span class="ruby-identifier">recipients</span>, <span class="ruby-identifier">pause</span>, <span class="ruby-identifier">last</span>, &amp;<span class="ruby-identifier">block</span>)
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- loop-source -->
-            
-          </div>
+          </div><!-- loop-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- loop-method -->
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(options, &block)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
           
 
           
-        </div><!-- loop-method -->
-
-      
-        <div id="new-method" class="method-detail ">
-          <a name="method-c-new"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">new</span><span
-              class="method-args">(options, &block)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="new-source">
-<pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 62</span>
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">options</span>, &amp;<span class="ruby-identifier">block</span>)
   [<span class="ruby-value">:twitter</span>, <span class="ruby-value">:jabber</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">client</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;#{client} config missing&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">client</span>].<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
@@ -474,7 +427,7 @@
   <span class="ruby-ivar">@templates</span> = <span class="ruby-constant">Dir</span>[
     <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:template_dir</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">DEFAULT_TEMPLATES</span>, <span class="ruby-string">'tweet.*'</span>)
   ].<span class="ruby-identifier">inject</span>({}) { <span class="ruby-operator">|</span><span class="ruby-identifier">hash</span>, <span class="ruby-identifier">template</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">update</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">extname</span>(<span class="ruby-identifier">template</span>).<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/\A\./</span>, <span class="ruby-string">''</span>) =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">template</span>))
+    <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">update</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">extname</span>(<span class="ruby-identifier">template</span>).<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">%r\A\./</span>, <span class="ruby-string">''</span>) =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">template</span>))
   }
 
   <span class="ruby-ivar">@_erb</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">hash</span>, <span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -482,75 +435,69 @@
     <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">format</span>] = <span class="ruby-identifier">template</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">ERB</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">template</span>)
   }
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- new-source -->
-            
-          </div>
+          </div><!-- new-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- new-method -->
+
+    
+      <div id="method-c-run" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">run</span><span
+            class="method-args">(options, recipients = [], last = nil, &block)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
           
 
           
-        </div><!-- new-method -->
-
-      
-        <div id="run-method" class="method-detail ">
-          <a name="method-c-run"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">run</span><span
-              class="method-args">(options, recipients = [], last = nil, &block)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="run-source">
-<pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 56</span>
+          <div class="method-source-code" id="run-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">run</span>(<span class="ruby-identifier">options</span>, <span class="ruby-identifier">recipients</span> = [], <span class="ruby-identifier">last</span> = <span class="ruby-keyword">nil</span>, &amp;<span class="ruby-identifier">block</span>)
   <span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>).<span class="ruby-identifier">run</span>(<span class="ruby-identifier">recipients</span>, <span class="ruby-identifier">last</span>, &amp;<span class="ruby-identifier">block</span>)
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- run-source -->
-            
-          </div>
-
+          </div><!-- run-source -->
           
+        </div>
 
-          
-        </div><!-- run-method -->
+        
 
-      
-      </div><!-- public-class-method-details -->
+        
+      </div><!-- run-method -->
+
     
-      <div id="public-instance-method-details" class="method-section section">
-        <h3 class="section-header">Public Instance Methods</h3>
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
 
-      
-        <div id="deliver_tweets-method" class="method-detail ">
-          <a name="method-i-deliver_tweets"></a>
+    
+      <div id="method-i-deliver_tweets" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">deliver_tweets</span><span
+            class="method-args">(recipients, last = nil, &block)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
 
           
-          <div class="method-heading">
-            <span class="method-name">deliver_tweets</span><span
-              class="method-args">(recipients, last = nil, &block)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="deliver_tweets-source">
-<pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 124</span>
+          <div class="method-source-code" id="deliver_tweets-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 123</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">deliver_tweets</span>(<span class="ruby-identifier">recipients</span>, <span class="ruby-identifier">last</span> = <span class="ruby-keyword">nil</span>, &amp;<span class="ruby-identifier">block</span>)
   <span class="ruby-identifier">get_tweets</span>(<span class="ruby-identifier">last</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">logt</span> <span class="ruby-identifier">last</span> = <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">id</span>
@@ -570,36 +517,33 @@
 
   <span class="ruby-identifier">last</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- deliver_tweets-source -->
-            
-          </div>
+          </div><!-- deliver_tweets-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- deliver_tweets-method -->
+
+    
+      <div id="method-i-loop" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">loop</span><span
+            class="method-args">(recipients = [], pause = nil, last = nil, &block)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
           
 
           
-        </div><!-- deliver_tweets-method -->
-
-      
-        <div id="loop-method" class="method-detail ">
-          <a name="method-i-loop"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">loop</span><span
-              class="method-args">(recipients = [], pause = nil, last = nil, &block)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="loop-source">
-<pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 101</span>
+          <div class="method-source-code" id="loop-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">loop</span>(<span class="ruby-identifier">recipients</span> = [], <span class="ruby-identifier">pause</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">last</span> = <span class="ruby-keyword">nil</span>, &amp;<span class="ruby-identifier">block</span>)
   <span class="ruby-identifier">pause</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">DEFAULT_PAUSE</span>
 
@@ -622,38 +566,35 @@
 
   <span class="ruby-identifier">last</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- loop-source -->
-            
-          </div>
+          </div><!-- loop-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- loop-method -->
+
+    
+      <div id="method-i-post_messages" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">post_messages</span><span
+            class="method-args">(recipients = [])</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
           
 
           
-        </div><!-- loop-method -->
-
-      
-        <div id="post_messages-method" class="method-detail ">
-          <a name="method-i-post_messages"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">post_messages</span><span
-              class="method-args">(recipients = [])</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="post_messages-source">
-<pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 144</span>
+          <div class="method-source-code" id="post_messages-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 143</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">post_messages</span>(<span class="ruby-identifier">recipients</span> = [])
-  <span class="ruby-identifier">allowed</span> = <span class="ruby-node">%{\A(?:#{recipients.map { |r| Regexp.escape(r) }.join('|')})\z}</span>
+  <span class="ruby-identifier">allowed</span> = <span class="ruby-node">%r{\A(?:#{recipients.map { |r| Regexp.escape(r) }.join('|')})\z}</span>
 
   <span class="ruby-identifier">jabber</span>.<span class="ruby-identifier">received_messages</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">msg</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">next</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-value">:chat</span>
@@ -664,111 +605,102 @@
     <span class="ruby-identifier">handle_command</span>(<span class="ruby-identifier">msg</span>.<span class="ruby-identifier">body</span>, <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">from</span>)
   }
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- post_messages-source -->
-            
-          </div>
+          </div><!-- post_messages-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- post_messages-method -->
+
+    
+      <div id="method-i-run" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">run</span><span
+            class="method-args">(recipients = [], last = nil, flag = true, &block)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
           
 
           
-        </div><!-- post_messages-method -->
-
-      
-        <div id="run-method" class="method-detail ">
-          <a name="method-i-run"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">run</span><span
-              class="method-args">(recipients = [], last = nil, flag = true, &block)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="run-source">
-<pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 94</span>
+          <div class="method-source-code" id="run-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 93</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">run</span>(<span class="ruby-identifier">recipients</span> = [], <span class="ruby-identifier">last</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">flag</span> = <span class="ruby-keyword">true</span>, &amp;<span class="ruby-identifier">block</span>)
   <span class="ruby-identifier">last</span> = <span class="ruby-identifier">deliver_tweets</span>(<span class="ruby-identifier">recipients</span>, <span class="ruby-identifier">last</span>, &amp;<span class="ruby-identifier">block</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">flag</span>
   <span class="ruby-identifier">post_messages</span>(<span class="ruby-identifier">recipients</span>)
 
   <span class="ruby-identifier">last</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- run-source -->
-            
-          </div>
-
+          </div><!-- run-source -->
           
+        </div>
 
-          
-        </div><!-- run-method -->
+        
 
-      
-      </div><!-- public-instance-method-details -->
+        
+      </div><!-- run-method -->
+
     
-      <div id="private-instance-method-details" class="method-section section">
-        <h3 class="section-header">Private Instance Methods</h3>
+    </section><!-- public-instance-method-details -->
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Private Instance Methods</h3>
 
-      
-        <div id="bookmarks-method" class="method-detail ">
-          <a name="method-i-bookmarks"></a>
+    
+      <div id="method-i-bookmarks" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">bookmarks</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
 
           
-          <div class="method-heading">
-            <span class="method-name">bookmarks</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="bookmarks-source">
-<pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 428</span>
+          <div class="method-source-code" id="bookmarks-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 423</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">bookmarks</span>
   <span class="ruby-ivar">@bookmarks</span> <span class="ruby-operator">||=</span> []
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- bookmarks-source -->
-            
-          </div>
+          </div><!-- bookmarks-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- bookmarks-method -->
+
+    
+      <div id="method-i-deliver" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">deliver</span><span
+            class="method-args">(recipient, msg)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
           
 
           
-        </div><!-- bookmarks-method -->
-
-      
-        <div id="deliver-method" class="method-detail ">
-          <a name="method-i-deliver"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">deliver</span><span
-              class="method-args">(recipient, msg)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="deliver-source">
-<pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 391</span>
+          <div class="method-source-code" id="deliver-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 386</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">deliver</span>(<span class="ruby-identifier">recipient</span>, <span class="ruby-identifier">msg</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">debug</span>
     <span class="ruby-identifier">logj</span> <span class="ruby-node">&quot;#{recipient}: #{msg}&quot;</span>, <span class="ruby-keyword">true</span>
@@ -780,83 +712,77 @@
   <span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;#{err} (#{err.class})&quot;</span>
   <span class="ruby-identifier">jabber_connect</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">retry</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">err</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Jabber</span><span class="ruby-operator">::</span><span class="ruby-constant">ServerDisconnected</span>)
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- deliver-source -->
-            
-          </div>
-
+          </div><!-- deliver-source -->
           
+        </div>
 
+        
+
+        
+      </div><!-- deliver-method -->
+
+    
+      <div id="method-i-format_element" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">format_element</span><span
+            class="method-args">(format, text)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
           
-        </div><!-- deliver-method -->
-
-      
-        <div id="format_element-method" class="method-detail ">
-          <a name="method-i-format_element"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">format_element</span><span
-              class="method-args">(format, text)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>cf. &lt;<a
+          <p>cf. &lt;<a
 href="http://devblog.famundo.com/articles/2006/10/18/ruby-and-xmpp-jabber-part-3-adding-html-to-the-messages">devblog.famundo.com/articles/2006/10/18/ruby-and-xmpp-jabber-part-3-adding-html-to-the-messages</a>&gt;</p>
-            
+          
 
-            
-            <div class="method-source-code" id="format_element-source">
-<pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 222</span>
+          
+          <div class="method-source-code" id="format_element-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 219</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">format_element</span>(<span class="ruby-identifier">format</span>, <span class="ruby-identifier">text</span>)
   <span class="ruby-identifier">text</span> = <span class="ruby-identifier">process_message</span>(<span class="ruby-identifier">text</span>)
   <span class="ruby-identifier">body</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Element</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">'body'</span>)
 
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">format</span>
     <span class="ruby-keyword">when</span> <span class="ruby-string">'html'</span>
-      <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Text</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">process_html</span>(<span class="ruby-identifier">text</span>), <span class="ruby-keyword">false</span>, <span class="ruby-identifier">body</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-regexp">/.^/</span>)
+      <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Text</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">process_html</span>(<span class="ruby-identifier">text</span>), <span class="ruby-keyword">false</span>, <span class="ruby-identifier">body</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-regexp">%r.^/</span>)
 
       <span class="ruby-identifier">html</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Element</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">'html'</span>).<span class="ruby-identifier">add_namespace</span>(<span class="ruby-constant">JABBER_NS</span>)
       <span class="ruby-identifier">html</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">body</span>.<span class="ruby-identifier">add_namespace</span>(<span class="ruby-constant">XHTML_NS</span>))
       <span class="ruby-identifier">html</span>
     <span class="ruby-keyword">else</span>
-      <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Text</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">process_text</span>(<span class="ruby-identifier">text</span>), <span class="ruby-keyword">true</span>, <span class="ruby-identifier">body</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-regexp">/.^/</span>)
+      <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Text</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">process_text</span>(<span class="ruby-identifier">text</span>), <span class="ruby-keyword">true</span>, <span class="ruby-identifier">body</span>, <span class="ruby-keyword">true</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-regexp">%r.^/</span>)
       <span class="ruby-identifier">body</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- format_element-source -->
-            
-          </div>
+          </div><!-- format_element-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- format_element-method -->
+
+    
+      <div id="method-i-format_tweet" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">format_tweet</span><span
+            class="method-args">(tweet)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
           
 
           
-        </div><!-- format_element-method -->
-
-      
-        <div id="format_tweet-method" class="method-detail ">
-          <a name="method-i-format_tweet"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">format_tweet</span><span
-              class="method-args">(tweet)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="format_tweet-source">
-<pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 207</span>
+          <div class="method-source-code" id="format_tweet-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 204</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">format_tweet</span>(<span class="ruby-identifier">tweet</span>)
   <span class="ruby-identifier">user</span> = <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">user</span>
 
@@ -870,229 +796,236 @@ href="http://devblog.famundo.com/articles/2006/10/18/ruby-and-xmpp-jabber-part-3
 
   <span class="ruby-identifier">msg</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- format_tweet-source -->
-            
-          </div>
+          </div><!-- format_tweet-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- format_tweet-method -->
+
+    
+      <div id="method-i-get_tweets" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_tweets</span><span
+            class="method-args">(last = nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
           
 
           
-        </div><!-- format_tweet-method -->
-
-      
-        <div id="get_tweets-method" class="method-detail ">
-          <a name="method-i-get_tweets"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">get_tweets</span><span
-              class="method-args">(last = nil)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="get_tweets-source">
-<pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 190</span>
+          <div class="method-source-code" id="get_tweets-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 189</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_tweets</span>(<span class="ruby-identifier">last</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">options</span> = {}
   <span class="ruby-identifier">options</span>[<span class="ruby-value">:since_id</span>] = <span class="ruby-identifier">last</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">last</span>
 
-  <span class="ruby-identifier">tweets</span> = <span class="ruby-identifier">twitter</span>.<span class="ruby-identifier">friends_timeline</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">tweets</span> = <span class="ruby-identifier">twitter</span>.<span class="ruby-identifier">home_timeline</span>(<span class="ruby-identifier">options</span>)
   <span class="ruby-keyword">return</span> [] <span class="ruby-keyword">unless</span> <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>)
 
-  <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">created_at</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">created_at</span>)
-  }
+  <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span> <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">created_at</span> }
 <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Twitter</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>, <span class="ruby-constant">Timeout</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>
   []
 <span class="ruby-keyword">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">err</span>
   <span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;#{err} (#{err.class})&quot;</span>
   []
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- get_tweets-source -->
-            
-          </div>
+          </div><!-- get_tweets-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- get_tweets-method -->
+
+    
+      <div id="method-i-handle_command" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">handle_command</span><span
+            class="method-args">(body, from, execute = true)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
           
 
           
-        </div><!-- get_tweets-method -->
+          <div class="method-source-code" id="handle_command-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 249</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">handle_command</span>(<span class="ruby-identifier">body</span>, <span class="ruby-identifier">from</span>, <span class="ruby-identifier">execute</span> = <span class="ruby-keyword">true</span>)
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">body</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-regexp">%r\A(?:he?(?:lp)?|\?)\z/</span>
+        <span class="ruby-identifier">deliver</span>(<span class="ruby-identifier">from</span>, <span class="ruby-string">&quot;h[e[lp]]|?                                -- Print this help
 
-      
-        <div id="handle_command-method" class="method-detail ">
-          <a name="method-i-handle_command"></a>
+de[bug]                                   -- Print debug mode
+de[bug] on|off                            -- Turn debug mode on/off
 
-          
-          <div class="method-heading">
-            <span class="method-name">handle_command</span><span
-              class="method-args">(body, from, execute = true)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
+bl[ock] @USER                             -- Block USER
+fa[v[orite]] #ID                          -- Add ID to favorites
 
-          <div class="method-description">
-            
-            
-            
+bm|bookmark[s]                            -- List bookmarks
+bm|bookmark #ID                           -- Bookmark ID
+bm|bookmark -#ID                          -- Remove ID from bookmarks
 
-            
-            <div class="method-source-code" id="handle_command-source">
-<pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 252</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">handle_command</span>(<span class="ruby-identifier">body</span>, <span class="ruby-identifier">from</span>, <span class="ruby-identifier">execute</span> = <span class="ruby-keyword">true</span>)
-  <span class="ruby-keyword">case</span> <span class="ruby-identifier">body</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-regexp">/\A(?:he?(?:lp)?|\?)\z/</span>
-      <span class="ruby-identifier">deliver</span>(<span class="ruby-identifier">from</span>, <span class="ruby-string">h[e[lp]]|?                                -- Print this helpde[bug]                                   -- Print debug modede[bug] on|off                            -- Turn debug mode on/offbl[ock] @USER                             -- Block USERfa[v[orite]] #ID                          -- Add ID to favoritesbm|bookmark[s]                            -- List bookmarksbm|bookmark #ID                           -- Bookmark IDbm|bookmark -#ID                          -- Remove ID from bookmarksrt|retweet #ID [!] [STATUS]               -- Retweet IDre[ply] #ID [!] STATUS                    -- Reply to IDd[m]|direct[_message] @USER [!] STATUS    -- Send direct message to USERle[n[gth]] STATUS                         -- Determine length[!] STATUS                                -- Update status(Note: STATUS must be under #{MAX_LENGTH} characters; force send with '!'.)</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">execute</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-regexp">/\Ade(?:bug)?(?:\s+(on|off))?\z/</span>
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">execute</span>
-        <span class="ruby-identifier">flag</span> = <span class="ruby-node">$1</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-keyword">if</span> <span class="ruby-node">$1</span>
+rt|retweet #ID [!] [STATUS]               -- Retweet ID
+re[ply] #ID [!] STATUS                    -- Reply to ID
+d[m]|direct[_message] @USER [!] STATUS    -- Send direct message to USER
 
-        <span class="ruby-keyword">case</span> <span class="ruby-identifier">flag</span>
-          <span class="ruby-keyword">when</span> <span class="ruby-string">'on'</span>
-            <span class="ruby-ivar">@debug</span> = <span class="ruby-keyword">true</span>
-          <span class="ruby-keyword">when</span> <span class="ruby-string">'off'</span>
-            <span class="ruby-ivar">@debug</span> = <span class="ruby-keyword">false</span>
-        <span class="ruby-keyword">end</span>
+le[n[gth]] STATUS                         -- Determine length
+[!] STATUS                                -- Update status
 
-        <span class="ruby-identifier">deliver</span>(<span class="ruby-identifier">from</span>, <span class="ruby-node">&quot;DEBUG = #{debug ? 'on' : 'off'}&quot;</span>)
-      <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-node">/\Abl(?:ock)?\s+[@#]?(\w+)\z/</span>
-      <span class="ruby-identifier">twitter</span>.<span class="ruby-identifier">block</span>(<span class="ruby-node">$1</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">execute</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">debug</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-node">/\Afav?(?:orite)?\s+#?(\d+)\z/</span>
-      <span class="ruby-identifier">twitter</span>.<span class="ruby-identifier">favorite_create</span>(<span class="ruby-node">$1</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">execute</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">debug</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-regexp">/\A(?:bm|bookmarks?)\z/</span>
-      <span class="ruby-identifier">deliver</span>(<span class="ruby-identifier">from</span>, <span class="ruby-identifier">bookmarks</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">bm</span><span class="ruby-operator">|</span>
-        <span class="ruby-identifier">st</span> = <span class="ruby-identifier">twitter</span>.<span class="ruby-identifier">status</span>(<span class="ruby-identifier">bm</span>)
-        <span class="ruby-identifier">st</span> = <span class="ruby-node">&quot;@#{st.user.screen_name}: #{st.text[0, 10]}...&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">st</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hashie</span><span class="ruby-operator">::</span><span class="ruby-constant">Mash</span>)
-        <span class="ruby-node">&quot;#{bm} - #{st || '???'}&quot;</span>
-      }.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\n&quot;</span>)) <span class="ruby-keyword">if</span> <span class="ruby-identifier">execute</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">debug</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-regexp">/\A(?:bm|bookmark)\s+(\d+)\z/</span>
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">execute</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">debug</span>
-        <span class="ruby-identifier">bookmarks</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">$1</span>
-        <span class="ruby-identifier">bookmarks</span>.<span class="ruby-identifier">runiq!</span>
-      <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-regexp">/\A(?:bm|bookmark)\s+-(\d+)\z/</span>
-      <span class="ruby-identifier">bookmarks</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-node">$1</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">execute</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">debug</span>
-    <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">command</span>, <span class="ruby-identifier">options</span> = <span class="ruby-keyword">nil</span>, {}
+(Note: STATUS must be under #{MAX_LENGTH} characters; force send with '!'.)
+&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">execute</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-regexp">%r\Ade(?:bug)?(?:\s+(on|off))?\z/</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">execute</span>
+          <span class="ruby-identifier">flag</span> = <span class="ruby-node">$1</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-keyword">if</span> <span class="ruby-node">$1</span>
 
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">execute</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/\Alen?(?:gth)?\s+/</span>, <span class="ruby-string">''</span>)
-        <span class="ruby-keyword">if</span> <span class="ruby-identifier">body</span> = <span class="ruby-identifier">handle_command</span>(<span class="ruby-identifier">body</span>, <span class="ruby-identifier">from</span>, <span class="ruby-keyword">false</span>)
-          <span class="ruby-identifier">length</span> = <span class="ruby-identifier">body</span>.<span class="ruby-identifier">length</span>
-          <span class="ruby-identifier">hint</span>   = <span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-constant">MAX_LENGTH</span> <span class="ruby-operator">?</span> <span class="ruby-string">'OK'</span> <span class="ruby-operator">:</span> <span class="ruby-string">'TOO LONG'</span>
-
-          <span class="ruby-identifier">deliver</span>(<span class="ruby-identifier">from</span>, <span class="ruby-node">&quot;#{length} [#{hint}]: #{body}&quot;</span>)
-        <span class="ruby-keyword">end</span>
-
-        <span class="ruby-keyword">return</span>
-      <span class="ruby-keyword">end</span>
-
-      <span class="ruby-keyword">begin</span>
-        <span class="ruby-keyword">if</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-node">/\A(?:rt|retweet)\s+#?(\d+)(:?)(?:\s+|\z)/</span>, <span class="ruby-string">''</span>)
-          <span class="ruby-identifier">id</span>, <span class="ruby-identifier">colon</span> = <span class="ruby-node">$1</span>, <span class="ruby-node">$2</span>
-
-          <span class="ruby-identifier">tweet</span> = <span class="ruby-identifier">twitter</span>.<span class="ruby-identifier">status</span>(<span class="ruby-identifier">id</span>)
-          <span class="ruby-identifier">raise</span> <span class="ruby-constant">Twitter</span><span class="ruby-operator">::</span><span class="ruby-constant">NotFound</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hashie</span><span class="ruby-operator">::</span><span class="ruby-constant">Hash</span>)
-
-          <span class="ruby-keyword">if</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">empty?</span>
-            <span class="ruby-identifier">options</span>[<span class="ruby-value">:id</span>] = <span class="ruby-identifier">id</span>
-            <span class="ruby-identifier">command</span> = <span class="ruby-value">:rt</span>
-          <span class="ruby-keyword">else</span>
-            <span class="ruby-identifier">body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; RT @#{tweet.user.screen_name}#{colon} #{tweet.text}&quot;</span>
+          <span class="ruby-keyword">case</span> <span class="ruby-identifier">flag</span>
+            <span class="ruby-keyword">when</span> <span class="ruby-string">'on'</span>
+              <span class="ruby-ivar">@debug</span> = <span class="ruby-keyword">true</span>
+            <span class="ruby-keyword">when</span> <span class="ruby-string">'off'</span>
+              <span class="ruby-ivar">@debug</span> = <span class="ruby-keyword">false</span>
           <span class="ruby-keyword">end</span>
-        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-node">/\Are(?:ply)?\s+#?(\d+)(:?)\s+/</span>, <span class="ruby-string">''</span>)
-          <span class="ruby-identifier">id</span>, <span class="ruby-identifier">colon</span> = <span class="ruby-node">$1</span>, <span class="ruby-node">$2</span>
 
-          <span class="ruby-identifier">tweet</span> = <span class="ruby-identifier">twitter</span>.<span class="ruby-identifier">status</span>(<span class="ruby-identifier">id</span>)
-          <span class="ruby-identifier">raise</span> <span class="ruby-constant">Twitter</span><span class="ruby-operator">::</span><span class="ruby-constant">NotFound</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hashie</span><span class="ruby-operator">::</span><span class="ruby-constant">Hash</span>)
-
-          <span class="ruby-identifier">body</span>.<span class="ruby-identifier">insert</span>(<span class="ruby-value">0</span>, <span class="ruby-string">' '</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">empty?</span>
-          <span class="ruby-identifier">body</span>.<span class="ruby-identifier">insert</span>(<span class="ruby-value">0</span>, <span class="ruby-node">&quot;@#{tweet.user.screen_name}#{colon}&quot;</span>)
-
-          <span class="ruby-identifier">options</span>[<span class="ruby-value">:in_reply_to_status_id</span>] = <span class="ruby-identifier">id</span>
+          <span class="ruby-identifier">deliver</span>(<span class="ruby-identifier">from</span>, <span class="ruby-node">&quot;DEBUG = #{debug ? 'on' : 'off'}&quot;</span>)
         <span class="ruby-keyword">end</span>
-      <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Twitter</span><span class="ruby-operator">::</span><span class="ruby-constant">NotFound</span>
-        <span class="ruby-identifier">deliver</span>(<span class="ruby-identifier">from</span>, <span class="ruby-node">&quot;TWEET NOT FOUND: #{id}&quot;</span>)
-        <span class="ruby-keyword">return</span>
-      <span class="ruby-keyword">end</span>
-
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-node">/\A(?:dm?|direct(?:_message)?)\s+[@#]?(\w+):?\s+/</span>, <span class="ruby-string">''</span>)
-        <span class="ruby-identifier">options</span>[<span class="ruby-value">:user</span>] = <span class="ruby-node">$1</span>
-        <span class="ruby-identifier">command</span> = <span class="ruby-value">:dm</span>
-      <span class="ruby-keyword">end</span>
-
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/\A!(?:\s+|\z)/</span>, <span class="ruby-string">''</span>)
-        <span class="ruby-identifier">force</span> = <span class="ruby-keyword">true</span>
-      <span class="ruby-keyword">end</span>
-
-      <span class="ruby-identifier">body</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">/https?:\/\/\S+/</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">match</span><span class="ruby-operator">|</span>
-        <span class="ruby-identifier">short</span> = <span class="ruby-constant">ShortURL</span>.<span class="ruby-identifier">shorten</span>(<span class="ruby-identifier">match</span>, <span class="ruby-value">:tinyurl</span>)
-        <span class="ruby-identifier">short</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">short</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">match</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">short</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">match</span>
-      }
-
-      <span class="ruby-keyword">return</span> <span class="ruby-identifier">body</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">execute</span>
-
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">force</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-constant">MAX_LENGTH</span>
-        <span class="ruby-keyword">case</span> <span class="ruby-identifier">command</span>
-          <span class="ruby-keyword">when</span> <span class="ruby-value">:rt</span>
-            <span class="ruby-keyword">if</span> <span class="ruby-identifier">debug</span>
-              <span class="ruby-identifier">logt</span> <span class="ruby-node">&quot;RT: #{options.inspect}&quot;</span>, <span class="ruby-keyword">true</span>
-            <span class="ruby-keyword">else</span>
-              <span class="ruby-identifier">twitter</span>.<span class="ruby-identifier">retweet</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:id</span>])
-            <span class="ruby-keyword">end</span>
-          <span class="ruby-keyword">when</span> <span class="ruby-value">:dm</span>
-            <span class="ruby-keyword">if</span> <span class="ruby-identifier">debug</span>
-              <span class="ruby-identifier">logt</span> <span class="ruby-node">&quot;DM: #{body} (#{options.inspect})&quot;</span>, <span class="ruby-keyword">true</span>
-            <span class="ruby-keyword">else</span>
-              <span class="ruby-identifier">twitter</span>.<span class="ruby-identifier">direct_message_create</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:user</span>], <span class="ruby-identifier">body</span>)
-            <span class="ruby-keyword">end</span>
-          <span class="ruby-keyword">else</span>
-            <span class="ruby-identifier">update</span>(<span class="ruby-identifier">body</span>, <span class="ruby-identifier">options</span>)
+      <span class="ruby-keyword">when</span> <span class="ruby-node">%r\Abl(?:ock)?\s+[@#]?(\w+)\z/</span>
+        <span class="ruby-identifier">twitter</span>.<span class="ruby-identifier">block</span>(<span class="ruby-node">$1</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">execute</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">debug</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-node">%r\Afav?(?:orite)?\s+#?(\d+)\z/</span>
+        <span class="ruby-identifier">twitter</span>.<span class="ruby-identifier">favorite_create</span>(<span class="ruby-node">$1</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">execute</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">debug</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-regexp">%r\A(?:bm|bookmarks?)\z/</span>
+        <span class="ruby-identifier">deliver</span>(<span class="ruby-identifier">from</span>, <span class="ruby-identifier">bookmarks</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">bm</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">st</span> = <span class="ruby-identifier">twitter</span>.<span class="ruby-identifier">status</span>(<span class="ruby-identifier">bm</span>)
+          <span class="ruby-identifier">st</span> = <span class="ruby-node">&quot;@#{st.user.screen_name}: #{st.text[0, 10]}...&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">st</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hashie</span><span class="ruby-operator">::</span><span class="ruby-constant">Mash</span>)
+          <span class="ruby-node">&quot;#{bm} - #{st || '???'}&quot;</span>
+        }.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\n&quot;</span>)) <span class="ruby-keyword">if</span> <span class="ruby-identifier">execute</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">debug</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-regexp">%r\A(?:bm|bookmark)\s+(\d+)\z/</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">execute</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">debug</span>
+          <span class="ruby-identifier">bookmarks</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">$1</span>
+          <span class="ruby-identifier">bookmarks</span>.<span class="ruby-identifier">runiq!</span>
         <span class="ruby-keyword">end</span>
-
-        <span class="ruby-identifier">deliver</span>(<span class="ruby-identifier">from</span>, <span class="ruby-node">&quot;MSG SENT: #{body.inspect}, #{options.inspect}&quot;</span>)
+      <span class="ruby-keyword">when</span> <span class="ruby-regexp">%r\A(?:bm|bookmark)\s+-(\d+)\z/</span>
+        <span class="ruby-identifier">bookmarks</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-node">$1</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">execute</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">debug</span>
       <span class="ruby-keyword">else</span>
-        <span class="ruby-identifier">deliver</span>(<span class="ruby-identifier">from</span>, <span class="ruby-node">&quot;MSG TOO LONG (&gt; #{MAX_LENGTH}): #{body.inspect}&quot;</span>)
-      <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-            </div><!-- handle_command-source -->
-            
-          </div>
+        <span class="ruby-identifier">command</span>, <span class="ruby-identifier">options</span> = <span class="ruby-keyword">nil</span>, {}
 
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">execute</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">%r\Alen?(?:gth)?\s+/</span>, <span class="ruby-string">''</span>)
+          <span class="ruby-keyword">if</span> <span class="ruby-identifier">body</span> = <span class="ruby-identifier">handle_command</span>(<span class="ruby-identifier">body</span>, <span class="ruby-identifier">from</span>, <span class="ruby-keyword">false</span>)
+            <span class="ruby-identifier">length</span> = <span class="ruby-identifier">body</span>.<span class="ruby-identifier">length</span>
+            <span class="ruby-identifier">hint</span>   = <span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-constant">MAX_LENGTH</span> <span class="ruby-operator">?</span> <span class="ruby-string">'OK'</span> <span class="ruby-operator">:</span> <span class="ruby-string">'TOO LONG'</span>
+
+            <span class="ruby-identifier">deliver</span>(<span class="ruby-identifier">from</span>, <span class="ruby-node">&quot;#{length} [#{hint}]: #{body}&quot;</span>)
+          <span class="ruby-keyword">end</span>
+
+          <span class="ruby-keyword">return</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-keyword">begin</span>
+          <span class="ruby-keyword">if</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-node">%r\A(?:rt|retweet)\s+#?(\d+)(:?)(?:\s+|\z)/</span>, <span class="ruby-string">''</span>)
+            <span class="ruby-identifier">id</span>, <span class="ruby-identifier">colon</span> = <span class="ruby-node">$1</span>, <span class="ruby-node">$2</span>
+
+            <span class="ruby-identifier">tweet</span> = <span class="ruby-identifier">twitter</span>.<span class="ruby-identifier">status</span>(<span class="ruby-identifier">id</span>)
+
+            <span class="ruby-keyword">if</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">empty?</span>
+              <span class="ruby-identifier">options</span>[<span class="ruby-value">:id</span>] = <span class="ruby-identifier">id</span>
+              <span class="ruby-identifier">command</span> = <span class="ruby-value">:rt</span>
+            <span class="ruby-keyword">else</span>
+              <span class="ruby-identifier">body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; RT @#{tweet.user.screen_name}#{colon} #{tweet.text}&quot;</span>
+            <span class="ruby-keyword">end</span>
+          <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-node">%r\Are(?:ply)?\s+#?(\d+)(:?)\s+/</span>, <span class="ruby-string">''</span>)
+            <span class="ruby-identifier">id</span>, <span class="ruby-identifier">colon</span> = <span class="ruby-node">$1</span>, <span class="ruby-node">$2</span>
+
+            <span class="ruby-identifier">tweet</span> = <span class="ruby-identifier">twitter</span>.<span class="ruby-identifier">status</span>(<span class="ruby-identifier">id</span>)
+
+            <span class="ruby-identifier">body</span>.<span class="ruby-identifier">insert</span>(<span class="ruby-value">0</span>, <span class="ruby-string">' '</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">empty?</span>
+            <span class="ruby-identifier">body</span>.<span class="ruby-identifier">insert</span>(<span class="ruby-value">0</span>, <span class="ruby-node">&quot;@#{tweet.user.screen_name}#{colon}&quot;</span>)
+
+            <span class="ruby-identifier">options</span>[<span class="ruby-value">:in_reply_to_status_id</span>] = <span class="ruby-identifier">id</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Twitter</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span><span class="ruby-operator">::</span><span class="ruby-constant">NotFound</span>
+          <span class="ruby-identifier">deliver</span>(<span class="ruby-identifier">from</span>, <span class="ruby-node">&quot;TWEET NOT FOUND: #{id}&quot;</span>)
+          <span class="ruby-keyword">return</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-node">%r\A(?:dm?|direct(?:_message)?)\s+[@#]?(\w+):?\s+/</span>, <span class="ruby-string">''</span>)
+          <span class="ruby-identifier">options</span>[<span class="ruby-value">:user</span>] = <span class="ruby-node">$1</span>
+          <span class="ruby-identifier">command</span> = <span class="ruby-value">:dm</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">%r\A!(?:\s+|\z)/</span>, <span class="ruby-string">''</span>)
+          <span class="ruby-identifier">force</span> = <span class="ruby-keyword">true</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-identifier">body</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">%rhttps?:\/\/\S+/</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">match</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">short</span> = <span class="ruby-constant">ShortURL</span>.<span class="ruby-identifier">shorten</span>(<span class="ruby-identifier">match</span>, <span class="ruby-value">:tinyurl</span>)
+          <span class="ruby-identifier">short</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">short</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">match</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">short</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">match</span>
+        }
+
+        <span class="ruby-keyword">return</span> <span class="ruby-identifier">body</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">execute</span>
+
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">force</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-constant">MAX_LENGTH</span>
+          <span class="ruby-keyword">case</span> <span class="ruby-identifier">command</span>
+            <span class="ruby-keyword">when</span> <span class="ruby-value">:rt</span>
+              <span class="ruby-keyword">if</span> <span class="ruby-identifier">debug</span>
+                <span class="ruby-identifier">logt</span> <span class="ruby-node">&quot;RT: #{options.inspect}&quot;</span>, <span class="ruby-keyword">true</span>
+              <span class="ruby-keyword">else</span>
+                <span class="ruby-identifier">twitter</span>.<span class="ruby-identifier">retweet</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:id</span>])
+              <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">when</span> <span class="ruby-value">:dm</span>
+              <span class="ruby-keyword">if</span> <span class="ruby-identifier">debug</span>
+                <span class="ruby-identifier">logt</span> <span class="ruby-node">&quot;DM: #{body} (#{options.inspect})&quot;</span>, <span class="ruby-keyword">true</span>
+              <span class="ruby-keyword">else</span>
+                <span class="ruby-identifier">twitter</span>.<span class="ruby-identifier">direct_message_create</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:user</span>], <span class="ruby-identifier">body</span>)
+              <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">else</span>
+              <span class="ruby-identifier">update</span>(<span class="ruby-identifier">body</span>, <span class="ruby-identifier">options</span>)
+          <span class="ruby-keyword">end</span>
+
+          <span class="ruby-identifier">deliver</span>(<span class="ruby-identifier">from</span>, <span class="ruby-node">&quot;MSG SENT: #{body.inspect}, #{options.inspect}&quot;</span>)
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-identifier">deliver</span>(<span class="ruby-identifier">from</span>, <span class="ruby-node">&quot;MSG TOO LONG (&gt; #{MAX_LENGTH}): #{body.inspect}&quot;</span>)
+        <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span></pre>
+          </div><!-- handle_command-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- handle_command-method -->
+
+    
+      <div id="method-i-jabber_connect" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">jabber_connect</span><span
+            class="method-args">(options = @jabber_options)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
           
 
           
-        </div><!-- handle_command-method -->
-
-      
-        <div id="jabber_connect-method" class="method-detail ">
-          <a name="method-i-jabber_connect"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">jabber_connect</span><span
-              class="method-args">(options = @jabber_options)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="jabber_connect-source">
-<pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 178</span>
+          <div class="method-source-code" id="jabber_connect-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 177</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">jabber_connect</span>(<span class="ruby-identifier">options</span> = <span class="ruby-ivar">@jabber_options</span>)
   <span class="ruby-ivar">@jabber_options</span> = <span class="ruby-identifier">options</span>
 
@@ -1104,272 +1037,248 @@ href="http://devblog.famundo.com/articles/2006/10/18/ruby-and-xmpp-jabber-part-3
 <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Jabber</span><span class="ruby-operator">::</span><span class="ruby-constant">JabberError</span>, <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">ETIMEDOUT</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">err</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Can't connect to Jabber with JID '#{options[:user]}': #{err}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- jabber_connect-source -->
-            
-          </div>
+          </div><!-- jabber_connect-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- jabber_connect-method -->
+
+    
+      <div id="method-i-log_" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">log_</span><span
+            class="method-args">(msg, verbose = verbose)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
           
 
           
-        </div><!-- jabber_connect-method -->
-
-      
-        <div id="log_-method" class="method-detail ">
-          <a name="method-i-log_"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">log_</span><span
-              class="method-args">(msg, verbose = verbose)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="log_-source">
-<pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 412</span>
+          <div class="method-source-code" id="log_-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 407</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">log_</span>(<span class="ruby-identifier">msg</span>, <span class="ruby-identifier">verbose</span> = <span class="ruby-identifier">verbose</span>)
   <span class="ruby-identifier">log</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">msg</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">verbose</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- log_-source -->
-            
-          </div>
+          </div><!-- log_-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- log_-method -->
+
+    
+      <div id="method-i-logj" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">logj</span><span
+            class="method-args">(msg, verbose = verbose)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
           
 
           
-        </div><!-- log_-method -->
-
-      
-        <div id="logj-method" class="method-detail ">
-          <a name="method-i-logj"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">logj</span><span
-              class="method-args">(msg, verbose = verbose)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="logj-source">
-<pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 424</span>
+          <div class="method-source-code" id="logj-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 419</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">logj</span>(<span class="ruby-identifier">msg</span>, <span class="ruby-identifier">verbose</span> = <span class="ruby-identifier">verbose</span>)
   <span class="ruby-identifier">logm</span>(<span class="ruby-node">&quot;JABBER #{msg}&quot;</span>, <span class="ruby-identifier">verbose</span>)
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- logj-source -->
-            
-          </div>
+          </div><!-- logj-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- logj-method -->
+
+    
+      <div id="method-i-logm" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">logm</span><span
+            class="method-args">(msg, verbose = verbose)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
           
 
           
-        </div><!-- logj-method -->
-
-      
-        <div id="logm-method" class="method-detail ">
-          <a name="method-i-logm"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">logm</span><span
-              class="method-args">(msg, verbose = verbose)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="logm-source">
-<pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 416</span>
+          <div class="method-source-code" id="logm-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 411</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">logm</span>(<span class="ruby-identifier">msg</span>, <span class="ruby-identifier">verbose</span> = <span class="ruby-identifier">verbose</span>)
   <span class="ruby-identifier">log_</span>(<span class="ruby-node">&quot;#{Time.now} [#{id}] #{msg}&quot;</span>, <span class="ruby-identifier">verbose</span>)
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- logm-source -->
-            
-          </div>
+          </div><!-- logm-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- logm-method -->
+
+    
+      <div id="method-i-logt" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">logt</span><span
+            class="method-args">(msg, verbose = verbose)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
           
 
           
-        </div><!-- logm-method -->
-
-      
-        <div id="logt-method" class="method-detail ">
-          <a name="method-i-logt"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">logt</span><span
-              class="method-args">(msg, verbose = verbose)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="logt-source">
-<pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 420</span>
+          <div class="method-source-code" id="logt-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 415</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">logt</span>(<span class="ruby-identifier">msg</span>, <span class="ruby-identifier">verbose</span> = <span class="ruby-identifier">verbose</span>)
   <span class="ruby-identifier">logm</span>(<span class="ruby-node">&quot;TWITTER #{msg}&quot;</span>, <span class="ruby-identifier">verbose</span>)
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- logt-source -->
-            
-          </div>
+          </div><!-- logt-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- logt-method -->
+
+    
+      <div id="method-i-process_html" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">process_html</span><span
+            class="method-args">(text)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
           
 
           
-        </div><!-- logt-method -->
-
-      
-        <div id="process_html-method" class="method-detail ">
-          <a name="method-i-process_html"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">process_html</span><span
-              class="method-args">(text)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="process_html-source">
-<pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 243</span>
+          <div class="method-source-code" id="process_html-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 240</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">process_html</span>(<span class="ruby-identifier">text</span>)
-  <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/(\A|\W)@(\w+)/</span>, <span class="ruby-string">'\1@&lt;a href=&quot;http://twitter.com/\2&quot;&gt;\2&lt;/a&gt;'</span>).
-       <span class="ruby-identifier">gsub</span>(<span class="ruby-node">/(\A|\W)#(\w+)/</span>, <span class="ruby-string">'\1&lt;a href=&quot;http://search.twitter.com/search?q=%23\2&quot;&gt;#\2&lt;/a&gt;'</span>)
+  <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">%r(?:\A|\W)@(\w+)/</span>, <span class="ruby-string">'@&lt;a href=&quot;https://twitter.com/\1&quot;&gt;\1&lt;/a&gt;'</span>).
+       <span class="ruby-identifier">gsub</span>(<span class="ruby-node">%r(?:\A|\W)#(\w+)/</span>, <span class="ruby-string">'&lt;a href=&quot;https://search.twitter.com/search?q=%23\1&quot;&gt;#\1&lt;/a&gt;'</span>)
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- process_html-source -->
-            
-          </div>
+          </div><!-- process_html-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- process_html-method -->
+
+    
+      <div id="method-i-process_message" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">process_message</span><span
+            class="method-args">(text)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
           
 
           
-        </div><!-- process_html-method -->
-
-      
-        <div id="process_message-method" class="method-detail ">
-          <a name="method-i-process_message"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">process_message</span><span
-              class="method-args">(text)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="process_message-source">
-<pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 239</span>
+          <div class="method-source-code" id="process_message-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 236</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">process_message</span>(<span class="ruby-identifier">text</span>)
-  <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/https?:\/\/\S+/</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">match</span><span class="ruby-operator">|</span> <span class="ruby-constant">LongURL</span>.<span class="ruby-identifier">expand</span>(<span class="ruby-identifier">match</span>) <span class="ruby-keyword">rescue</span> <span class="ruby-identifier">match</span> }
+  <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">%r{https?://\S+}</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">match</span><span class="ruby-operator">|</span> <span class="ruby-constant">LongURL</span>.<span class="ruby-identifier">expand</span>(<span class="ruby-identifier">match</span>) <span class="ruby-keyword">rescue</span> <span class="ruby-identifier">match</span> }
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- process_message-source -->
-            
-          </div>
+          </div><!-- process_message-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- process_message-method -->
+
+    
+      <div id="method-i-process_text" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">process_text</span><span
+            class="method-args">(text)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
           
 
           
-        </div><!-- process_message-method -->
-
-      
-        <div id="process_text-method" class="method-detail ">
-          <a name="method-i-process_text"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">process_text</span><span
-              class="method-args">(text)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="process_text-source">
-<pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 248</span>
+          <div class="method-source-code" id="process_text-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 245</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">process_text</span>(<span class="ruby-identifier">text</span>)
   <span class="ruby-identifier">text</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- process_text-source -->
-            
-          </div>
+          </div><!-- process_text-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- process_text-method -->
+
+    
+      <div id="method-i-twitter_connect" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">twitter_connect</span><span
+            class="method-args">(options = @twitter_options)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
           
 
           
-        </div><!-- process_text-method -->
-
-      
-        <div id="twitter_connect-method" class="method-detail ">
-          <a name="method-i-twitter_connect"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">twitter_connect</span><span
-              class="method-args">(options = @twitter_options)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="twitter_connect-source">
-<pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 159</span>
+          <div class="method-source-code" id="twitter_connect-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 158</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">twitter_connect</span>(<span class="ruby-identifier">options</span> = <span class="ruby-ivar">@twitter_options</span>)
   <span class="ruby-ivar">@twitter_options</span> = <span class="ruby-identifier">options</span>
 
-  <span class="ruby-ivar">@twitter</span> = <span class="ruby-constant">Twitter</span>.<span class="ruby-identifier">new</span>(
+  <span class="ruby-ivar">@twitter</span> = <span class="ruby-constant">Twitter</span><span class="ruby-operator">::</span><span class="ruby-constant">Client</span>.<span class="ruby-identifier">new</span>(
     <span class="ruby-value">:consumer_key</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:consumer_token</span>],
     <span class="ruby-value">:consumer_secret</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:consumer_secret</span>],
     <span class="ruby-value">:oauth_token</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:access_token</span>],
@@ -1384,36 +1293,33 @@ href="http://devblog.famundo.com/articles/2006/10/18/ruby-and-xmpp-jabber-part-3
 <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Twitter</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">err</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Can't connect to Twitter with ID '#{options[:consumer_token]}': #{err}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- twitter_connect-source -->
-            
-          </div>
+          </div><!-- twitter_connect-source -->
+          
+        </div>
 
+        
+
+        
+      </div><!-- twitter_connect-method -->
+
+    
+      <div id="method-i-update" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update</span><span
+            class="method-args">(msg, options = {})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
           
 
           
-        </div><!-- twitter_connect-method -->
-
-      
-        <div id="update-method" class="method-detail ">
-          <a name="method-i-update"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">update</span><span
-              class="method-args">(msg, options = {})</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="update-source">
-<pre>
-<span class="ruby-comment"># File lib/twitter2jabber.rb, line 403</span>
+          <div class="method-source-code" id="update-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 398</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>(<span class="ruby-identifier">msg</span>, <span class="ruby-identifier">options</span> = {})
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">debug</span>
     <span class="ruby-identifier">logt</span> <span class="ruby-node">&quot;#{msg} (#{options.inspect})&quot;</span>, <span class="ruby-keyword">true</span>
@@ -1422,29 +1328,26 @@ href="http://devblog.famundo.com/articles/2006/10/18/ruby-and-xmpp-jabber-part-3
 
   <span class="ruby-identifier">twitter</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">msg</span>, <span class="ruby-identifier">options</span>)
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- update-source -->
-            
-          </div>
-
+          </div><!-- update-source -->
           
+        </div>
 
-          
-        </div><!-- update-method -->
+        
 
-      
-      </div><!-- private-instance-method-details -->
+        
+      </div><!-- update-method -->
+
     
-    </div><!-- 5Buntitled-5D -->
+    </section><!-- private-instance-method-details -->
   
+  </section><!-- 5Buntitled-5D -->
 
-  </div><!-- documentation -->
+</div><!-- documentation -->
 
-  <div id="validator-badges">
-    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
-    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
-      Rdoc Generator</a> 2</small>.</p>
-  </div>
 
-</body>
-</html>
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
 

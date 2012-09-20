@@ -1,6 +1,6 @@
-Fri, 29 Jul 2011 10:42:58 +0200
+Thu, 20 Sep 2012 14:15:56 +0200
+README	Thu, 20 Sep 2012 14:14:56 +0200
 COPYING	Fri, 29 Apr 2011 14:04:40 +0200
-README	Fri, 29 Jul 2011 10:41:54 +0200
-lib/twitter2jabber.rb	Fri, 29 Jul 2011 10:40:33 +0200
 ChangeLog	Thu, 17 Dec 2009 17:53:30 +0100
-lib/twitter2jabber/version.rb	Fri, 29 Jul 2011 10:42:01 +0200
+lib/twitter2jabber.rb	Thu, 20 Sep 2012 14:12:13 +0200
+lib/twitter2jabber/version.rb	Thu, 20 Sep 2012 14:15:08 +0200
