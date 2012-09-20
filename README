@@ -2,7 +2,7 @@
 
 == VERSION
 
-This documentation refers to twitter2jabber version 0.5.0
+This documentation refers to twitter2jabber version 0.6.0
 
 
 == DESCRIPTION
@@ -28,7 +28,7 @@ RubyForge project:: http://rubyforge.org/projects/twitter2jabber
 
 == LICENSE AND COPYRIGHT
 
-Copyright (C) 2009-2011 Jens Wille
+Copyright (C) 2009-2012 Jens Wille
 
 twitter2jabber is free software: you can redistribute it and/or modify it
 under the terms of the GNU Affero General Public License as published by

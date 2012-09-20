@@ -1,23 +1,23 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{twitter2jabber}
-  s.version = "0.5.0"
+  s.name = "twitter2jabber"
+  s.version = "0.6.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Jens Wille}]
-  s.date = %q{2011-07-29}
-  s.description = %q{Twitter-to-Jabber gateway.}
-  s.email = %q{ww@blackwinter.de}
-  s.executables = [%q{twitter2jabber}]
-  s.extra_rdoc_files = [%q{README}, %q{COPYING}, %q{ChangeLog}]
-  s.files = [%q{lib/twitter2jabber.rb}, %q{lib/twitter2jabber/version.rb}, %q{bin/twitter2jabber}, %q{README}, %q{ChangeLog}, %q{Rakefile}, %q{TODO}, %q{COPYING}, %q{example/templates/tweet.txt}, %q{example/templates/tweet.html}, %q{example/config.yaml}]
-  s.homepage = %q{http://twitter2jabber.rubyforge.org/}
-  s.rdoc_options = [%q{--all}, %q{--main}, %q{README}, %q{--charset}, %q{UTF-8}, %q{--title}, %q{twitter2jabber Application documentation (v0.5.0)}, %q{--line-numbers}]
-  s.require_paths = [%q{lib}]
-  s.rubyforge_project = %q{twitter2jabber}
-  s.rubygems_version = %q{1.8.6}
-  s.summary = %q{Twitter-to-Jabber gateway.}
+  s.authors = ["Jens Wille"]
+  s.date = "2012-09-20"
+  s.description = "Twitter-to-Jabber gateway."
+  s.email = "ww@blackwinter.de"
+  s.executables = ["twitter2jabber"]
+  s.extra_rdoc_files = ["README", "COPYING", "ChangeLog"]
+  s.files = ["lib/twitter2jabber/version.rb", "lib/twitter2jabber.rb", "bin/twitter2jabber", "COPYING", "TODO", "ChangeLog", "Rakefile", "README", "example/config.yaml", "example/templates/tweet.html", "example/templates/tweet.txt"]
+  s.homepage = "http://twitter2jabber.rubyforge.org/"
+  s.rdoc_options = ["--charset", "UTF-8", "--line-numbers", "--all", "--title", "twitter2jabber Application documentation (v0.6.0)", "--main", "README"]
+  s.require_paths = ["lib"]
+  s.rubyforge_project = "twitter2jabber"
+  s.rubygems_version = "1.8.24"
+  s.summary = "Twitter-to-Jabber gateway."
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
