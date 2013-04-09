@@ -16,19 +16,19 @@ Jitter[http://github.com/dkam/jitter] project.
 == LINKS
 
 <b></b>
-Documentation::     http://twitter2jabber.rubyforge.org/
-Source code::       http://github.com/blackwinter/twitter2jabber
-RubyForge project:: http://rubyforge.org/projects/twitter2jabber
+Documentation:: http://blackwinter.github.com/twitter2jabber
+Source code::   http://github.com/blackwinter/twitter2jabber
+RubyGem::       http://rubygems.org/gems/twitter2jabber
 
 
 == AUTHORS
 
-* Jens Wille <mailto:ww@blackwinter.de>
+* Jens Wille <mailto:jens.wille@gmail.com>
 
 
 == LICENSE AND COPYRIGHT
 
-Copyright (C) 2009-2012 Jens Wille
+Copyright (C) 2009-2013 Jens Wille
 
 twitter2jabber is free software: you can redistribute it and/or modify it
 under the terms of the GNU Affero General Public License as published by

@@ -4,15 +4,13 @@ begin
   require 'hen'
 
   Hen.lay! {{
-    :rubyforge => {
-      :project => %q{twitter2jabber}
-    },
-
     :gem => {
+      :name         => %q{twitter2jabber},
       :version      => Twitter2Jabber::VERSION,
       :summary      => %q{Twitter-to-Jabber gateway.},
       :author       => %q{Jens Wille},
-      :email        => %q{ww@blackwinter.de},
+      :email        => %q{jens.wille@gmail.com},
+      :homepage     => :blackwinter,
       :dependencies => %w[
         twitter xmpp4r-simple shorturl longurl
         highline elif ruby-nuggets

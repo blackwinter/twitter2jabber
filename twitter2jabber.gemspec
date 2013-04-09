@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.authors = ["Jens Wille"]
   s.date = "2012-09-20"
   s.description = "Twitter-to-Jabber gateway."
-  s.email = "ww@blackwinter.de"
+  s.email = "jens.wille@gmail.com"
   s.executables = ["twitter2jabber"]
   s.extra_rdoc_files = ["README", "COPYING", "ChangeLog"]
   s.files = ["lib/twitter2jabber/version.rb", "lib/twitter2jabber.rb", "bin/twitter2jabber", "COPYING", "TODO", "ChangeLog", "Rakefile", "README", "example/config.yaml", "example/templates/tweet.html", "example/templates/tweet.txt"]
