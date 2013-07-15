@@ -10,6 +10,7 @@ begin
       :summary      => %q{Twitter-to-Jabber gateway.},
       :author       => %q{Jens Wille},
       :email        => %q{jens.wille@gmail.com},
+      :license      => %q{AGPL},
       :homepage     => :blackwinter,
       :dependencies => %w[
         twitter xmpp4r-simple shorturl longurl
