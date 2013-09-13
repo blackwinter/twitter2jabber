@@ -158,11 +158,11 @@ class Twitter2Jabber
   def twitter_connect(options = @twitter_options)
     @twitter_options = options
 
-    @twitter = Twitter::Client.new(
-      :consumer_key       => options[:consumer_token],
-      :consumer_secret    => options[:consumer_secret],
-      :oauth_token        => options[:access_token],
-      :oauth_token_secret => options[:access_secret]
+    @twitter = Twitter::REST::Client.new(
+      :consumer_key        => options[:consumer_token],
+      :consumer_secret     => options[:consumer_secret],
+      :access_token        => options[:access_token],
+      :access_token_secret => options[:access_secret]
     )
 
     @twitter.verify_credentials
@@ -290,8 +290,8 @@ le[n[gth]] STATUS                         -- Determine length
         twitter.favorite_create($1) if execute && !debug
       when /\A(?:bm|bookmarks?)\z/i
         deliver(from, bookmarks.map { |bm|
-          st = twitter.status(bm)
-          st = "@#{st.user.screen_name}: #{st.text[0, 10]}..." if st.is_a?(Hashie::Mash)
+          st = begin; twitter.status(bm); rescue Twitter::Error::NotFound; end
+          st = "@#{st.user.screen_name}: #{st.text[0, 10]}..." if st.is_a?(Twitter::Tweet)
           "#{bm} - #{st || '???'}"
         }.join("\n")) if execute && !debug
       when /\A(?:bm|bookmark)\s+(\d+)\z/i

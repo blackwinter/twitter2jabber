@@ -13,9 +13,9 @@ begin
       :license      => %q{AGPL},
       :homepage     => :blackwinter,
       :dependencies => %w[
-        twitter xmpp4r-simple shorturl longurl
+        xmpp4r-simple shorturl longurl
         highline elif ruby-nuggets
-      ]
+      ] << ['twitter', '>= 5.0']
     }
   }}
 rescue LoadError => err
