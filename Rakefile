@@ -13,8 +13,8 @@ begin
       :license      => %q{AGPL},
       :homepage     => :blackwinter,
       :dependencies => %w[
-        xmpp4r-simple shorturl longurl
-        highline elif ruby-nuggets
+        elif highline longurl ruby-nuggets
+        shorturl xmpp4r-simple-19
       ] << ['twitter', '>= 5.0']
     }
   }}
