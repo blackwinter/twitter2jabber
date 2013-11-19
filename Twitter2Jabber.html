@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-<title>class Twitter2Jabber - twitter2jabber Application documentation (v0.6.0)</title>
+<title>class Twitter2Jabber - twitter2jabber Application documentation (v0.7.0)</title>
 
 <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
@@ -949,8 +949,8 @@ le[n[gth]] STATUS                         -- Determine length
         <span class="ruby-identifier">twitter</span>.<span class="ruby-identifier">favorite_create</span>(<span class="ruby-node">$1</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">execute</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">debug</span>
       <span class="ruby-keyword">when</span> <span class="ruby-regexp">/\A(?:bm|bookmarks?)\z/</span>
         <span class="ruby-identifier">deliver</span>(<span class="ruby-identifier">from</span>, <span class="ruby-identifier">bookmarks</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">bm</span><span class="ruby-operator">|</span>
-          <span class="ruby-identifier">st</span> = <span class="ruby-identifier">twitter</span>.<span class="ruby-identifier">status</span>(<span class="ruby-identifier">bm</span>)
-          <span class="ruby-identifier">st</span> = <span class="ruby-node">&quot;@#{st.user.screen_name}: #{st.text[0, 10]}...&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">st</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hashie</span><span class="ruby-operator">::</span><span class="ruby-constant">Mash</span>)
+          <span class="ruby-identifier">st</span> = <span class="ruby-keyword">begin</span>; <span class="ruby-identifier">twitter</span>.<span class="ruby-identifier">status</span>(<span class="ruby-identifier">bm</span>); <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Twitter</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span><span class="ruby-operator">::</span><span class="ruby-constant">NotFound</span>; <span class="ruby-keyword">end</span>
+          <span class="ruby-identifier">st</span> = <span class="ruby-node">&quot;@#{st.user.screen_name}: #{st.text[0, 10]}...&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">st</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Twitter</span><span class="ruby-operator">::</span><span class="ruby-constant">Tweet</span>)
           <span class="ruby-node">&quot;#{bm} - #{st || &#39;???&#39;}&quot;</span>
         }.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\n&quot;</span>)) <span class="ruby-keyword">if</span> <span class="ruby-identifier">execute</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">debug</span>
       <span class="ruby-keyword">when</span> <span class="ruby-regexp">/\A(?:bm|bookmark)\s+(\d+)\z/</span>
@@ -1347,11 +1347,11 @@ le[n[gth]] STATUS                         -- Determine length
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">twitter_connect</span>(<span class="ruby-identifier">options</span> = <span class="ruby-ivar">@twitter_options</span>)
   <span class="ruby-ivar">@twitter_options</span> = <span class="ruby-identifier">options</span>
 
-  <span class="ruby-ivar">@twitter</span> = <span class="ruby-constant">Twitter</span><span class="ruby-operator">::</span><span class="ruby-constant">Client</span>.<span class="ruby-identifier">new</span>(
-    <span class="ruby-value">:consumer_key</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:consumer_token</span>],
-    <span class="ruby-value">:consumer_secret</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:consumer_secret</span>],
-    <span class="ruby-value">:oauth_token</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:access_token</span>],
-    <span class="ruby-value">:oauth_token_secret</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:access_secret</span>]
+  <span class="ruby-ivar">@twitter</span> = <span class="ruby-constant">Twitter</span><span class="ruby-operator">::</span><span class="ruby-constant">REST</span><span class="ruby-operator">::</span><span class="ruby-constant">Client</span>.<span class="ruby-identifier">new</span>(
+    <span class="ruby-value">:consumer_key</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:consumer_token</span>],
+    <span class="ruby-value">:consumer_secret</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:consumer_secret</span>],
+    <span class="ruby-value">:access_token</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:access_token</span>],
+    <span class="ruby-value">:access_token_secret</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:access_secret</span>]
   )
 
   <span class="ruby-ivar">@twitter</span>.<span class="ruby-identifier">verify_credentials</span>
