@@ -2,51 +2,51 @@
 
 <html>
 <head>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<meta charset="UTF-8">
 
-<title>Table of Contents - twitter2jabber Application documentation (v0.7.0)</title>
+<title>Table of Contents - twitter2jabber Application documentation (v0.8.0)</title>
 
-<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
 </script>
 
-<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
 
 
-<body class="indexpage">
-<h1>Table of Contents - twitter2jabber Application documentation (v0.7.0)</h1>
+<body id="top" class="table-of-contents">
+<main role="main">
+<h1 class="class">Table of Contents - twitter2jabber Application documentation (v0.8.0)</h1>
 
-<h2>Pages</h2>
+<h2 id="pages">Pages</h2>
 <ul>
   <li class="file">
     <a href="COPYING.html">COPYING</a>
 
-    <img class="toc-toggle" src="images/transparent.png" alt="" title="toggle headings">
-    <ul class="initially-hidden">
+    <ul>
       <li><a href="COPYING.html#label-License+for+twitter2jabber">License for twitter2jabber</a>
     </ul>
   </li>
     <li class="file">
     <a href="ChangeLog.html">ChangeLog</a>
 
-    <img class="toc-toggle" src="images/transparent.png" alt="" title="toggle headings">
-    <ul class="initially-hidden">
+    <ul>
       <li><a href="ChangeLog.html#label-Revision+history+for+twitter2jabber">Revision history for twitter2jabber</a>
+      <li><a href="ChangeLog.html#label-0.8.0+%5B2014-04-15%5D">0.8.0 [2014-04-15]</a>
       <li><a href="ChangeLog.html#label-0.0.1+%5B2009-07-29%5D">0.0.1 [2009-07-29]</a>
     </ul>
   </li>
     <li class="file">
     <a href="README.html">README</a>
 
-    <img class="toc-toggle" src="images/transparent.png" alt="" title="toggle headings">
-    <ul class="initially-hidden">
+    <ul>
       <li><a href="README.html#label-twitter2jabber+-+Twitter-to-Jabber+gateway.">twitter2jabber - Twitter-to-Jabber gateway.</a>
       <li><a href="README.html#label-VERSION">VERSION</a>
       <li><a href="README.html#label-DESCRIPTION">DESCRIPTION</a>
@@ -58,76 +58,184 @@
   
 </ul>
 
-<h2 id="classes">Classes/Modules</h2>
+<h2 id="classes">Classes and Modules</h2>
 <ul>
   <li class="class">
     <a href="Twitter2Jabber.html">Twitter2Jabber</a>
   </li>
-    <li class="module">
+  <li class="class">
+    <a href="Twitter2Jabber/CLI.html">Twitter2Jabber::CLI</a>
+  </li>
+  <li class="class">
+    <a href="Twitter2Jabber/JabberClient.html">Twitter2Jabber::JabberClient</a>
+  </li>
+  <li class="class">
+    <a href="Twitter2Jabber/TwitterClient.html">Twitter2Jabber::TwitterClient</a>
+  </li>
+  <li class="module">
     <a href="Twitter2Jabber/Version.html">Twitter2Jabber::Version</a>
   </li>
-  
 </ul>
 
 <h2 id="methods">Methods</h2>
 <ul>
-  
-    <li class="method"><a href="Twitter2Jabber.html#method-c-loop">::loop &mdash; Twitter2Jabber</a>
-  
-    <li class="method"><a href="Twitter2Jabber.html#method-c-new">::new &mdash; Twitter2Jabber</a>
-  
-    <li class="method"><a href="Twitter2Jabber.html#method-c-run">::run &mdash; Twitter2Jabber</a>
-  
-    <li class="method"><a href="Twitter2Jabber/Version.html#method-c-to_a">::to_a &mdash; Twitter2Jabber::Version</a>
-  
-    <li class="method"><a href="Twitter2Jabber/Version.html#method-c-to_s">::to_s &mdash; Twitter2Jabber::Version</a>
-  
-    <li class="method"><a href="Twitter2Jabber.html#method-i-bookmarks">#bookmarks &mdash; Twitter2Jabber</a>
-  
-    <li class="method"><a href="Twitter2Jabber.html#method-i-deliver">#deliver &mdash; Twitter2Jabber</a>
-  
-    <li class="method"><a href="Twitter2Jabber.html#method-i-deliver_tweets">#deliver_tweets &mdash; Twitter2Jabber</a>
-  
-    <li class="method"><a href="Twitter2Jabber.html#method-i-format_element">#format_element &mdash; Twitter2Jabber</a>
-  
-    <li class="method"><a href="Twitter2Jabber.html#method-i-format_tweet">#format_tweet &mdash; Twitter2Jabber</a>
-  
-    <li class="method"><a href="Twitter2Jabber.html#method-i-get_tweets">#get_tweets &mdash; Twitter2Jabber</a>
-  
-    <li class="method"><a href="Twitter2Jabber.html#method-i-handle_command">#handle_command &mdash; Twitter2Jabber</a>
-  
-    <li class="method"><a href="Twitter2Jabber.html#method-i-jabber_connect">#jabber_connect &mdash; Twitter2Jabber</a>
-  
-    <li class="method"><a href="Twitter2Jabber.html#method-i-log_">#log_ &mdash; Twitter2Jabber</a>
-  
-    <li class="method"><a href="Twitter2Jabber.html#method-i-logj">#logj &mdash; Twitter2Jabber</a>
-  
-    <li class="method"><a href="Twitter2Jabber.html#method-i-logm">#logm &mdash; Twitter2Jabber</a>
-  
-    <li class="method"><a href="Twitter2Jabber.html#method-i-logt">#logt &mdash; Twitter2Jabber</a>
-  
-    <li class="method"><a href="Twitter2Jabber.html#method-i-loop">#loop &mdash; Twitter2Jabber</a>
-  
-    <li class="method"><a href="Twitter2Jabber.html#method-i-post_messages">#post_messages &mdash; Twitter2Jabber</a>
-  
-    <li class="method"><a href="Twitter2Jabber.html#method-i-process_html">#process_html &mdash; Twitter2Jabber</a>
-  
-    <li class="method"><a href="Twitter2Jabber.html#method-i-process_message">#process_message &mdash; Twitter2Jabber</a>
-  
-    <li class="method"><a href="Twitter2Jabber.html#method-i-process_text">#process_text &mdash; Twitter2Jabber</a>
-  
-    <li class="method"><a href="Twitter2Jabber.html#method-i-run">#run &mdash; Twitter2Jabber</a>
-  
-    <li class="method"><a href="Twitter2Jabber.html#method-i-twitter_connect">#twitter_connect &mdash; Twitter2Jabber</a>
-  
-    <li class="method"><a href="Twitter2Jabber.html#method-i-update">#update &mdash; Twitter2Jabber</a>
-  
+
+  <li class="method">
+    <a href="Twitter2Jabber/JabberClient.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::JabberClient</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/TwitterClient.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::TwitterClient</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">Twitter2Jabber</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/JabberClient.html#method-i-client">#client</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::JabberClient</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber.html#method-i-client">#client</a>
+    &mdash;
+    <span class="container">Twitter2Jabber</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/TwitterClient.html#method-i-connect">#connect</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::TwitterClient</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber.html#method-i-connect">#connect</a>
+    &mdash;
+    <span class="container">Twitter2Jabber</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/JabberClient.html#method-i-connect">#connect</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::JabberClient</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/CLI.html#method-i-debug_message">#debug_message</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::CLI</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/CLI.html#method-i-defaults">#defaults</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::CLI</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/JabberClient.html#method-i-deliver">#deliver</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::JabberClient</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber.html#method-i-deliver_tweets">#deliver_tweets</a>
+    &mdash;
+    <span class="container">Twitter2Jabber</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/CLI.html#method-i-extract_since_id">#extract_since_id</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::CLI</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/JabberClient.html#method-i-format">#format</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::JabberClient</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/JabberClient.html#method-i-format_element">#format_element</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::JabberClient</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber.html#method-i-initialize_client">#initialize_client</a>
+    &mdash;
+    <span class="container">Twitter2Jabber</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/TwitterClient.html#method-i-log">#log</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::TwitterClient</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/JabberClient.html#method-i-log">#log</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::JabberClient</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber.html#method-i-log">#log</a>
+    &mdash;
+    <span class="container">Twitter2Jabber</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/CLI.html#method-i-opts">#opts</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::CLI</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/CLI.html#method-i-parse_options">#parse_options</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::CLI</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/TwitterClient.html#method-i-process_html">#process_html</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::TwitterClient</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/TwitterClient.html#method-i-process_message">#process_message</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::TwitterClient</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/TwitterClient.html#method-i-process_text">#process_text</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::TwitterClient</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber.html#method-i-run">#run</a>
+    &mdash;
+    <span class="container">Twitter2Jabber</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/CLI.html#method-i-run">#run</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::CLI</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/JabberClient.html#method-i-send_msg">#send_msg</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::JabberClient</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/Version.html#method-i-to_a">#to_a</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::Version</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/Version.html#method-i-to_s">#to_s</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::Version</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/TwitterClient.html#method-i-tweets">#tweets</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::TwitterClient</span>
 </ul>
+</main>
 
 
-<footer id="validator-badges">
-  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.1.
-  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 
