@@ -7,7 +7,8 @@ This documentation refers to twitter2jabber version 0.7.0
 
 == DESCRIPTION
 
-Twitter-to-Jabber gateway.
+Allows you to read Twitter[https://twitter.com] streams with your
+favourite {Jabber client}[http://xmpp.org/xmpp-software/clients/].
 
 Based on a script[http://da.nmilne.com/?p=353] by dkam. See also his
 Jitter[http://github.com/dkam/jitter] project.
@@ -15,10 +16,9 @@ Jitter[http://github.com/dkam/jitter] project.
 
 == LINKS
 
-<b></b>
-Documentation:: http://blackwinter.github.com/twitter2jabber
-Source code::   http://github.com/blackwinter/twitter2jabber
-RubyGem::       http://rubygems.org/gems/twitter2jabber
+Documentation:: https://blackwinter.github.io/twitter2jabber/
+Source code::   https://github.com/blackwinter/twitter2jabber
+RubyGem::       https://rubygems.org/gems/twitter2jabber
 
 
 == AUTHORS
@@ -28,7 +28,7 @@ RubyGem::       http://rubygems.org/gems/twitter2jabber
 
 == LICENSE AND COPYRIGHT
 
-Copyright (C) 2009-2013 Jens Wille
+Copyright (C) 2009-2014 Jens Wille
 
 twitter2jabber is free software: you can redistribute it and/or modify it
 under the terms of the GNU Affero General Public License as published by

@@ -1,4 +1,6 @@
 ---
+#:log: ~/twitter2jabber.log
+
 :twitter:
   :consumer_token:  c5ff16bd638c9acc6fb00197301008c5eb561f46
   :consumer_secret: ae2ad9454f3af7fcb18c83969f99b20a788eddd1
@@ -6,12 +8,8 @@
   :access_secret:   06c76739e3f4875a27a9e3ce36999e1af916a0e0
 
 :jabber:
-  :user: foo
-  :pass: foo
-
-:recipients:
-  - one
-  - two
-  - three
-
-:pause: 123
+  #:format: txt
+  #:templates: ~/twitter2jabber
+  :recipient: joe@example.org
+  :username: foo@example.com
+  :password: bar

@@ -24,65 +24,77 @@
 ###############################################################################
 #++
 
+require 'cyclops'
+require 'twitter2jabber'
+
 class Twitter2Jabber
 
-  class << self
+  class CLI < Cyclops
 
-    def run(options, since_id = nil)
-      new(options).connect.deliver_tweets(since_id)
+    class << self
+
+      def defaults
+        super.merge(
+          config:   'config.yaml',
+          since_id: nil,
+          verbose:  false,
+          debug:    false
+        )
+      end
+
+      def extract_since_id(log)
+        return unless File.readable?(log)
+
+        id, re = nil, /\bTWITTER\s+(\d+)\Z/
+
+        File.foreach(log) { |line|
+          id = $1 if line =~ re
+        }
+
+        id.to_i if id
+      end
+
     end
 
-    def client(client)
-      const_get("#{client.to_s.capitalize}Client")
+    def run(arguments)
+      if log = options[:log]
+        options[:log] = File.open(log, 'a')
+        options[:since_id] ||= self.class.extract_since_id(log)
+      end
+
+      Twitter2Jabber.run(options, options.delete(:since_id))
     end
 
-  end
+    private
 
-  def initialize(options)
-    @twitter = initialize_client(:twitter, options)
-    @jabber  = initialize_client(:jabber,  options)
+    def parse_options(arguments)
+      super
 
-    if @debug = options[:debug] or options[:verbose]
-      @spec = "#{twitter.spec} -> #{jabber.spec}"
+      options[:log] &&= File.expand_path(options[:log])
 
-      @log = options[:log] || $stderr
-      @log.sync = true
+      t = options[:twitter] ||= {}
+      t[:consumer_token]  ||= ask('Twitter consumer token: ')
+      t[:consumer_secret] ||= askpass("Consumer secret for Twitter application #{t[:consumer_token]}: ")
+      t[:access_token]    ||= ask('Twitter access token: ')
+      t[:access_secret]   ||= askpass("Access secret for Twitter user #{t[:access_token]}: ")
 
-      require 'time'
-    else
-      define_singleton_method(:log) { |_| }
+      j = options[:jabber] ||= {}
+      j[:username] ||= ask('Jabber ID: ')
+      j[:password] ||= askpass("Password for Jabber ID #{j[:username]}: ")
     end
-  end
 
-  def connect
-    log 'Connecting...'
+    def opts(opts)
+      opts.option(:since_id__ID, Integer, 'Return tweets with status IDs greater than ID')
 
-    twitter.connect
-    jabber.connect
+      opts.separator
 
-    self
-  end
+      opts.option(:log__FILE, 'Path to log file [Default: STDERR]')
+    end
 
-  attr_reader :twitter, :jabber, :debug
+    def debug_message
+      "don't send any messages"
+    end
 
-  def deliver_tweets(since_id = nil)
-    twitter.tweets(since_id) { |tweet| jabber.deliver(tweet) }
-  end
-
-  def log(msg)
-    @log.puts "#{Time.now.xmlschema} [#{@spec}] #{msg}"
-  end
-
-  private
-
-  def initialize_client(client, options)
-    (config = options[client]).is_a?(Hash) ?
-      self.class.client(client).new(self, config) :
-      raise(ArgumentError, "#{client} config missing")
   end
 
 end
-
-require_relative 'twitter2jabber/version'
-require_relative 'twitter2jabber/twitter'
-require_relative 'twitter2jabber/jabber'

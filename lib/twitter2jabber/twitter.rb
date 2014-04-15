@@ -24,65 +24,66 @@
 ###############################################################################
 #++
 
+require 'twitter'
+require 'longurl'
+
 class Twitter2Jabber
 
-  class << self
+  class TwitterClient
 
-    def run(options, since_id = nil)
-      new(options).connect.deliver_tweets(since_id)
+    def initialize(gw, config)
+      @gw, @config, @client = gw, config, Twitter::REST::Client.new(
+        consumer_key:        @spec = config[:consumer_token],
+        consumer_secret:     config[:consumer_secret],
+        access_token:        config[:access_token],
+        access_token_secret: config[:access_secret]
+      )
     end
 
-    def client(client)
-      const_get("#{client.to_s.capitalize}Client")
+    attr_reader :config, :spec, :client
+
+    def connect
+      client.verify_credentials
+      log 'connected'
+    rescue Twitter::Error => err
+      raise "Can't connect to Twitter with ID '#{spec}': #{err}"
     end
 
-  end
+    def tweets(since_id = nil)
+      tweets = client.home_timeline(since_id: since_id)
+      return unless tweets.is_a?(Array)
 
-  def initialize(options)
-    @twitter = initialize_client(:twitter, options)
-    @jabber  = initialize_client(:jabber,  options)
+      tweets.sort_by { |tweet| tweet.created_at }.each { |tweet|
+        log since_id = tweet.id
+        yield tweet
+        sleep 1
+      }
 
-    if @debug = options[:debug] or options[:verbose]
-      @spec = "#{twitter.spec} -> #{jabber.spec}"
-
-      @log = options[:log] || $stderr
-      @log.sync = true
-
-      require 'time'
-    else
-      define_singleton_method(:log) { |_| }
+      since_id
+    rescue Twitter::Error, Timeout::Error
+    rescue => err
+      warn "#{err} (#{err.class})"
     end
-  end
 
-  def connect
-    log 'Connecting...'
+    def process_message(text)
+      text.gsub(%r{https?://\S+}) { |match| LongURL.expand(match) rescue match }
+    end
 
-    twitter.connect
-    jabber.connect
+    def process_html(text)
+      text.gsub(/(?:\A|\W)@(\w+)/, '@<a href="https://twitter.com/\1">\1</a>')
+          .gsub(/(?:\A|\W)#(\w+)/, '<a href="https://search.twitter.com/search?q=%23\1">#\1</a>')
+    end
 
-    self
-  end
+    def process_text(text)
+      text
+    end
 
-  attr_reader :twitter, :jabber, :debug
+    private
 
-  def deliver_tweets(since_id = nil)
-    twitter.tweets(since_id) { |tweet| jabber.deliver(tweet) }
-  end
+    def log(msg)
+      @gw.log("TWITTER #{msg}")
+    end
 
-  def log(msg)
-    @log.puts "#{Time.now.xmlschema} [#{@spec}] #{msg}"
-  end
-
-  private
-
-  def initialize_client(client, options)
-    (config = options[client]).is_a?(Hash) ?
-      self.class.client(client).new(self, config) :
-      raise(ArgumentError, "#{client} config missing")
   end
 
 end
-
-require_relative 'twitter2jabber/version'
-require_relative 'twitter2jabber/twitter'
-require_relative 'twitter2jabber/jabber'
