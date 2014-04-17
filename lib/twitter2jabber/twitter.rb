@@ -31,6 +31,8 @@ class Twitter2Jabber
 
   class TwitterClient
 
+    MAX_COUNT = 200
+
     def initialize(gw, config)
       @gw, @config, @client = gw, config, Twitter::REST::Client.new(
         consumer_key:        @spec = config[:consumer_token],
@@ -50,7 +52,7 @@ class Twitter2Jabber
     end
 
     def tweets(since_id = nil)
-      tweets = client.home_timeline(since_id: since_id)
+      tweets = client.home_timeline(since_id: since_id, count: MAX_COUNT)
       return unless tweets.is_a?(Array)
 
       tweets.sort_by { |tweet| tweet.created_at }.each { |tweet|
