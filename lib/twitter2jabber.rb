@@ -84,5 +84,5 @@ class Twitter2Jabber
 end
 
 require_relative 'twitter2jabber/version'
-require_relative 'twitter2jabber/twitter'
-require_relative 'twitter2jabber/jabber'
+require_relative 'twitter2jabber/twitter_client'
+require_relative 'twitter2jabber/jabber_client'
