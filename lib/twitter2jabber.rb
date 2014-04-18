@@ -29,7 +29,7 @@ class Twitter2Jabber
   class << self
 
     def run(options, since_id = nil)
-      new(options).connect.deliver_tweets(since_id)
+      new(options).connect.deliver_tweets(since_id).disconnect
     end
 
     def client(client)
@@ -54,6 +54,8 @@ class Twitter2Jabber
     end
   end
 
+  attr_reader :twitter, :jabber, :debug
+
   def connect
     log 'Connecting...'
 
@@ -63,10 +65,18 @@ class Twitter2Jabber
     self
   end
 
-  attr_reader :twitter, :jabber, :debug
+  def disconnect
+    log 'Disconnecting...'
+
+    twitter.disconnect
+    jabber.disconnect
+
+    self
+  end
 
   def deliver_tweets(since_id = nil)
     twitter.tweets(since_id) { |tweet| jabber.deliver(tweet) }
+    self
   end
 
   def log(msg)

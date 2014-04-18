@@ -51,6 +51,11 @@ class Twitter2Jabber
       raise "Can't connect to Twitter with ID '#{spec}': #{err}"
     end
 
+    def disconnect
+      @client = nil
+      log 'disconnected'
+    end
+
     def tweets(since_id = nil)
       tweets = client.home_timeline(since_id: since_id, count: MAX_COUNT)
       return unless tweets.is_a?(Array)

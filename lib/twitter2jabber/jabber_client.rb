@@ -68,6 +68,11 @@ class Twitter2Jabber
       raise "Can't connect to Jabber with JID '#{spec}': #{err}"
     end
 
+    def disconnect
+      close if @client
+      log 'disconnected'
+    end
+
     def format(tweet)
       user = tweet.user
       text = @erb.result(binding)
@@ -113,14 +118,18 @@ class Twitter2Jabber
     rescue Errno::EPIPE, IOError
       raise if attempts > 3
 
+      close
+      sleep 1
+      retry
+    end
+
+    def close
       begin
         @client.close
       rescue Errno::EPIPE, IOError
       end
 
       @client = nil
-      sleep 1
-      retry
     end
 
     def log(msg)
