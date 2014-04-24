@@ -31,7 +31,7 @@ class Twitter2Jabber
 
   class TwitterClient
 
-    MAX_COUNT = 200
+    BATCH_SIZE = Twitter::REST::Timelines::MAX_TWEETS_PER_REQUEST
 
     def initialize(gw, config)
       @gw, @config, @client = gw, config, Twitter::REST::Client.new(
@@ -57,10 +57,7 @@ class Twitter2Jabber
     end
 
     def tweets(since_id = nil)
-      tweets = client.home_timeline(since_id: since_id, count: MAX_COUNT)
-      return unless tweets.is_a?(Array)
-
-      tweets.sort_by { |tweet| tweet.created_at }.each { |tweet|
+      get_tweets(since_id).reverse_each { |tweet|
         log since_id = tweet.id
         yield tweet
         sleep 1
@@ -86,6 +83,20 @@ class Twitter2Jabber
     end
 
     private
+
+    def get_tweets(since_id = nil)
+      options, buffer = { count: BATCH_SIZE }, []
+      options[:since_id] = since_id if since_id
+
+      loop {
+        buffer.concat(batch = client.home_timeline(options))
+
+        break if batch.empty? || !since_id ||
+          since_id >= options[:max_id] = batch.last.id - 1
+      }
+
+      buffer
+    end
 
     def log(msg)
       @gw.log("TWITTER #{msg}")
