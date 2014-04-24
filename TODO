@@ -1,6 +1,4 @@
 - include_entities=true (http://dev.twitter.com/pages/tweet_entities)
 - include_rts=true (?)
-- use streaming API? (http://apiwiki.twitter.com/Streaming-API-Documentation)
-- persistent cache? (friends_timeline: since/since_id?)
 - SPECS!!!
 - DOCS!!

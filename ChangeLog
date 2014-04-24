@@ -2,6 +2,14 @@
 
 = Revision history for twitter2jabber
 
+== 0.8.1 [2014-04-25]
+
+* Exhaust the Twitter stream by buffering all tweets received since the last
+  time, or one batch when run for the first time.
+* Relies on the order in Twitter::REST::Client#home_timeline (descending by
+  ID).
+* Disconnects Twitter and Jabber clients when finished.
+
 == 0.8.0 [2014-04-15]
 
 * Dropped "write" functionality. Only forwards Twitter messages to Jabber.
