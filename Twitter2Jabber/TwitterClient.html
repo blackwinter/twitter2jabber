@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class Twitter2Jabber::TwitterClient - twitter2jabber Application documentation (v0.8.0)</title>
+<title>class Twitter2Jabber::TwitterClient - twitter2jabber Application documentation (v0.8.1)</title>
 
 <link href="../fonts.css" rel="stylesheet">
 <link href="../rdoc.css" rel="stylesheet">
@@ -77,6 +77,10 @@
     
     <li ><a href="#method-i-connect">#connect</a>
     
+    <li ><a href="#method-i-disconnect">#disconnect</a>
+    
+    <li ><a href="#method-i-get_tweets">#get_tweets</a>
+    
     <li ><a href="#method-i-log">#log</a>
     
     <li ><a href="#method-i-process_html">#process_html</a>
@@ -110,6 +114,20 @@
 
     
 
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="BATCH_SIZE">BATCH_SIZE
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
     
 
     
@@ -187,7 +205,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/twitter2jabber/twitter.rb, line 34</span>
+            <pre><span class="ruby-comment"># File lib/twitter2jabber/twitter_client.rb, line 36</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">gw</span>, <span class="ruby-identifier">config</span>)
   <span class="ruby-ivar">@gw</span>, <span class="ruby-ivar">@config</span>, <span class="ruby-ivar">@client</span> = <span class="ruby-identifier">gw</span>, <span class="ruby-identifier">config</span>, <span class="ruby-constant">Twitter</span><span class="ruby-operator">::</span><span class="ruby-constant">REST</span><span class="ruby-operator">::</span><span class="ruby-constant">Client</span>.<span class="ruby-identifier">new</span>(
     <span class="ruby-identifier">consumer_key</span><span class="ruby-operator">:</span>        <span class="ruby-ivar">@spec</span> = <span class="ruby-identifier">config</span>[<span class="ruby-value">:consumer_token</span>],
@@ -233,12 +251,46 @@
 
           
           <div class="method-source-code" id="connect-source">
-            <pre><span class="ruby-comment"># File lib/twitter2jabber/twitter.rb, line 45</span>
+            <pre><span class="ruby-comment"># File lib/twitter2jabber/twitter_client.rb, line 47</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">connect</span>
   <span class="ruby-identifier">client</span>.<span class="ruby-identifier">verify_credentials</span>
   <span class="ruby-identifier">log</span> <span class="ruby-string">&#39;connected&#39;</span>
 <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Twitter</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">err</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Can&#39;t connect to Twitter with ID &#39;#{spec}&#39;: #{err}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-disconnect" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">disconnect</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="disconnect-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber/twitter_client.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">disconnect</span>
+  <span class="ruby-ivar">@client</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">log</span> <span class="ruby-string">&#39;disconnected&#39;</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -269,7 +321,7 @@
 
           
           <div class="method-source-code" id="process_html-source">
-            <pre><span class="ruby-comment"># File lib/twitter2jabber/twitter.rb, line 72</span>
+            <pre><span class="ruby-comment"># File lib/twitter2jabber/twitter_client.rb, line 76</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">process_html</span>(<span class="ruby-identifier">text</span>)
   <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/(?:\A|\W)@(\w+)/</span>, <span class="ruby-string">&#39;@&lt;a href=&quot;https://twitter.com/\1&quot;&gt;\1&lt;/a&gt;&#39;</span>)
       .<span class="ruby-identifier">gsub</span>(<span class="ruby-node">/(?:\A|\W)#(\w+)/</span>, <span class="ruby-string">&#39;&lt;a href=&quot;https://search.twitter.com/search?q=%23\1&quot;&gt;#\1&lt;/a&gt;&#39;</span>)
@@ -303,7 +355,7 @@
 
           
           <div class="method-source-code" id="process_message-source">
-            <pre><span class="ruby-comment"># File lib/twitter2jabber/twitter.rb, line 68</span>
+            <pre><span class="ruby-comment"># File lib/twitter2jabber/twitter_client.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">process_message</span>(<span class="ruby-identifier">text</span>)
   <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">%r{https?://\S+}</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">match</span><span class="ruby-operator">|</span> <span class="ruby-constant">LongURL</span>.<span class="ruby-identifier">expand</span>(<span class="ruby-identifier">match</span>) <span class="ruby-keyword">rescue</span> <span class="ruby-identifier">match</span> }
 <span class="ruby-keyword">end</span></pre>
@@ -336,7 +388,7 @@
 
           
           <div class="method-source-code" id="process_text-source">
-            <pre><span class="ruby-comment"># File lib/twitter2jabber/twitter.rb, line 77</span>
+            <pre><span class="ruby-comment"># File lib/twitter2jabber/twitter_client.rb, line 81</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">process_text</span>(<span class="ruby-identifier">text</span>)
   <span class="ruby-identifier">text</span>
 <span class="ruby-keyword">end</span></pre>
@@ -369,12 +421,9 @@
 
           
           <div class="method-source-code" id="tweets-source">
-            <pre><span class="ruby-comment"># File lib/twitter2jabber/twitter.rb, line 52</span>
+            <pre><span class="ruby-comment"># File lib/twitter2jabber/twitter_client.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">tweets</span>(<span class="ruby-identifier">since_id</span> = <span class="ruby-keyword">nil</span>)
-  <span class="ruby-identifier">tweets</span> = <span class="ruby-identifier">client</span>.<span class="ruby-identifier">home_timeline</span>(<span class="ruby-identifier">since_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">since_id</span>)
-  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>)
-
-  <span class="ruby-identifier">tweets</span>.<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span> <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">created_at</span> }.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">get_tweets</span>(<span class="ruby-identifier">since_id</span>).<span class="ruby-identifier">reverse_each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">log</span> <span class="ruby-identifier">since_id</span> = <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">id</span>
     <span class="ruby-keyword">yield</span> <span class="ruby-identifier">tweet</span>
     <span class="ruby-identifier">sleep</span> <span class="ruby-value">1</span>
@@ -403,6 +452,49 @@
        </header>
 
     
+      <div id="method-i-get_tweets" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_tweets</span><span
+            class="method-args">(since_id = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_tweets-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber/twitter_client.rb, line 87</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_tweets</span>(<span class="ruby-identifier">since_id</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">options</span>, <span class="ruby-identifier">buffer</span> = { <span class="ruby-identifier">count</span><span class="ruby-operator">:</span> <span class="ruby-constant">BATCH_SIZE</span> }, []
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:since_id</span>] = <span class="ruby-identifier">since_id</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">since_id</span>
+
+  <span class="ruby-identifier">loop</span> {
+    <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">concat</span>(<span class="ruby-identifier">batch</span> = <span class="ruby-identifier">client</span>.<span class="ruby-identifier">home_timeline</span>(<span class="ruby-identifier">options</span>))
+
+    <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">batch</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-identifier">since_id</span> <span class="ruby-operator">||</span>
+      <span class="ruby-identifier">since_id</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:max_id</span>] = <span class="ruby-identifier">batch</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+  }
+
+  <span class="ruby-identifier">buffer</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-i-log" class="method-detail ">
         
         <div class="method-heading">
@@ -422,7 +514,7 @@
 
           
           <div class="method-source-code" id="log-source">
-            <pre><span class="ruby-comment"># File lib/twitter2jabber/twitter.rb, line 83</span>
+            <pre><span class="ruby-comment"># File lib/twitter2jabber/twitter_client.rb, line 101</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">log</span>(<span class="ruby-identifier">msg</span>)
   <span class="ruby-ivar">@gw</span>.<span class="ruby-identifier">log</span>(<span class="ruby-node">&quot;TWITTER #{msg}&quot;</span>)
 <span class="ruby-keyword">end</span></pre>

@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class Twitter2Jabber - twitter2jabber Application documentation (v0.8.0)</title>
+<title>class Twitter2Jabber - twitter2jabber Application documentation (v0.8.1)</title>
 
 <link href="./fonts.css" rel="stylesheet">
 <link href="./rdoc.css" rel="stylesheet">
@@ -80,6 +80,8 @@
     <li ><a href="#method-i-connect">#connect</a>
     
     <li ><a href="#method-i-deliver_tweets">#deliver_tweets</a>
+    
+    <li ><a href="#method-i-disconnect">#disconnect</a>
     
     <li ><a href="#method-i-initialize_client">#initialize_client</a>
     
@@ -287,7 +289,7 @@
 
           
           <div class="method-source-code" id="connect-source">
-            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 57</span>
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">connect</span>
   <span class="ruby-identifier">log</span> <span class="ruby-string">&#39;Connecting...&#39;</span>
 
@@ -325,9 +327,48 @@
 
           
           <div class="method-source-code" id="deliver_tweets-source">
-            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 68</span>
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 77</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">deliver_tweets</span>(<span class="ruby-identifier">since_id</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">twitter</span>.<span class="ruby-identifier">tweets</span>(<span class="ruby-identifier">since_id</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">tweet</span><span class="ruby-operator">|</span> <span class="ruby-identifier">jabber</span>.<span class="ruby-identifier">deliver</span>(<span class="ruby-identifier">tweet</span>) }
+  <span class="ruby-keyword">self</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-disconnect" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">disconnect</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="disconnect-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 68</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">disconnect</span>
+  <span class="ruby-identifier">log</span> <span class="ruby-string">&#39;Disconnecting...&#39;</span>
+
+  <span class="ruby-identifier">twitter</span>.<span class="ruby-identifier">disconnect</span>
+  <span class="ruby-identifier">jabber</span>.<span class="ruby-identifier">disconnect</span>
+
+  <span class="ruby-keyword">self</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -358,7 +399,7 @@
 
           
           <div class="method-source-code" id="log-source">
-            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 72</span>
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 82</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">log</span>(<span class="ruby-identifier">msg</span>)
   <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{Time.now.xmlschema} [#{@spec}] #{msg}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -393,7 +434,7 @@
           <div class="method-source-code" id="run-source">
             <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">run</span>(<span class="ruby-identifier">options</span>, <span class="ruby-identifier">since_id</span> = <span class="ruby-keyword">nil</span>)
-  <span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>).<span class="ruby-identifier">connect</span>.<span class="ruby-identifier">deliver_tweets</span>(<span class="ruby-identifier">since_id</span>)
+  <span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>).<span class="ruby-identifier">connect</span>.<span class="ruby-identifier">deliver_tweets</span>(<span class="ruby-identifier">since_id</span>).<span class="ruby-identifier">disconnect</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -432,7 +473,7 @@
 
           
           <div class="method-source-code" id="initialize_client-source">
-            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 78</span>
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 88</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_client</span>(<span class="ruby-identifier">client</span>, <span class="ruby-identifier">options</span>)
   (<span class="ruby-identifier">config</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">client</span>]).<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>) <span class="ruby-operator">?</span>
     <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">client</span>(<span class="ruby-identifier">client</span>).<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">config</span>) <span class="ruby-operator">:</span>

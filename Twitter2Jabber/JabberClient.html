@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class Twitter2Jabber::JabberClient - twitter2jabber Application documentation (v0.8.0)</title>
+<title>class Twitter2Jabber::JabberClient - twitter2jabber Application documentation (v0.8.1)</title>
 
 <link href="../fonts.css" rel="stylesheet">
 <link href="../rdoc.css" rel="stylesheet">
@@ -77,9 +77,13 @@
     
     <li ><a href="#method-i-client">#client</a>
     
+    <li ><a href="#method-i-close">#close</a>
+    
     <li ><a href="#method-i-connect">#connect</a>
     
     <li ><a href="#method-i-deliver">#deliver</a>
+    
+    <li ><a href="#method-i-disconnect">#disconnect</a>
     
     <li ><a href="#method-i-format">#format</a>
     
@@ -205,7 +209,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/twitter2jabber/jabber.rb, line 41</span>
+            <pre><span class="ruby-comment"># File lib/twitter2jabber/jabber_client.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">gw</span>, <span class="ruby-identifier">config</span>)
   <span class="ruby-ivar">@gw</span>, <span class="ruby-ivar">@config</span>, <span class="ruby-ivar">@spec</span> = <span class="ruby-identifier">gw</span>, <span class="ruby-identifier">config</span>, <span class="ruby-identifier">config</span>[<span class="ruby-value">:username</span>]
 
@@ -256,7 +260,7 @@
 
           
           <div class="method-source-code" id="client-source">
-            <pre><span class="ruby-comment"># File lib/twitter2jabber/jabber.rb, line 57</span>
+            <pre><span class="ruby-comment"># File lib/twitter2jabber/jabber_client.rb, line 57</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">client</span>
   <span class="ruby-ivar">@client</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Jabber</span><span class="ruby-operator">::</span><span class="ruby-constant">Client</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">spec</span>).<span class="ruby-identifier">tap</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">client</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">client</span>.<span class="ruby-identifier">connect</span>
@@ -292,7 +296,7 @@
 
           
           <div class="method-source-code" id="connect-source">
-            <pre><span class="ruby-comment"># File lib/twitter2jabber/jabber.rb, line 64</span>
+            <pre><span class="ruby-comment"># File lib/twitter2jabber/jabber_client.rb, line 64</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">connect</span>
   <span class="ruby-identifier">deliver</span>(<span class="ruby-constant">Jabber</span><span class="ruby-operator">::</span><span class="ruby-constant">Presence</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-string">&#39;Available&#39;</span>), <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">log</span> <span class="ruby-string">&#39;connected&#39;</span>
@@ -328,7 +332,7 @@
 
           
           <div class="method-source-code" id="deliver-source">
-            <pre><span class="ruby-comment"># File lib/twitter2jabber/jabber.rb, line 80</span>
+            <pre><span class="ruby-comment"># File lib/twitter2jabber/jabber_client.rb, line 85</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">deliver</span>(<span class="ruby-identifier">msg</span>, <span class="ruby-identifier">recipient</span> = <span class="ruby-identifier">config</span>[<span class="ruby-value">:recipient</span>])
   <span class="ruby-identifier">msg</span> = <span class="ruby-identifier">format</span>(<span class="ruby-identifier">msg</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Jabber</span><span class="ruby-operator">::</span><span class="ruby-constant">XMPPStanza</span>)
   <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">to</span> = <span class="ruby-constant">Jabber</span><span class="ruby-operator">::</span><span class="ruby-constant">JID</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">recipient</span>).<span class="ruby-identifier">strip</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">recipient</span>
@@ -337,6 +341,40 @@
 <span class="ruby-keyword">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">err</span>
   <span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;#{err} (#{err.class})&quot;</span>
   <span class="ruby-keyword">retry</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">err</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Jabber</span><span class="ruby-operator">::</span><span class="ruby-constant">ServerDisconnected</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-disconnect" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">disconnect</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="disconnect-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber/jabber_client.rb, line 71</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">disconnect</span>
+  <span class="ruby-identifier">close</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@client</span>
+  <span class="ruby-identifier">log</span> <span class="ruby-string">&#39;disconnected&#39;</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -367,7 +405,7 @@
 
           
           <div class="method-source-code" id="format-source">
-            <pre><span class="ruby-comment"># File lib/twitter2jabber/jabber.rb, line 71</span>
+            <pre><span class="ruby-comment"># File lib/twitter2jabber/jabber_client.rb, line 76</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">format</span>(<span class="ruby-identifier">tweet</span>)
   <span class="ruby-identifier">user</span> = <span class="ruby-identifier">tweet</span>.<span class="ruby-identifier">user</span>
   <span class="ruby-identifier">text</span> = <span class="ruby-ivar">@erb</span>.<span class="ruby-identifier">result</span>(<span class="ruby-identifier">binding</span>)
@@ -394,6 +432,44 @@
        </header>
 
     
+      <div id="method-i-close" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">close</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="close-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber/jabber_client.rb, line 126</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">close</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-ivar">@client</span>.<span class="ruby-identifier">close</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">EPIPE</span>, <span class="ruby-constant">IOError</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@client</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-i-format_element" class="method-detail ">
         
         <div class="method-heading">
@@ -414,7 +490,7 @@ href="http://devblog.famundo.com/articles/2006/10/18/ruby-and-xmpp-jabber-part-3
 
           
           <div class="method-source-code" id="format_element-source">
-            <pre><span class="ruby-comment"># File lib/twitter2jabber/jabber.rb, line 93</span>
+            <pre><span class="ruby-comment"># File lib/twitter2jabber/jabber_client.rb, line 98</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">format_element</span>(<span class="ruby-identifier">text</span>)
   <span class="ruby-identifier">twitter</span> = <span class="ruby-ivar">@gw</span>.<span class="ruby-identifier">twitter</span>
 
@@ -460,7 +536,7 @@ href="http://devblog.famundo.com/articles/2006/10/18/ruby-and-xmpp-jabber-part-3
 
           
           <div class="method-source-code" id="log-source">
-            <pre><span class="ruby-comment"># File lib/twitter2jabber/jabber.rb, line 126</span>
+            <pre><span class="ruby-comment"># File lib/twitter2jabber/jabber_client.rb, line 135</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">log</span>(<span class="ruby-identifier">msg</span>)
   <span class="ruby-ivar">@gw</span>.<span class="ruby-identifier">log</span>(<span class="ruby-node">&quot;JABBER #{msg}&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -493,19 +569,14 @@ href="http://devblog.famundo.com/articles/2006/10/18/ruby-and-xmpp-jabber-part-3
 
           
           <div class="method-source-code" id="send_msg-source">
-            <pre><span class="ruby-comment"># File lib/twitter2jabber/jabber.rb, line 110</span>
+            <pre><span class="ruby-comment"># File lib/twitter2jabber/jabber_client.rb, line 115</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">send_msg</span>(<span class="ruby-identifier">msg</span>, <span class="ruby-identifier">attempts</span> = <span class="ruby-value">0</span>)
   <span class="ruby-identifier">attempts</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
   <span class="ruby-identifier">client</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">msg</span>)
 <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">EPIPE</span>, <span class="ruby-constant">IOError</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">attempts</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">3</span>
 
-  <span class="ruby-keyword">begin</span>
-    <span class="ruby-ivar">@client</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">EPIPE</span>, <span class="ruby-constant">IOError</span>
-  <span class="ruby-keyword">end</span>
-
-  <span class="ruby-ivar">@client</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">close</span>
   <span class="ruby-identifier">sleep</span> <span class="ruby-value">1</span>
   <span class="ruby-keyword">retry</span>
 <span class="ruby-keyword">end</span></pre>
