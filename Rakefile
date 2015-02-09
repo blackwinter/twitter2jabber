@@ -1,4 +1,4 @@
-require File.expand_path(%q{../lib/twitter2jabber/version}, __FILE__)
+require_relative 'lib/twitter2jabber/version'
 
 begin
   require 'hen'
