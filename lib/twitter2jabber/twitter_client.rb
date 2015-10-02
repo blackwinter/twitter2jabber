@@ -3,7 +3,7 @@
 #                                                                             #
 # twitter2jabber - Twitter-to-Jabber gateway.                                 #
 #                                                                             #
-# Copyright (C) 2009-2014 Jens Wille                                          #
+# Copyright (C) 2009-2015 Jens Wille                                          #
 #                                                                             #
 # Authors:                                                                    #
 #     Jens Wille <jens.wille@gmail.com>                                       #
@@ -74,8 +74,10 @@ class Twitter2Jabber
     end
 
     def process_html(text)
-      text.gsub(/(?:\A|\W)@(\w+)/, '@<a href="https://twitter.com/\1">\1</a>')
-          .gsub(/(?:\A|\W)#(\w+)/, '<a href="https://search.twitter.com/search?q=%23\1">#\1</a>')
+      text.gsub(/(?:\A|\P{Word})@(\p{Word}+)/,
+                '@<a href="https://twitter.com/\1">\1</a>')
+          .gsub(/(?:\A|\P{Word})#(\p{Word}+)/,
+                '<a href="https://search.twitter.com/search?q=%23\1">#\1</a>')
     end
 
     def process_text(text)
