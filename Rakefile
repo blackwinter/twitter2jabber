@@ -13,7 +13,12 @@ begin
       email:        %q{jens.wille@gmail.com},
       license:      %q{AGPL-3.0},
       homepage:     :blackwinter,
-      dependencies: %w[cyclops longurl xmpp4r] << ['twitter', '>= 5.0'],
+      dependencies: {
+        cyclops: '~> 0.2',
+        longurl: '~> 0.1',
+        xmpp4r:  '~> 0.5',
+        twitter: '~> 5.0'
+      },
 
       required_ruby_version: '>= 1.9.3'
     }

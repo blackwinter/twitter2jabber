@@ -2,6 +2,10 @@
 
 = Revision history for twitter2jabber
 
+== 0.8.3 [2015-10-02]
+
+* Account for Unicode characters in Twitter2Jabber::TwitterClient#process_html.
+
 == 0.8.2 [2014-04-28]
 
 * Handle NullObject in example templates.
