@@ -1,9 +1,9 @@
-Fri, 29 Aug 2014 16:39:39 +0200
-README	Thu, 28 Aug 2014 12:15:37 +0200
+Fri, 02 Oct 2015 12:34:17 +0200
+README	Fri, 02 Oct 2015 12:28:24 +0200
 COPYING	Tue, 09 Apr 2013 11:30:32 +0200
-ChangeLog	Thu, 28 Aug 2014 12:16:19 +0200
+ChangeLog	Fri, 02 Oct 2015 12:29:11 +0200
 lib/twitter2jabber.rb	Tue, 22 Apr 2014 10:24:42 +0200
 lib/twitter2jabber/cli.rb	Tue, 15 Apr 2014 15:56:05 +0200
-lib/twitter2jabber/version.rb	Thu, 28 Aug 2014 12:19:04 +0200
+lib/twitter2jabber/version.rb	Fri, 02 Oct 2015 12:29:40 +0200
 lib/twitter2jabber/jabber_client.rb	Mon, 19 May 2014 12:03:36 +0200
-lib/twitter2jabber/twitter_client.rb	Fri, 25 Apr 2014 10:58:54 +0200
+lib/twitter2jabber/twitter_client.rb	Fri, 02 Oct 2015 12:28:36 +0200

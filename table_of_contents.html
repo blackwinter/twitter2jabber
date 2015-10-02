@@ -4,26 +4,23 @@
 <head>
 <meta charset="UTF-8">
 
-<title>Table of Contents - twitter2jabber Application documentation (v0.8.2)</title>
-
-<link href="./fonts.css" rel="stylesheet">
-<link href="./rdoc.css" rel="stylesheet">
+<title>Table of Contents - twitter2jabber Application documentation (v0.8.3)</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
 </script>
 
 <script src="./js/jquery.js"></script>
-<script src="./js/navigation.js"></script>
-<script src="./js/search_index.js"></script>
-<script src="./js/search.js"></script>
-<script src="./js/searcher.js"></script>
 <script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
 
 
 <body id="top" class="table-of-contents">
 <main role="main">
-<h1 class="class">Table of Contents - twitter2jabber Application documentation (v0.8.2)</h1>
+<h1 class="class">Table of Contents - twitter2jabber Application documentation (v0.8.3)</h1>
 
 <h2 id="pages">Pages</h2>
 <ul>
@@ -39,10 +36,11 @@
 
     <ul>
       <li><a href="ChangeLog.html#label-Revision+history+for+twitter2jabber">Revision history for twitter2jabber</a>
-      <li><a href="ChangeLog.html#label-0.8.2+%5B2014-04-28%5D">0.8.2 [2014-04-28]</a>
-      <li><a href="ChangeLog.html#label-0.8.1+%5B2014-04-25%5D">0.8.1 [2014-04-25]</a>
-      <li><a href="ChangeLog.html#label-0.8.0+%5B2014-04-15%5D">0.8.0 [2014-04-15]</a>
-      <li><a href="ChangeLog.html#label-0.0.1+%5B2009-07-29%5D">0.0.1 [2009-07-29]</a>
+      <li><a href="ChangeLog.html#label-0.8.3+-5B2015-10-02-5D">0.8.3 [2015-10-02]</a>
+      <li><a href="ChangeLog.html#label-0.8.2+-5B2014-04-28-5D">0.8.2 [2014-04-28]</a>
+      <li><a href="ChangeLog.html#label-0.8.1+-5B2014-04-25-5D">0.8.1 [2014-04-25]</a>
+      <li><a href="ChangeLog.html#label-0.8.0+-5B2014-04-15-5D">0.8.0 [2014-04-15]</a>
+      <li><a href="ChangeLog.html#label-0.0.1+-5B2009-07-29-5D">0.0.1 [2009-07-29]</a>
     </ul>
   </li>
     <li class="file">
@@ -83,9 +81,19 @@
 <ul>
 
   <li class="method">
-    <a href="Twitter2Jabber/JabberClient.html#method-c-new">::new</a>
+    <a href="Twitter2Jabber.html#method-c-client">::client</a>
     &mdash;
-    <span class="container">Twitter2Jabber::JabberClient</span>
+    <span class="container">Twitter2Jabber</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/CLI.html#method-c-defaults">::defaults</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::CLI</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/CLI.html#method-c-extract_since_id">::extract_since_id</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::CLI</span>
 
   <li class="method">
     <a href="Twitter2Jabber.html#method-c-new">::new</a>
@@ -93,14 +101,29 @@
     <span class="container">Twitter2Jabber</span>
 
   <li class="method">
+    <a href="Twitter2Jabber/JabberClient.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::JabberClient</span>
+
+  <li class="method">
     <a href="Twitter2Jabber/TwitterClient.html#method-c-new">::new</a>
     &mdash;
     <span class="container">Twitter2Jabber::TwitterClient</span>
 
   <li class="method">
-    <a href="Twitter2Jabber.html#method-i-client">#client</a>
+    <a href="Twitter2Jabber.html#method-c-run">::run</a>
     &mdash;
     <span class="container">Twitter2Jabber</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/Version.html#method-c-to_a">::to_a</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::Version</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/Version.html#method-c-to_s">::to_s</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::Version</span>
 
   <li class="method">
     <a href="Twitter2Jabber/JabberClient.html#method-i-client">#client</a>
@@ -118,22 +141,17 @@
     <span class="container">Twitter2Jabber</span>
 
   <li class="method">
-    <a href="Twitter2Jabber/TwitterClient.html#method-i-connect">#connect</a>
-    &mdash;
-    <span class="container">Twitter2Jabber::TwitterClient</span>
-
-  <li class="method">
     <a href="Twitter2Jabber/JabberClient.html#method-i-connect">#connect</a>
     &mdash;
     <span class="container">Twitter2Jabber::JabberClient</span>
 
   <li class="method">
-    <a href="Twitter2Jabber/CLI.html#method-i-debug_message">#debug_message</a>
+    <a href="Twitter2Jabber/TwitterClient.html#method-i-connect">#connect</a>
     &mdash;
-    <span class="container">Twitter2Jabber::CLI</span>
+    <span class="container">Twitter2Jabber::TwitterClient</span>
 
   <li class="method">
-    <a href="Twitter2Jabber/CLI.html#method-i-defaults">#defaults</a>
+    <a href="Twitter2Jabber/CLI.html#method-i-debug_message">#debug_message</a>
     &mdash;
     <span class="container">Twitter2Jabber::CLI</span>
 
@@ -148,6 +166,11 @@
     <span class="container">Twitter2Jabber</span>
 
   <li class="method">
+    <a href="Twitter2Jabber.html#method-i-disconnect">#disconnect</a>
+    &mdash;
+    <span class="container">Twitter2Jabber</span>
+
+  <li class="method">
     <a href="Twitter2Jabber/JabberClient.html#method-i-disconnect">#disconnect</a>
     &mdash;
     <span class="container">Twitter2Jabber::JabberClient</span>
@@ -156,16 +179,6 @@
     <a href="Twitter2Jabber/TwitterClient.html#method-i-disconnect">#disconnect</a>
     &mdash;
     <span class="container">Twitter2Jabber::TwitterClient</span>
-
-  <li class="method">
-    <a href="Twitter2Jabber.html#method-i-disconnect">#disconnect</a>
-    &mdash;
-    <span class="container">Twitter2Jabber</span>
-
-  <li class="method">
-    <a href="Twitter2Jabber/CLI.html#method-i-extract_since_id">#extract_since_id</a>
-    &mdash;
-    <span class="container">Twitter2Jabber::CLI</span>
 
   <li class="method">
     <a href="Twitter2Jabber/JabberClient.html#method-i-format">#format</a>
@@ -188,11 +201,6 @@
     <span class="container">Twitter2Jabber</span>
 
   <li class="method">
-    <a href="Twitter2Jabber/TwitterClient.html#method-i-log">#log</a>
-    &mdash;
-    <span class="container">Twitter2Jabber::TwitterClient</span>
-
-  <li class="method">
     <a href="Twitter2Jabber.html#method-i-log">#log</a>
     &mdash;
     <span class="container">Twitter2Jabber</span>
@@ -201,6 +209,11 @@
     <a href="Twitter2Jabber/JabberClient.html#method-i-log">#log</a>
     &mdash;
     <span class="container">Twitter2Jabber::JabberClient</span>
+
+  <li class="method">
+    <a href="Twitter2Jabber/TwitterClient.html#method-i-log">#log</a>
+    &mdash;
+    <span class="container">Twitter2Jabber::TwitterClient</span>
 
   <li class="method">
     <a href="Twitter2Jabber/CLI.html#method-i-opts">#opts</a>
@@ -228,11 +241,6 @@
     <span class="container">Twitter2Jabber::TwitterClient</span>
 
   <li class="method">
-    <a href="Twitter2Jabber.html#method-i-run">#run</a>
-    &mdash;
-    <span class="container">Twitter2Jabber</span>
-
-  <li class="method">
     <a href="Twitter2Jabber/CLI.html#method-i-run">#run</a>
     &mdash;
     <span class="container">Twitter2Jabber::CLI</span>
@@ -241,16 +249,6 @@
     <a href="Twitter2Jabber/JabberClient.html#method-i-send_msg">#send_msg</a>
     &mdash;
     <span class="container">Twitter2Jabber::JabberClient</span>
-
-  <li class="method">
-    <a href="Twitter2Jabber/Version.html#method-i-to_a">#to_a</a>
-    &mdash;
-    <span class="container">Twitter2Jabber::Version</span>
-
-  <li class="method">
-    <a href="Twitter2Jabber/Version.html#method-i-to_s">#to_s</a>
-    &mdash;
-    <span class="container">Twitter2Jabber::Version</span>
 
   <li class="method">
     <a href="Twitter2Jabber/TwitterClient.html#method-i-tweets">#tweets</a>
@@ -262,7 +260,7 @@
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
-  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

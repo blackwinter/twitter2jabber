@@ -4,21 +4,18 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class Twitter2Jabber - twitter2jabber Application documentation (v0.8.2)</title>
-
-<link href="./fonts.css" rel="stylesheet">
-<link href="./rdoc.css" rel="stylesheet">
+<title>class Twitter2Jabber - twitter2jabber Application documentation (v0.8.3)</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
 </script>
 
 <script src="./js/jquery.js"></script>
-<script src="./js/navigation.js"></script>
-<script src="./js/search_index.js"></script>
-<script src="./js/search.js"></script>
-<script src="./js/searcher.js"></script>
 <script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
 
 
 <body id="top" role="document" class="class">
@@ -73,9 +70,11 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-c-client">::client</a>
+    
     <li ><a href="#method-c-new">::new</a>
     
-    <li ><a href="#method-i-client">#client</a>
+    <li ><a href="#method-c-run">::run</a>
     
     <li ><a href="#method-i-connect">#connect</a>
     
@@ -86,8 +85,6 @@
     <li ><a href="#method-i-initialize_client">#initialize_client</a>
     
     <li ><a href="#method-i-log">#log</a>
-    
-    <li ><a href="#method-i-run">#run</a>
     
   </ul>
 </div>
@@ -184,6 +181,39 @@
        </header>
 
     
+      <div id="method-c-client" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">client</span><span
+            class="method-args">(client)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="client-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">client</span>(<span class="ruby-identifier">client</span>)
+  <span class="ruby-identifier">const_get</span>(<span class="ruby-node">&quot;#{client.to_s.capitalize}Client&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-c-new" class="method-detail ">
         
         <div class="method-heading">
@@ -229,19 +259,11 @@
       </div>
 
     
-    </section>
-  
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
-       <header>
-         <h3>Public Instance Methods</h3>
-       </header>
-
-    
-      <div id="method-i-client" class="method-detail ">
+      <div id="method-c-run" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">client</span><span
-            class="method-args">(client)</span>
+          <span class="method-name">run</span><span
+            class="method-args">(options, since_id = nil)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -255,10 +277,10 @@
           
 
           
-          <div class="method-source-code" id="client-source">
-            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 35</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">client</span>(<span class="ruby-identifier">client</span>)
-  <span class="ruby-identifier">const_get</span>(<span class="ruby-node">&quot;#{client.to_s.capitalize}Client&quot;</span>)
+          <div class="method-source-code" id="run-source">
+            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">run</span>(<span class="ruby-identifier">options</span>, <span class="ruby-identifier">since_id</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>).<span class="ruby-identifier">connect</span>.<span class="ruby-identifier">deliver_tweets</span>(<span class="ruby-identifier">since_id</span>).<span class="ruby-identifier">disconnect</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -268,6 +290,14 @@
 
         
       </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
 
     
       <div id="method-i-connect" class="method-detail ">
@@ -413,39 +443,6 @@
       </div>
 
     
-      <div id="method-i-run" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">run</span><span
-            class="method-args">(options, since_id = nil)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="run-source">
-            <pre><span class="ruby-comment"># File lib/twitter2jabber.rb, line 31</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">run</span>(<span class="ruby-identifier">options</span>, <span class="ruby-identifier">since_id</span> = <span class="ruby-keyword">nil</span>)
-  <span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>).<span class="ruby-identifier">connect</span>.<span class="ruby-identifier">deliver_tweets</span>(<span class="ruby-identifier">since_id</span>).<span class="ruby-identifier">disconnect</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
     </section>
   
      <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
@@ -497,7 +494,7 @@
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
-  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 
